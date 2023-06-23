@@ -29,9 +29,9 @@ ul li {
 
 @font-face {
   font-family: 'Stratos';
-  src: url('../src/fonts/Stratos-ExtraBold.woff2') format('woff2'),
-      url('../src/fonts/Stratos-ExtraBold.woff') format('woff');
-  font-weight: bold;
+  src: url('./fonts/Stratos-Regular.woff2') format('woff2'),
+      url('./fonts/Stratos-Regular.woff') format('woff');
+  font-weight: normal;
   font-style: normal;
   font-display: swap;
 }

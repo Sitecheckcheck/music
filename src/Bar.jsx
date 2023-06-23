@@ -1,4 +1,5 @@
 import './App.css'
+import sprite from './img/icon/sprite.svg'
 
 function Bar() {
   return (
@@ -10,27 +11,27 @@ function Bar() {
                             <div className="player__controls">
                                 <div className="player__btn-prev">
                                     <svg className="player__btn-prev-svg" alt="prev">
-                                        <use xlinkHref="img/icon/sprite.svg#icon-prev"></use>
+                                        <use xlinkHref={`${sprite}#icon-prev`}></use>
                                     </svg>
                                 </div>
                                 <div className="player__btn-play _btn">
                                     <svg className="player__btn-play-svg" alt="play">
-                                        <use xlinkHref="img/icon/sprite.svg#icon-play"></use>
+                                        <use xlinkHref={`${sprite}#icon-play`}></use>
                                     </svg>
                                 </div>
                                 <div className="player__btn-next">
                                     <svg className="player__btn-next-svg" alt="next">
-                                        <use xlinkHref="img/icon/sprite.svg#icon-next"></use>
+                                        <use xlinkHref={`${sprite}#icon-next`}></use>
                                     </svg>
                                 </div>
                                 <div className="player__btn-repeat _btn-icon">
                                     <svg className="player__btn-repeat-svg" alt="repeat">
-                                        <use xlinkHref="img/icon/sprite.svg#icon-repeat"></use>
+                                        <use xlinkHref={`${sprite}#icon-repeat`}></use>
                                     </svg>
                                 </div>
                                 <div className="player__btn-shuffle _btn-icon">
                                     <svg className="player__btn-shuffle-svg" alt="shuffle">
-                                        <use xlinkHref="img/icon/sprite.svg#icon-shuffle"></use>
+                                        <use xlinkHref={`${sprite}#icon-shuffle`}></use>
                                     </svg>
                                 </div>
                             </div>
@@ -39,7 +40,7 @@ function Bar() {
                                 <div className="track-play__contain">
                                     <div className="track-play__image">
                                         <svg className="track-play__svg" alt="music">
-                                            <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
+                                            <use xlinkHref={`${sprite}#icon-note`}></use>
                                         </svg>
                                     </div>
                                     <div className="track-play__author">
@@ -53,12 +54,12 @@ function Bar() {
                                 <div className="track-play__like-dis">
                                     <div className="track-play__like _btn-icon">
                                         <svg className="track-play__like-svg" alt="like">
-                                            <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
+                                            <use xlinkHref={`${sprite}#icon-like`}></use>
                                         </svg>
                                     </div>
                                     <div className="track-play__dislike _btn-icon">
                                         <svg className="track-play__dislike-svg" alt="dislike">
-                                            <use xlinkHref="img/icon/sprite.svg#icon-dislike"></use>
+                                            <use xlinkHref={`${sprite}#icon-dislike`}></use>
                                         </svg>
                                     </div>
                                 </div>
@@ -68,7 +69,7 @@ function Bar() {
                            <div className="volume__content">
                                 <div className="volume__image">
                                     <svg className="volume__svg" alt="volume">
-                                        <use xlinkHref="img/icon/sprite.svg#icon-volume"></use>
+                                        <use xlinkHref={`${sprite}#icon-volume`}></use>
                                     </svg>
                                 </div>
                                 <div className="volume__progress _btn">
