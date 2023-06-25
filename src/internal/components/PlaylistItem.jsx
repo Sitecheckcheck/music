@@ -1,5 +1,5 @@
-import './App.css'
-import sprite from './img/icon/sprite.svg'
+import '../App.css'
+import sprite from '../../img/icon/sprite.svg'
 
 function PlaylistItem(props) {
   return (

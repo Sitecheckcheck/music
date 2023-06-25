@@ -1,6 +1,6 @@
-import './App.css'
+import '../App.css'
 import PlaylistItem from './PlaylistItem'
-import sprite from './img/icon/sprite.svg'
+import sprite from '../../img/icon/sprite.svg'
 
 function CenterBlock() {
   return (

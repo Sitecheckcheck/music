@@ -1,4 +1,4 @@
-import './App.css'
+import '../App.css'
 import Nav from './Nav'
 import CenterBlock from './CenterBlock'
 import Sidebar from './Sidebar'
