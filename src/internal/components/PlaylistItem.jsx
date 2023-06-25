@@ -1,5 +1,5 @@
-import '../App.css'
-import sprite from '../../img/icon/sprite.svg'
+import "../App.css"
+import sprite from "../../img/icon/sprite.svg"
 
 function PlaylistItem(props) {
   return (
@@ -13,7 +13,8 @@ function PlaylistItem(props) {
           </div>
           <div className="track__title-text">
             <a className="track__title-link" href="http://">
-              {props.track}<span className="track__title-span">{props.trackAbout}</span>
+              {props.track}
+              <span className="track__title-span">{props.trackAbout}</span>
             </a>
           </div>
         </div>
@@ -24,7 +25,7 @@ function PlaylistItem(props) {
         </div>
         <div className="track__album">
           <a className="track__album-link" href="http://">
-          {props.album}
+            {props.album}
           </a>
         </div>
         <div className="track__time">

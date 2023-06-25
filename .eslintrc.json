@@ -4,7 +4,6 @@
     "es2021": true
   },
   "extends": [
-    // "airbnb",
     "prettier",
     "plugin:react/recommended",
     "plugin:react/jsx-runtime"
@@ -18,5 +17,10 @@
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "react/prop-types": 0,
     "react/destructuring-assignment": [0]
+  },
+  "settings": {
+    "react": {
+      "version": "999.999.999" // It will default to "detect" in the future
+    }
   }
 }
