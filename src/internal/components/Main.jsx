@@ -8,7 +8,7 @@ function Main() {
     <main className="main">
       <Nav />
       <CenterBlock />
-      <Sidebar />
+      <Sidebar playlist />
     </main>
   )
 }

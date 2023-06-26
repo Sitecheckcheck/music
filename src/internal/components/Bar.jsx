@@ -1,7 +1,17 @@
 import "../App.css"
 import sprite from "../../img/icon/sprite.svg"
+import { useEffect, useState } from "react"
+import BarEmpty from "../../img/BarEmpty.png"
 
 function Bar() {
+  const [isLoad, setIsLoad] = useState(true)
+
+  useEffect(() => {
+    const x = setTimeout(() => {
+      setIsLoad(!isLoad)
+    }, 2000)
+  }, [false])
+
   return (
     <div className="bar">
       <div className="bar__content">
@@ -35,26 +45,28 @@ function Bar() {
                 </svg>
               </div>
             </div>
-
             <div className="player__track-play track-play">
-              <div className="track-play__contain">
-                <div className="track-play__image">
-                  <svg className="track-play__svg" alt="music">
-                    <use xlinkHref={`${sprite}#icon-note`}></use>
-                  </svg>
+              {isLoad ? (
+                <img src={BarEmpty} alt="" />
+              ) : (
+                <div className="track-play__contain">
+                  <div className="track-play__image">
+                    <svg className="track-play__svg" alt="music">
+                      <use xlinkHref={`${sprite}#icon-note`}></use>
+                    </svg>
+                  </div>
+                  <div className="track-play__author">
+                    <a className="track-play__author-link" href="http://">
+                      Ты та...
+                    </a>
+                  </div>
+                  <div className="track-play__album">
+                    <a className="track-play__album-link" href="http://">
+                      Баста
+                    </a>
+                  </div>
                 </div>
-                <div className="track-play__author">
-                  <a className="track-play__author-link" href="http://">
-                    Ты та...
-                  </a>
-                </div>
-                <div className="track-play__album">
-                  <a className="track-play__album-link" href="http://">
-                    Баста
-                  </a>
-                </div>
-              </div>
-
+              )}
               <div className="track-play__like-dis">
                 <div className="track-play__like _btn-icon">
                   <svg className="track-play__like-svg" alt="like">
