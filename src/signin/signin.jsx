@@ -1,5 +1,5 @@
-import "./signin.css"
-import logoModal from "../img/logo_modal.png"
+import './signin.css';
+import logoModal from '../img/logo_modal.png';
 
 function Signin() {
   return (
@@ -23,16 +23,18 @@ function Signin() {
             id="formpassword"
             placeholder="Пароль"
           />
-          <button className="modal__btn-enter" id="btnEnter">
-            <a href="../index.html">Войти</a>{" "}
+          <button type="button" className="modal__btn-enter" id="btnEnter">
+            <a href="../index.html">Войти</a>
+            {' '}
           </button>
-          <button className="modal__btn-signup" id="btnSignUp">
-            <a href="signup.html">Зарегистрироваться</a>{" "}
+          <button type="button" className="modal__btn-signup" id="btnSignUp">
+            <a href="signup.html">Зарегистрироваться</a>
+            {' '}
           </button>
         </form>
       </div>
     </div>
-  )
+  );
 }
 
-export default Signin
+export default Signin;

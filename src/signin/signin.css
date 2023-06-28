@@ -14,7 +14,7 @@
 a,
 a:visited {
   text-decoration: none;
-  font-family: "Stratos-Regular", sans-serif;
+  font-family: 'Stratos-Regular', sans-serif;
   cursor: pointer;
 }
 
@@ -28,9 +28,9 @@ ul li {
 }
 
 @font-face {
-  font-family: "Stratos";
-  src: url("../fonts/Stratos-Regular.woff2") format("woff2"),
-    url("../fonts/Stratos-Regular.woff") format("woff");
+  font-family: 'Stratos';
+  src: url('../fonts/Stratos-Regular.woff2') format('woff2'),
+    url('../fonts/Stratos-Regular.woff') format('woff');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -40,7 +40,7 @@ html,
 body {
   width: 100%;
   height: 100%;
-  font-family: "Stratos-Regular", sans-serif;
+  font-family: 'Stratos-Regular', sans-serif;
 }
 
 .wrapper {

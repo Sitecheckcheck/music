@@ -1,4 +1,4 @@
-import "../App.css"
+import '../App.css';
 
 function NavMenu() {
   return (
@@ -21,7 +21,7 @@ function NavMenu() {
         </li>
       </ul>
     </div>
-  )
+  );
 }
 
-export default NavMenu
+export default NavMenu;

@@ -1,6 +1,5 @@
-import "../App.css"
-import PlaylistItemEmpryImg from "../../img/PlaylistItemEmpry.png"
-import React from "react"
+import '../App.css';
+import PlaylistItemEmpryImg from '../../img/PlaylistItemEmpry.png';
 
 function PlaylistItemEmpty() {
   return (
@@ -56,7 +55,7 @@ function PlaylistItemEmpty() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default PlaylistItemEmpty
+export default PlaylistItemEmpty;

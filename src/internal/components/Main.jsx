@@ -1,7 +1,7 @@
-import "../App.css"
-import Nav from "./Nav"
-import CenterBlock from "./CenterBlock"
-import Sidebar from "./Sidebar"
+import '../App.css';
+import Nav from './Nav';
+import CenterBlock from './CenterBlock';
+import Sidebar from './Sidebar';
 
 function Main() {
   return (
@@ -10,7 +10,7 @@ function Main() {
       <CenterBlock />
       <Sidebar playlist />
     </main>
-  )
+  );
 }
 
-export default Main
+export default Main;

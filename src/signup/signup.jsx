@@ -1,5 +1,5 @@
-import "./signup.css"
-import logoModal from "../img/logo_modal.png"
+import './signup.css';
+import logoModal from '../img/logo_modal.png';
 
 function Signup() {
   return (
@@ -30,13 +30,14 @@ function Signup() {
             id="passwordSecond"
             placeholder="Повторите пароль"
           />
-          <button className="modal__btn-signup-ent" id="SignUpEnter">
-            <a href="../index.html">Зарегистрироваться</a>{" "}
+          <button type="button" className="modal__btn-signup-ent" id="SignUpEnter">
+            <a href="../index.html">Зарегистрироваться</a>
+            {' '}
           </button>
         </form>
       </div>
     </div>
-  )
+  );
 }
 
-export default Signup
+export default Signup;

@@ -1,47 +1,47 @@
-import "../App.css"
-import sprite from "../../img/icon/sprite.svg"
-import { useEffect, useState } from "react"
-import BarEmpty from "../../img/BarEmpty.png"
+import { useEffect, useState } from 'react';
+import '../App.css';
+import sprite from '../../img/icon/sprite.svg';
+import BarEmpty from '../../img/BarEmpty.png';
 
 function Bar() {
-  const [isLoad, setIsLoad] = useState(true)
+  const [isLoad, setIsLoad] = useState(true);
 
   useEffect(() => {
-    const x = setTimeout(() => {
-      setIsLoad(!isLoad)
-    }, 2000)
-  }, [false])
+    setTimeout(() => {
+      setIsLoad(!isLoad);
+    }, 2000);
+  }, [false]);
 
   return (
     <div className="bar">
       <div className="bar__content">
-        <div className="bar__player-progress"></div>
+        <div className="bar__player-progress" />
         <div className="bar__player-block">
           <div className="bar__player player">
             <div className="player__controls">
               <div className="player__btn-prev">
                 <svg className="player__btn-prev-svg" alt="prev">
-                  <use xlinkHref={`${sprite}#icon-prev`}></use>
+                  <use xlinkHref={`${sprite}#icon-prev`} />
                 </svg>
               </div>
               <div className="player__btn-play _btn">
                 <svg className="player__btn-play-svg" alt="play">
-                  <use xlinkHref={`${sprite}#icon-play`}></use>
+                  <use xlinkHref={`${sprite}#icon-play`} />
                 </svg>
               </div>
               <div className="player__btn-next">
                 <svg className="player__btn-next-svg" alt="next">
-                  <use xlinkHref={`${sprite}#icon-next`}></use>
+                  <use xlinkHref={`${sprite}#icon-next`} />
                 </svg>
               </div>
               <div className="player__btn-repeat _btn-icon">
                 <svg className="player__btn-repeat-svg" alt="repeat">
-                  <use xlinkHref={`${sprite}#icon-repeat`}></use>
+                  <use xlinkHref={`${sprite}#icon-repeat`} />
                 </svg>
               </div>
               <div className="player__btn-shuffle _btn-icon">
                 <svg className="player__btn-shuffle-svg" alt="shuffle">
-                  <use xlinkHref={`${sprite}#icon-shuffle`}></use>
+                  <use xlinkHref={`${sprite}#icon-shuffle`} />
                 </svg>
               </div>
             </div>
@@ -52,7 +52,7 @@ function Bar() {
                 <div className="track-play__contain">
                   <div className="track-play__image">
                     <svg className="track-play__svg" alt="music">
-                      <use xlinkHref={`${sprite}#icon-note`}></use>
+                      <use xlinkHref={`${sprite}#icon-note`} />
                     </svg>
                   </div>
                   <div className="track-play__author">
@@ -70,12 +70,12 @@ function Bar() {
               <div className="track-play__like-dis">
                 <div className="track-play__like _btn-icon">
                   <svg className="track-play__like-svg" alt="like">
-                    <use xlinkHref={`${sprite}#icon-like`}></use>
+                    <use xlinkHref={`${sprite}#icon-like`} />
                   </svg>
                 </div>
                 <div className="track-play__dislike _btn-icon">
                   <svg className="track-play__dislike-svg" alt="dislike">
-                    <use xlinkHref={`${sprite}#icon-dislike`}></use>
+                    <use xlinkHref={`${sprite}#icon-dislike`} />
                   </svg>
                 </div>
               </div>
@@ -85,7 +85,7 @@ function Bar() {
             <div className="volume__content">
               <div className="volume__image">
                 <svg className="volume__svg" alt="volume">
-                  <use xlinkHref={`${sprite}#icon-volume`}></use>
+                  <use xlinkHref={`${sprite}#icon-volume`} />
                 </svg>
               </div>
               <div className="volume__progress _btn">
@@ -100,7 +100,7 @@ function Bar() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default Bar
+export default Bar;
