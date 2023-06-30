@@ -12,8 +12,8 @@ function CenterBlock() {
   useEffect(() => {
     setTimeout(() => {
       setIsLoad(!isLoad);
-    }, 2000);
-  }, [false]);
+    }, 1000);
+  }, []);
 
   const playListItems = tracks.map((item) => (
     <PlaylistItem

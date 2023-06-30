@@ -2,9 +2,12 @@ import '../App.css';
 import tracks from './Tracks';
 
 function FilterAuthor() {
-  const filterAuthorItems = tracks.map((item) => (
-    <li key={item.id} className="filters-item">
-      {item.author}
+  const arr = tracks.map((item) => item.author);
+  const arr2 = arr.filter((item, index) => arr.indexOf(item) === index).sort();
+
+  const filterAuthorItems = arr2.map((item) => (
+    <li key={item} className="filters-item">
+      {item}
     </li>
   ));
 

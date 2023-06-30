@@ -12,8 +12,8 @@ function Sidebar() {
   useEffect(() => {
     setTimeout(() => {
       setIsLoad(!isLoad);
-    }, 2000);
-  }, [false]);
+    }, 1000);
+  }, []);
 
   return (
     <div className="main__sidebar sidebar">

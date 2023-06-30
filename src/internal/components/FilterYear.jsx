@@ -2,9 +2,12 @@ import '../App.css';
 import tracks from './Tracks';
 
 function FilterYear() {
-  const filterYearItems = tracks.map((item) => (
-    <li key={item.id} className="filters-item">
-      {item.release_date.substring(0, 4)}
+  const arr = tracks.map((item) => item.release_date);
+  const arr2 = arr.filter((item, index) => arr.indexOf(item) === index).sort();
+
+  const filterYearItems = arr2.map((item) => (
+    <li key={item} className="filters-item">
+      {item.substring(0, 4)}
     </li>
   ));
 
