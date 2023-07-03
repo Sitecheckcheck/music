@@ -1,7 +1,7 @@
 import '../App.css';
-import Nav from './Nav';
+import Nav from './nav/Nav';
 import CenterBlock from './CenterBlock';
-import Sidebar from './Sidebar';
+import Sidebar from './sidebar/Sidebar';
 
 function Main() {
   return (

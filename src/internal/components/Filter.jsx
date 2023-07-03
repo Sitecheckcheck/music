@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import '../App.css';
-import FilterGenre from './FilterGenre';
 import FilterAuthor from './FilterAuthor';
+import FilterGenre from './FilterGenre';
 import FilterYear from './FilterYear';
 
 function Filter() {

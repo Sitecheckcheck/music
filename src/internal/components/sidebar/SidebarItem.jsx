@@ -1,16 +1,15 @@
-import '../App.css';
+import { SidebarItemStyle, SidebarLink } from './styles';
 
 function SidebarItem(props) {
   return (
-    <div className="sidebar__item">
-      <div className="sidebar__link" href="#">
+    <SidebarItemStyle>
+      <SidebarLink href="#">
         <img
-          className="sidebar__img"
           src={props.playlist}
           alt="day's playlist"
         />
-      </div>
-    </div>
+      </SidebarLink>
+    </SidebarItemStyle>
   );
 }
 

@@ -2,20 +2,18 @@ import './App.css';
 import Main from './components/Main';
 import Bar from './components/Bar';
 import Footer from './components/Footer';
-// import Signin from '../signin/signin'
-// import Signup from '../signup/signup'
+import GlobalStyle, { Wrapper, Container } from './styles';
 
 function App() {
   return (
-    <div className="wrapper">
-      <div className="container">
+    <Wrapper>
+      <Container>
+        <GlobalStyle />
         <Main />
         <Bar />
         <Footer />
-        {/* <Signin/>
-        <Signup /> */}
-      </div>
-    </div>
+      </Container>
+    </Wrapper>
   );
 }
 
