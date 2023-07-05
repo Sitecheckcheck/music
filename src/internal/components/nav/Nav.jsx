@@ -1,25 +1,23 @@
 import { useState } from 'react';
 import logo from '../../../img/logo.png';
 import NavMenu from './NavMenu';
-import {
-  MainNav, NavLogo, LogoImage, NavBurger, BurgerLine,
-} from './styles';
+import * as S from './styles';
 
 function Nav() {
   const [openNav, setOpenNav] = useState(false);
 
   return (
-    <MainNav>
-      <NavLogo>
-        <LogoImage src={logo} alt="logo" />
-      </NavLogo>
-      <NavBurger onClick={() => setOpenNav(!openNav)}>
-        <BurgerLine />
-        <BurgerLine />
-        <BurgerLine />
-      </NavBurger>
+    <S.MainNav>
+      <S.NavLogo>
+        <S.LogoImage src={logo} alt="logo" />
+      </S.NavLogo>
+      <S.NavBurger onClick={() => setOpenNav(!openNav)}>
+        <S.BurgerLine />
+        <S.BurgerLine />
+        <S.BurgerLine />
+      </S.NavBurger>
       {openNav && <NavMenu />}
-    </MainNav>
+    </S.MainNav>
   );
 }
 

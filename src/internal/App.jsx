@@ -1,7 +1,7 @@
 import './App.css';
-import Main from './components/Main';
-import Bar from './components/Bar';
-import Footer from './components/Footer';
+import Main from './components/main/Main';
+import Bar from './components/bar/Bar';
+import Footer from './components/footer/Footer';
 import GlobalStyle, { Wrapper, Container } from './styles';
 
 function App() {

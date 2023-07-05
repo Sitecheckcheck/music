@@ -1,5 +1,5 @@
-import '../App.css';
-import tracks from './Tracks';
+import '../../../App.css';
+import tracks from '../../../../Tracks';
 
 function FilterYear() {
   const arr = tracks.map((item) => item.release_date);

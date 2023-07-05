@@ -4,10 +4,7 @@ function SidebarItem(props) {
   return (
     <SidebarItemStyle>
       <SidebarLink href="#">
-        <img
-          src={props.playlist}
-          alt="day's playlist"
-        />
+        <img src={props.playlist} alt="day's playlist" />
       </SidebarLink>
     </SidebarItemStyle>
   );

@@ -1,5 +1,5 @@
-import '../App.css';
-import tracks from './Tracks';
+import '../../../App.css';
+import tracks from '../../../../Tracks';
 
 function FilterAuthor() {
   const arr = tracks.map((item) => item.author);

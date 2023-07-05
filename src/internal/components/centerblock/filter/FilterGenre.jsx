@@ -1,6 +1,6 @@
-import '../App.css';
+import '../../../App.css';
 // import { useState } from 'react';
-import tracks from './Tracks';
+import tracks from '../../../../Tracks';
 
 function FilterGenre() {
   const arr = tracks.map((item) => item.genre);

@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
-import '../App.css';
-import PlaylistItem from './PlaylistItem';
-import sprite from '../../img/icon/sprite.svg';
-import PlaylistItemEmpty from './PlayListItemEmpty';
-import tracks from './Tracks';
-import Filter from './Filter';
+import PlaylistItem from './playlist/PlaylistItem';
+import sprite from '../../../img/icon/sprite.svg';
+import PlaylistItemEmpty from './playlist/PlayListItemEmpty';
+import tracks from '../../../Tracks';
+import Filter from './filter/Filter';
+import * as S from './centerBlockStyle';
 
 function CenterBlock() {
   const [isLoad, setIsLoad] = useState(true);
@@ -28,41 +28,38 @@ function CenterBlock() {
   ));
 
   return (
-    <div className="main__centerblock centerblock">
+    <S.MainCenterblock>
       <div className="centerblock__search search">
-        <svg className="search__svg">
+        <S.SearchSvg>
           <use xlinkHref={`${sprite}#icon-search`} />
-        </svg>
-        <input
-          className="search__text"
-          type="search"
-          placeholder="Поиск"
-          name="search"
-        />
+        </S.SearchSvg>
+        <S.SearchText type="search" placeholder="Поиск" name="search" />
       </div>
       <h2 className="centerblock__h2">Треки</h2>
 
       <Filter />
 
       <div className="centerblock__content">
-        <div className="content__title playlist-title">
+        <S.ContentTitle>
           <div className="playlist-title__col col01">Трек</div>
           <div className="playlist-title__col col02">ИСПОЛНИТЕЛЬ</div>
           <div className="playlist-title__col col03">АЛЬБОМ</div>
           <div className="playlist-title__col col04">
-            <svg className="playlist-title__svg" alt="time">
+            <S.playlistTitleSvg alt="time">
               <use xlinkHref={`${sprite}#icon-watch`} />
-            </svg>
+            </S.playlistTitleSvg>
           </div>
-        </div>
+        </S.ContentTitle>
 
         {isLoad ? (
-          <PlaylistItemEmpty />
+          <S.ContentPlaylist>
+            <PlaylistItemEmpty />
+          </S.ContentPlaylist>
         ) : (
-          <div className="content__playlist playlist">{playListItems}</div>
+          <S.ContentPlaylist>{playListItems}</S.ContentPlaylist>
         )}
       </div>
-    </div>
+    </S.MainCenterblock>
   );
 }
 

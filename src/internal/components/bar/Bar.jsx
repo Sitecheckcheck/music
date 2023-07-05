@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import '../App.css';
-import sprite from '../../img/icon/sprite.svg';
-import BarEmpty from '../../img/BarEmpty.png';
+import sprite from '../../../img/icon/sprite.svg';
+import BarEmpty from '../../../img/BarEmpty.png';
+import * as S from './barStyle';
 
 function Bar() {
   const [isLoad, setIsLoad] = useState(true);
@@ -13,11 +13,11 @@ function Bar() {
   }, []);
 
   return (
-    <div className="bar">
+    <S.Bar>
       <div className="bar__content">
         <div className="bar__player-progress" />
         <div className="bar__player-block">
-          <div className="bar__player player">
+          <S.BarPlayer>
             <div className="player__controls">
               <div className="player__btn-prev">
                 <svg className="player__btn-prev-svg" alt="prev">
@@ -80,8 +80,8 @@ function Bar() {
                 </div>
               </div>
             </div>
-          </div>
-          <div className="bar__volume-block volume">
+          </S.BarPlayer>
+          <S.BarVolumeBlock>
             <div className="volume__content">
               <div className="volume__image">
                 <svg className="volume__svg" alt="volume">
@@ -96,10 +96,10 @@ function Bar() {
                 />
               </div>
             </div>
-          </div>
+          </S.BarVolumeBlock>
         </div>
       </div>
-    </div>
+    </S.Bar>
   );
 }
 

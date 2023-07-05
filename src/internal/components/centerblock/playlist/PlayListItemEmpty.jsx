@@ -1,60 +1,60 @@
-import '../App.css';
-import PlaylistItemEmpryImg from '../../img/PlaylistItemEmpry.png';
+import PlaylistItemEmpryImg from '../../../../img/PlaylistItemEmpry.png';
+import * as S from './playliststyle';
 
 function PlaylistItemEmpty() {
   return (
-    <div className="content__playlist playlist">
-      <div className="playlist__item">
+    <>
+      <S.PlaylistItem>
         <div className="playlist__track track">
           <img src={PlaylistItemEmpryImg} alt="" />
         </div>
-      </div>
-      <div className="playlist__item">
+      </S.PlaylistItem>
+      <S.PlaylistItem>
         <div className="playlist__track track">
           <img src={PlaylistItemEmpryImg} alt="" />
         </div>
-      </div>
-      <div className="playlist__item">
+      </S.PlaylistItem>
+      <S.PlaylistItem>
         <div className="playlist__track track">
           <img src={PlaylistItemEmpryImg} alt="" />
         </div>
-      </div>
-      <div className="playlist__item">
+      </S.PlaylistItem>
+      <S.PlaylistItem>
         <div className="playlist__track track">
           <img src={PlaylistItemEmpryImg} alt="" />
         </div>
-      </div>
-      <div className="playlist__item">
+      </S.PlaylistItem>
+      <S.PlaylistItem>
         <div className="playlist__track track">
           <img src={PlaylistItemEmpryImg} alt="" />
         </div>
-      </div>
-      <div className="playlist__item">
+      </S.PlaylistItem>
+      <S.PlaylistItem>
         <div className="playlist__track track">
           <img src={PlaylistItemEmpryImg} alt="" />
         </div>
-      </div>
-      <div className="playlist__item">
+      </S.PlaylistItem>
+      <S.PlaylistItem>
         <div className="playlist__track track">
           <img src={PlaylistItemEmpryImg} alt="" />
         </div>
-      </div>
-      <div className="playlist__item">
+      </S.PlaylistItem>
+      <S.PlaylistItem>
         <div className="playlist__track track">
           <img src={PlaylistItemEmpryImg} alt="" />
         </div>
-      </div>
-      <div className="playlist__item">
+      </S.PlaylistItem>
+      <S.PlaylistItem>
         <div className="playlist__track track">
           <img src={PlaylistItemEmpryImg} alt="" />
         </div>
-      </div>
-      <div className="playlist__item">
+      </S.PlaylistItem>
+      <S.PlaylistItem>
         <div className="playlist__track track">
           <img src={PlaylistItemEmpryImg} alt="" />
         </div>
-      </div>
-    </div>
+      </S.PlaylistItem>
+    </>
   );
 }
 
