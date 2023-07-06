@@ -1,5 +1,5 @@
-import '../../../App.css';
 import tracks from '../../../../Tracks';
+import { Filters } from './filterStyle';
 
 function FilterAuthor() {
   const arr = tracks.map((item) => item.author);
@@ -12,9 +12,9 @@ function FilterAuthor() {
   ));
 
   return (
-    <div className="filters">
+    <Filters>
       <ul className="filtersList">{filterAuthorItems}</ul>
-    </div>
+    </Filters>
   );
 }
 

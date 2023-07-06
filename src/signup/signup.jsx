@@ -36,7 +36,6 @@ function Signup() {
             id="SignUpEnter"
           >
             <a href="../index.html">Зарегистрироваться</a>
-            {' '}
           </button>
         </form>
       </div>

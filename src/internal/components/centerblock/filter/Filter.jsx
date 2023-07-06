@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import '../../../App.css';
 import FilterAuthor from './FilterAuthor';
 import FilterGenre from './FilterGenre';
 import FilterYear from './FilterYear';
+import { CenterblockFilter, FilterButton } from './filterStyle';
 
 function Filter() {
   const [visibleFilter, setVisibleFilter] = useState(null);
@@ -12,39 +12,33 @@ function Filter() {
   };
 
   return (
-    <div className="centerblock__filter filter">
+    <CenterblockFilter>
       <div className="filter__title">Искать по:</div>
       <div>
-        <button
+        <FilterButton
           type="button"
-          className="filter__button button-author _btn-text"
           onClick={() => toggleVisibleFilter('Author')}
         >
           Исполнителю
-        </button>
+        </FilterButton>
         {visibleFilter === 'Author' && <FilterAuthor />}
       </div>
       <div>
-        <button
-          type="button"
-          className="filter__button button-year _btn-text"
-          onClick={() => toggleVisibleFilter('Year')}
-        >
+        <FilterButton type="button" onClick={() => toggleVisibleFilter('Year')}>
           году выпуска
-        </button>
+        </FilterButton>
         {visibleFilter === 'Year' && <FilterYear />}
       </div>
       <div>
-        <button
+        <FilterButton
           type="button"
-          className="filter__button button-genre _btn-text"
           onClick={() => toggleVisibleFilter('Genre')}
         >
           жанру
-        </button>
+        </FilterButton>
         {visibleFilter === 'Genre' && <FilterGenre />}
       </div>
-    </div>
+    </CenterblockFilter>
   );
 }
 

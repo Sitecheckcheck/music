@@ -1,4 +1,3 @@
-import './App.css';
 import Main from './components/main/Main';
 import Bar from './components/bar/Bar';
 import Footer from './components/footer/Footer';

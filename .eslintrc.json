@@ -23,7 +23,8 @@
     "react/destructuring-assignment": [0],
     "jsx-a11y/click-events-have-key-events": "off",
     "jsx-a11y/no-static-element-interactions": "off",
-    "linebreak-style": "off"
+    "linebreak-style": "off",
+    "indent": ["error", 2, { "SwitchCase": 1 }]
   },
   "settings": {
     "react": {
