@@ -1,5 +1,5 @@
-import '../App.css';
-import tracks from './Tracks';
+import tracks from '../../../../Tracks';
+import { Filters } from './filterStyle';
 
 function FilterYear() {
   const arr = tracks.map((item) => item.release_date);
@@ -12,9 +12,9 @@ function FilterYear() {
   ));
 
   return (
-    <div className="filters">
+    <Filters>
       <ul className="filtersList">{filterYearItems}</ul>
-    </div>
+    </Filters>
   );
 }
 

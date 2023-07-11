@@ -1,11 +1,11 @@
-import '../App.css';
-import sprite from '../../img/icon/sprite.svg';
+import sprite from '../../../../img/icon/sprite.svg';
+import * as S from './playliststyle';
 
 function PlaylistItem(props) {
   return (
-    <div className="playlist__item">
+    <S.PlaylistItem>
       <div className="playlist__track track">
-        <div className="track__title">
+        <S.TrackTitle>
           <div className="track__title-image">
             <svg className="track__title-svg" alt="music">
               <use xlinkHref={`${sprite}#icon-note`} />
@@ -17,25 +17,25 @@ function PlaylistItem(props) {
               <span className="track__title-span">{props.trackAbout}</span>
             </a>
           </div>
-        </div>
-        <div className="track__author">
+        </S.TrackTitle>
+        <S.TrackAuthor>
           <a className="track__author-link" href="http://">
             {props.artist}
           </a>
-        </div>
-        <div className="track__album">
+        </S.TrackAuthor>
+        <S.TrackAlbum>
           <a className="track__album-link" href="http://">
             {props.album}
           </a>
-        </div>
-        <div className="track__time">
+        </S.TrackAlbum>
+        <S.TrackTime>
           <svg className="track__time-svg" alt="time">
             <use xlinkHref={`${sprite}#icon-like`} />
           </svg>
           <span className="track__time-text">{props.time}</span>
-        </div>
+        </S.TrackTime>
       </div>
-    </div>
+    </S.PlaylistItem>
   );
 }
 

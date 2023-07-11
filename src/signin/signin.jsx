@@ -25,11 +25,9 @@ function Signin() {
           />
           <button type="button" className="modal__btn-enter" id="btnEnter">
             <a href="../index.html">Войти</a>
-            {' '}
           </button>
           <button type="button" className="modal__btn-signup" id="btnSignUp">
             <a href="signup.html">Зарегистрироваться</a>
-            {' '}
           </button>
         </form>
       </div>

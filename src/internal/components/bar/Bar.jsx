@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import '../App.css';
-import sprite from '../../img/icon/sprite.svg';
-import BarEmpty from '../../img/BarEmpty.png';
+import sprite from '../../../img/icon/sprite.svg';
+import BarEmpty from '../../../img/BarEmpty.png';
+import * as S from './barStyle';
 
 function Bar() {
   const [isLoad, setIsLoad] = useState(true);
@@ -13,43 +13,43 @@ function Bar() {
   }, []);
 
   return (
-    <div className="bar">
+    <S.Bar>
       <div className="bar__content">
         <div className="bar__player-progress" />
         <div className="bar__player-block">
-          <div className="bar__player player">
+          <S.BarPlayer>
             <div className="player__controls">
-              <div className="player__btn-prev">
+              <S.PlayerBtnPrev>
                 <svg className="player__btn-prev-svg" alt="prev">
                   <use xlinkHref={`${sprite}#icon-prev`} />
                 </svg>
-              </div>
-              <div className="player__btn-play _btn">
+              </S.PlayerBtnPrev>
+              <S.PlayerBtnPlay>
                 <svg className="player__btn-play-svg" alt="play">
                   <use xlinkHref={`${sprite}#icon-play`} />
                 </svg>
-              </div>
-              <div className="player__btn-next">
+              </S.PlayerBtnPlay>
+              <S.PlayerBtnNext>
                 <svg className="player__btn-next-svg" alt="next">
                   <use xlinkHref={`${sprite}#icon-next`} />
                 </svg>
-              </div>
-              <div className="player__btn-repeat _btn-icon">
+              </S.PlayerBtnNext>
+              <S.PlayerBtnRepeat>
                 <svg className="player__btn-repeat-svg" alt="repeat">
                   <use xlinkHref={`${sprite}#icon-repeat`} />
                 </svg>
-              </div>
-              <div className="player__btn-shuffle _btn-icon">
+              </S.PlayerBtnRepeat>
+              <S.PlayerBtnShuffle>
                 <svg className="player__btn-shuffle-svg" alt="shuffle">
                   <use xlinkHref={`${sprite}#icon-shuffle`} />
                 </svg>
-              </div>
+              </S.PlayerBtnShuffle>
             </div>
             <div className="player__track-play track-play">
               {isLoad ? (
                 <img src={BarEmpty} alt="" />
               ) : (
-                <div className="track-play__contain">
+                <S.TrackPlayContain>
                   <div className="track-play__image">
                     <svg className="track-play__svg" alt="music">
                       <use xlinkHref={`${sprite}#icon-note`} />
@@ -65,9 +65,9 @@ function Bar() {
                       Баста
                     </a>
                   </div>
-                </div>
+                </S.TrackPlayContain>
               )}
-              <div className="track-play__like-dis">
+              <S.TrackPlayLikeDis>
                 <div className="track-play__like _btn-icon">
                   <svg className="track-play__like-svg" alt="like">
                     <use xlinkHref={`${sprite}#icon-like`} />
@@ -78,10 +78,10 @@ function Bar() {
                     <use xlinkHref={`${sprite}#icon-dislike`} />
                   </svg>
                 </div>
-              </div>
+              </S.TrackPlayLikeDis>
             </div>
-          </div>
-          <div className="bar__volume-block volume">
+          </S.BarPlayer>
+          <S.BarVolumeBlock>
             <div className="volume__content">
               <div className="volume__image">
                 <svg className="volume__svg" alt="volume">
@@ -96,10 +96,10 @@ function Bar() {
                 />
               </div>
             </div>
-          </div>
+          </S.BarVolumeBlock>
         </div>
       </div>
-    </div>
+    </S.Bar>
   );
 }
 

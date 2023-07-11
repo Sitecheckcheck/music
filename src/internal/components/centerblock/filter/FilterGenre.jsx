@@ -1,7 +1,5 @@
-/* eslint-disable */
-// import { useState } from 'react';
-import '../App.css';
-import tracks from './Tracks';
+import tracks from '../../../../Tracks';
+import { Filters } from './filterStyle';
 
 function FilterGenre() {
   const arr = tracks.map((item) => item.genre);
@@ -13,12 +11,10 @@ function FilterGenre() {
     </li>
   ));
 
-  //   const [activeItem, setActivItem] = useState(null)
-
   return (
-    <div className="filters">
+    <Filters>
       <ul className="filtersList">{filterGenreItems}</ul>
-    </div>
+    </Filters>
   );
 }
 

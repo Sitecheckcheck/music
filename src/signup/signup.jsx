@@ -30,9 +30,12 @@ function Signup() {
             id="passwordSecond"
             placeholder="Повторите пароль"
           />
-          <button type="button" className="modal__btn-signup-ent" id="SignUpEnter">
+          <button
+            type="button"
+            className="modal__btn-signup-ent"
+            id="SignUpEnter"
+          >
             <a href="../index.html">Зарегистрироваться</a>
-            {' '}
           </button>
         </form>
       </div>
