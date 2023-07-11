@@ -34,6 +34,7 @@ export const FilterButton = styled.button`
   color: #fff;
   width: 144px;
   height: 39px;
+  margin-right: 10px;
 
   &:hover {
     border-color: #d9b6ff;

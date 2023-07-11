@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const MainSidebar = styled.div`
   max-width: 418px;
-  padding: 20px 90px 20px 78px;
+  padding: 10px 40px 10px 36px;
 `;
 
 export const SidebarPersonal = styled.div`
@@ -67,8 +67,8 @@ export const SidebarList = styled.div`
 `;
 
 export const SidebarItemStyle = styled.div`
-  width: 250px;
-  height: 150px;
+  width: 170px;
+  height: 90px;
   &:not(:last-child) {
     margin-bottom: 30px;
   }
