@@ -1,5 +1,5 @@
 import './signup.css';
-import logoModal from '../img/logo_modal.png';
+import logoModal from '../../../img/logo_modal.png';
 
 function Signup() {
   return (
