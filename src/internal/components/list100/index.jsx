@@ -2,13 +2,13 @@ import { NavLink } from 'react-router-dom';
 import Nav from '../nav/Nav';
 import { MainSidebar, SidebarPersonal } from '../sidebar/styles';
 import SMain from '../main/mainStyle';
-import MyTracksCenterBlock from './mytrackcenterblock/mytrackcenterblock';
+import List100CenterBlock from './list100centerblock';
 
-function MyTrackMain() {
+function List100Main() {
   return (
     <SMain>
       <Nav />
-      <MyTracksCenterBlock />
+      <List100CenterBlock />
       <MainSidebar>
         <SidebarPersonal>
           <NavLink to="/mytrack">Sergey.Ivanov</NavLink>
@@ -19,4 +19,4 @@ function MyTrackMain() {
   );
 }
 
-export default MyTrackMain;
+export default List100Main;

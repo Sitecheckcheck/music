@@ -1,7 +1,14 @@
+import { NavLink } from 'react-router-dom';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import Cookies from 'js-cookie';
 import './signin.css';
 import logoModal from '../../../img/logo_modal.png';
 
 function Signin() {
+  const PutToken = () => {
+    Cookies.set('token', 'pasha');
+  };
+
   return (
     <div className="container-enter">
       <div className="modal__block">
@@ -23,11 +30,16 @@ function Signin() {
             id="formpassword"
             placeholder="Пароль"
           />
-          <button type="button" className="modal__btn-enter" id="btnEnter">
-            <a href="../index.html">Войти</a>
+          <button
+            type="button"
+            className="modal__btn-enter"
+            id="btnEnter"
+            onClick={PutToken}
+          >
+            <NavLink to="/mytrack">Войти</NavLink>
           </button>
           <button type="button" className="modal__btn-signup" id="btnSignUp">
-            <a href="signup.html">Зарегистрироваться</a>
+            <NavLink to="/signup">Зарегистрироваться</NavLink>
           </button>
         </form>
       </div>

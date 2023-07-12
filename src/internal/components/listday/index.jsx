@@ -1,16 +1,17 @@
+import { NavLink } from 'react-router-dom';
 import Nav from '../nav/Nav';
 import { MainSidebar, SidebarPersonal } from '../sidebar/styles';
 import SMain from '../main/mainStyle';
-import CompilCenterBlock from './compilcenterblock';
+import ListdayCenterBlock from './listdaycenterblock';
 
-function CompilMain() {
+function ListdayMain() {
   return (
     <SMain>
       <Nav />
-      <CompilCenterBlock />
+      <ListdayCenterBlock />
       <MainSidebar>
         <SidebarPersonal>
-          <p>Sergey.Ivanov</p>
+          <NavLink to="/mytrack">Sergey.Ivanov</NavLink>
           <div />
         </SidebarPersonal>
       </MainSidebar>
@@ -18,4 +19,4 @@ function CompilMain() {
   );
 }
 
-export default CompilMain;
+export default ListdayMain;

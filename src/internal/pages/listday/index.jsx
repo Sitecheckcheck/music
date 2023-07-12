@@ -1,14 +1,14 @@
 import Bar from '../../components/bar/Bar';
 import Footer from '../../components/footer/Footer';
 import GlobalStyle, { Wrapper, Container } from '../../styles';
-import CompilMain from '../../components/compil';
+import ListdayMain from '../../components/listday';
 
-function Compil() {
+function Listday() {
   return (
     <Wrapper>
       <Container>
         <GlobalStyle />
-        <CompilMain />
+        <ListdayMain />
         <Bar />
         <Footer />
       </Container>
@@ -16,4 +16,4 @@ function Compil() {
   );
 }
 
-export default Compil;
+export default Listday;

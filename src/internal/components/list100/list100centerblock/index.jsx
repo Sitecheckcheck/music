@@ -3,7 +3,7 @@ import sprite from '../../../../img/icon/sprite.svg';
 import tracks from '../../../../Tracks';
 import * as S from '../../centerblock/centerBlockStyle';
 
-function CompilCenterBlock() {
+function List100CenterBlock() {
   const playListItems = tracks.map((item) => (
     <PlaylistItem
       key={item.id}
@@ -24,7 +24,7 @@ function CompilCenterBlock() {
         </S.SearchSvg>
         <S.SearchText type="search" placeholder="Поиск" name="search" />
       </div>
-      <h2 className="centerblock__h2">Плейлист дня</h2>
+      <h2 className="centerblock__h2">100 танцевальных хитов</h2>
 
       <div className="centerblock__content">
         <S.ContentTitle>
@@ -44,4 +44,4 @@ function CompilCenterBlock() {
   );
 }
 
-export default CompilCenterBlock;
+export default List100CenterBlock;
