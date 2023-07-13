@@ -29,9 +29,18 @@ function Sidebar() {
       </SidebarPersonal>
       <SidebarBlock>
         <SidebarList>
-          <SidebarItem playlist={isLoad ? playlist00 : playlist01} page="listday" />
-          <SidebarItem playlist={isLoad ? playlist00 : playlist02} page="list100" />
-          <SidebarItem playlist={isLoad ? playlist00 : playlist03} page="listindi" />
+          <SidebarItem
+            playlist={isLoad ? playlist00 : playlist01}
+            page="playlist/3"
+          />
+          <SidebarItem
+            playlist={isLoad ? playlist00 : playlist02}
+            page="playlist/1"
+          />
+          <SidebarItem
+            playlist={isLoad ? playlist00 : playlist03}
+            page="playlist/2"
+          />
         </SidebarList>
       </SidebarBlock>
     </MainSidebar>
