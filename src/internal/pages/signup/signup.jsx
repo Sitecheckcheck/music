@@ -1,3 +1,5 @@
+import Cookies from 'js-cookie';
+import { NavLink } from 'react-router-dom';
 import './signup.css';
 import logoModal from '../../../img/logo_modal.png';
 
@@ -34,8 +36,11 @@ function Signup() {
             type="button"
             className="modal__btn-signup-ent"
             id="SignUpEnter"
+            onClick={() => {
+              Cookies.set('token', 'pasha');
+            }}
           >
-            <a href="../index.html">Зарегистрироваться</a>
+            <NavLink to="/mytrack">Зарегистрироваться</NavLink>
           </button>
         </form>
       </div>

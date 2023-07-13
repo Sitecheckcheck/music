@@ -5,10 +5,6 @@ import './signin.css';
 import logoModal from '../../../img/logo_modal.png';
 
 function Signin() {
-  const PutToken = () => {
-    Cookies.set('token', 'pasha');
-  };
-
   return (
     <div className="container-enter">
       <div className="modal__block">
@@ -34,7 +30,9 @@ function Signin() {
             type="button"
             className="modal__btn-enter"
             id="btnEnter"
-            onClick={PutToken}
+            onClick={() => {
+              Cookies.set('token', 'pasha');
+            }}
           >
             <NavLink to="/mytrack">Войти</NavLink>
           </button>

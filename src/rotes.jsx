@@ -1,4 +1,3 @@
-import Cookies from 'js-cookie';
 import { Route, Routes } from 'react-router-dom';
 import NotFound from './internal/pages/not-found';
 import MainPage from './internal/pages/mainpage';
@@ -10,7 +9,7 @@ import List100 from './internal/pages/list100';
 import Listindi from './internal/pages/listindi';
 import { ProtectedRoute } from './internal/components/protected-route';
 
-function AppRoutes() {
+function AppRoutes(props) {
   return (
     <Routes>
       <Route path="*" element={<NotFound />} />
@@ -18,14 +17,9 @@ function AppRoutes() {
       <Route path="signup" element={<Signup />} />
       <Route path="" element={<MainPage />} />
 
-      <Route
-        path="mytrack"
-        element={(
-          <ProtectedRoute isAllowed={Boolean(Cookies.get('token'))}>
-            <MyTracks />
-          </ProtectedRoute>
-        )}
-      />
+      <Route element={<ProtectedRoute isAllowed={Boolean(props.user)} />}>
+        <Route path="mytrack" element={<MyTracks />} />
+      </Route>
 
       <Route path="listday" element={<Listday />} />
       <Route path="list100" element={<List100 />} />
