@@ -12,7 +12,7 @@ export function ListMusic() {
   const params = useParams();
 
   const ListName = ListNames.find(
-    (listname) => listname.id === Number(params.id)
+    (listname) => listname.id === Number(params.id),
   );
 
   return (
