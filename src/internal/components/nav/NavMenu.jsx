@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom';
+import Cookies from 'js-cookie';
 import * as S from './styles';
 
 function NavMenu() {
@@ -12,7 +13,15 @@ function NavMenu() {
           <NavLink to="/mytrack">Мой плейлист</NavLink>
         </S.MenuItem>
         <S.MenuItem>
-          <NavLink to="/signin">Войти</NavLink>
+          <NavLink
+            to="/signin"
+            onClick={() => {
+              Cookies.remove('token', 'pasha');
+              window.location.reload();
+            }}
+          >
+            Выйти
+          </NavLink>
         </S.MenuItem>
       </S.MenuList>
     </S.NavMenuStyle>
