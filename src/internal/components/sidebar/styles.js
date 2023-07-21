@@ -21,7 +21,7 @@ export const SidebarPersonal = styled.div`
   justify-content: flex-end;
   padding: 12px 0 15px 0;
 
-  p {
+  a {
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
