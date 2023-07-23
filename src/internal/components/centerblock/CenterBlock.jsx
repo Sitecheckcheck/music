@@ -2,12 +2,13 @@ import { useEffect, useState } from 'react';
 import PlaylistItem from './playlist/PlaylistItem';
 import sprite from '../../../img/icon/sprite.svg';
 import PlaylistItemEmpty from './playlist/PlayListItemEmpty';
-import tracks from '../../../Tracks';
 import Filter from './filter/Filter';
 import * as S from './centerBlockStyle';
+import { getPlaylist } from '../../api';
 
 function CenterBlock() {
   const [isLoad, setIsLoad] = useState(true);
+  const [playlist, setplaylist] = useState([]);
 
   useEffect(() => {
     setTimeout(() => {
@@ -15,7 +16,11 @@ function CenterBlock() {
     }, 1000);
   }, []);
 
-  const playListItems = tracks.map((item) => (
+  useEffect(() => {
+    getPlaylist().then((playlistGet) => setplaylist(playlistGet));
+  }, []);
+
+  const playListItems = playlist.map((item) => (
     <PlaylistItem
       key={item.id}
       track={item.name}
