@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import playlist01 from '../../../img/playlist01.png';
 import playlist02 from '../../../img/playlist02.png';
@@ -12,15 +11,7 @@ import {
   SidebarList,
 } from './styles';
 
-function Sidebar() {
-  const [isLoad, setIsLoad] = useState(true);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setIsLoad(!isLoad);
-    }, 1000);
-  }, []);
-
+function Sidebar({ isLoad }) {
   return (
     <MainSidebar>
       <SidebarPersonal>

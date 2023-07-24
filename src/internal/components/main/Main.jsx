@@ -3,12 +3,12 @@ import CenterBlock from '../centerblock/CenterBlock';
 import Sidebar from '../sidebar/Sidebar';
 import SMain from './mainStyle';
 
-function Main() {
+function Main({ isLoad, setIsLoad }) {
   return (
     <SMain>
       <Nav />
-      <CenterBlock />
-      <Sidebar playlist />
+      <CenterBlock isLoad={isLoad} setIsLoad={setIsLoad} />
+      <Sidebar isLoad={isLoad} playlist />
     </SMain>
   );
 }

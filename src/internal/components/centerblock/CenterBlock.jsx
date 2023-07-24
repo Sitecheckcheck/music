@@ -6,18 +6,18 @@ import Filter from './filter/Filter';
 import * as S from './centerBlockStyle';
 import { getPlaylist } from '../../api';
 
-function CenterBlock() {
-  const [isLoad, setIsLoad] = useState(true);
+function CenterBlock({ isLoad, setIsLoad }) {
   const [playlist, setplaylist] = useState([]);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setIsLoad(!isLoad);
-    }, 1000);
-  }, []);
+  const handleGetPlaylist = () => {
+    getPlaylist().then((playlistGet) => {
+      setplaylist(playlistGet);
+      setIsLoad(false);
+    });
+  };
 
   useEffect(() => {
-    getPlaylist().then((playlistGet) => setplaylist(playlistGet));
+    handleGetPlaylist();
   }, []);
 
   const playListItems = playlist.map((item) => (

@@ -3,13 +3,13 @@ import Bar from '../../components/bar/Bar';
 import Footer from '../../components/footer/Footer';
 import GlobalStyle, { Wrapper, Container } from '../../styles';
 
-function MainPage() {
+function MainPage({ isLoad, setIsLoad }) {
   return (
     <Wrapper>
       <Container>
         <GlobalStyle />
-        <Main />
-        <Bar />
+        <Main isLoad={isLoad} setIsLoad={setIsLoad} />
+        <Bar isLoad={isLoad} />
         <Footer />
       </Container>
     </Wrapper>

@@ -1,17 +1,8 @@
-import { useEffect, useState } from 'react';
 import sprite from '../../../img/icon/sprite.svg';
 import BarEmpty from '../../../img/BarEmpty.png';
 import * as S from './barStyle';
 
-function Bar() {
-  const [isLoad, setIsLoad] = useState(true);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setIsLoad(!isLoad);
-    }, 1000);
-  }, []);
-
+function Bar({ isLoad }) {
   return (
     <S.Bar>
       <div className="bar__content">
