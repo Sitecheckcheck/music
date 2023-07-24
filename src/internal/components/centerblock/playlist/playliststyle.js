@@ -20,10 +20,7 @@ export const PlaylistItem = styled.div`
     -ms-flex-align: center;
     align-items: center;
     cursor: pointer;
-  }
-
-  .playlist__track:hover {
-    border: 0.3px solid white;
+    box-sizing: border-box;
   }
 `;
 

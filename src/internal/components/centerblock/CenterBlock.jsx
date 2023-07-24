@@ -40,7 +40,7 @@ function CenterBlock({
       artist={item.author}
       album={item.album}
       time={`${Math.floor(item.duration_in_seconds / 60)}:${
-        item.duration_in_seconds % 60
+        (item.duration_in_seconds % 60 < 10) ? (`0${item.duration_in_seconds % 60}`) : item.duration_in_seconds % 60
       }`}
     />
   ));
