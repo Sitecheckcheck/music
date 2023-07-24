@@ -19,6 +19,11 @@ export const PlaylistItem = styled.div`
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
+    cursor: pointer;
+  }
+
+  .playlist__track:hover {
+    border: 0.3px solid white;
   }
 `;
 

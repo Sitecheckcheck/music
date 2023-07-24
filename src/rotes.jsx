@@ -15,7 +15,10 @@ function AppRoutes(props) {
       <Route path="signup" element={<Signup />} />
 
       <Route element={<ProtectedRoute isAllowed={Boolean(props.user)} />}>
-        <Route path="" element={<MainPage />} />
+        <Route
+          path=""
+          element={<MainPage isLoad={props.isLoad} setIsLoad={props.setIsLoad} />}
+        />
       </Route>
 
       <Route element={<ProtectedRoute isAllowed={Boolean(props.user)} />}>

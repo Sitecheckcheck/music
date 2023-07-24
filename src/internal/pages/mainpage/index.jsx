@@ -1,15 +1,23 @@
+import { useState } from 'react';
 import Main from '../../components/main/Main';
 import Bar from '../../components/bar/Bar';
 import Footer from '../../components/footer/Footer';
 import GlobalStyle, { Wrapper, Container } from '../../styles';
 
-function MainPage() {
+function MainPage({ isLoad, setIsLoad }) {
+  const [selectTrack, setSelectTrack] = useState(null);
+
   return (
     <Wrapper>
       <Container>
         <GlobalStyle />
-        <Main />
-        <Bar />
+        <Main
+          isLoad={isLoad}
+          setIsLoad={setIsLoad}
+          selectTrack={selectTrack}
+          setSelectTrack={setSelectTrack}
+        />
+        <Bar isLoad={isLoad} selectTrack={selectTrack} />
         <Footer />
       </Container>
     </Wrapper>
