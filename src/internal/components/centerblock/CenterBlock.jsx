@@ -6,22 +6,35 @@ import Filter from './filter/Filter';
 import * as S from './centerBlockStyle';
 import { getPlaylist } from '../../api';
 
-function CenterBlock({ isLoad, setIsLoad }) {
+function CenterBlock({
+  isLoad, setIsLoad, selectTrack, setSelectTrack,
+}) {
   const [playlist, setplaylist] = useState([]);
+  const [getTracksError, setGetTracksError] = useState(null);
 
-  const handleGetPlaylist = () => {
-    getPlaylist().then((playlistGet) => {
-      setplaylist(playlistGet);
+  const getAllTracks = async () => {
+    try {
+      const tracks = await getPlaylist();
+      setplaylist(tracks);
       setIsLoad(false);
-    });
+    } catch (error) {
+      setGetTracksError(
+        `Не удалось загрузить плейлист, попробуйте позже ${error.message}`,
+      );
+    } finally {
+      setIsLoad(false);
+    }
   };
 
   useEffect(() => {
-    handleGetPlaylist();
+    getAllTracks();
   }, []);
 
   const playListItems = playlist.map((item) => (
     <PlaylistItem
+      selectTrack={selectTrack}
+      setSelectTrack={setSelectTrack}
+      item={item}
       key={item.id}
       track={item.name}
       artist={item.author}
@@ -61,7 +74,9 @@ function CenterBlock({ isLoad, setIsLoad }) {
             <PlaylistItemEmpty />
           </S.ContentPlaylist>
         ) : (
-          <S.ContentPlaylist>{playListItems}</S.ContentPlaylist>
+          <S.ContentPlaylist>
+            {getTracksError ? <p>{getTracksError}</p> : playListItems}
+          </S.ContentPlaylist>
         )}
       </div>
     </S.MainCenterblock>
