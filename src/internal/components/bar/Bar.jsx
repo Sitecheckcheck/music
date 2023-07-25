@@ -1,10 +1,29 @@
+import { useRef, useState } from 'react';
 import sprite from '../../../img/icon/sprite.svg';
 import BarEmpty from '../../../img/BarEmpty.png';
 import * as S from './barStyle';
 /* eslint-disable */
 function Bar({ isLoad, selectTrack }) {
+
+  const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = useRef(null);
+
+  const handleStart = () => {
+    audioRef.current.play();
+    setIsPlaying(true);
+  };
+
+  const handleStop = () => {
+    audioRef.current.pause();
+    setIsPlaying(false);
+  };
+
+  const togglePlay = isPlaying ? handleStop : handleStart;
+
   if (selectTrack != null) {
     return (
+      <>
+        <audio src={selectTrack.track_file} controls ref={audioRef} style={ {marginTop: 20} }/>
         <S.Bar>
           <div className="bar__content">
             <div className="bar__player-progress" />
@@ -16,7 +35,7 @@ function Bar({ isLoad, selectTrack }) {
                       <use xlinkHref={`${sprite}#icon-prev`} />
                     </svg>
                   </S.PlayerBtnPrev>
-                  <S.PlayerBtnPlay>
+                  <S.PlayerBtnPlay onClick={togglePlay}>
                     <svg className="player__btn-play-svg" alt="play">
                       <use xlinkHref={`${sprite}#icon-play`} />
                     </svg>
@@ -73,7 +92,6 @@ function Bar({ isLoad, selectTrack }) {
                   </S.TrackPlayLikeDis>
                 </div>
               </S.BarPlayer>
-              <audio src={selectTrack.track_file} controls />
               <S.BarVolumeBlock>
                 <div className="volume__content">
                   <div className="volume__image">
@@ -93,6 +111,7 @@ function Bar({ isLoad, selectTrack }) {
             </div>
           </div>
         </S.Bar>
+      </>
     );
   }
 }
