@@ -1,11 +1,14 @@
-import { useRef, useState } from 'react';
+/* eslint-disable */
+import { useEffect, useRef, useState } from 'react';
 import sprite from '../../../img/icon/sprite.svg';
 import BarEmpty from '../../../img/BarEmpty.png';
 import * as S from './barStyle';
-/* eslint-disable */
-function Bar({ isLoad, selectTrack }) {
+import ProgressBar from './ProgressBar';
 
+function Bar({ isLoad, selectTrack }) {
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isLoop, setIsLoop] = useState(false);
+  const [volume, setVolume] = useState(50);
   const audioRef = useRef(null);
 
   const handleStart = () => {
@@ -18,14 +21,29 @@ function Bar({ isLoad, selectTrack }) {
     setIsPlaying(false);
   };
 
+  const handleLoop = () => {
+    audioRef.current.loop = !audioRef.current.loop;
+    setIsLoop(!isLoop);
+  };
+
   const togglePlay = isPlaying ? handleStop : handleStart;
 
   if (selectTrack != null) {
     return (
       <>
-        <audio src={selectTrack.track_file} controls ref={audioRef} style={ {marginTop: 20} }/>
+        <audio
+          src={selectTrack.track_file}
+          controls
+          ref={audioRef}
+          style={{ marginTop: 20 }}
+        />
+
         <S.Bar>
           <div className="bar__content">
+            <ProgressBar
+              selectTrack={selectTrack}
+              audioRef={audioRef}
+            ></ProgressBar>
             <div className="bar__player-progress" />
             <div className="bar__player-block">
               <S.BarPlayer>
@@ -37,7 +55,13 @@ function Bar({ isLoad, selectTrack }) {
                   </S.PlayerBtnPrev>
                   <S.PlayerBtnPlay onClick={togglePlay}>
                     <svg className="player__btn-play-svg" alt="play">
-                      <use xlinkHref={`${sprite}#icon-play`} />
+                      <use
+                        xlinkHref={
+                          isPlaying
+                            ? `${sprite}#icon-pause`
+                            : `${sprite}#icon-play`
+                        }
+                      />
                     </svg>
                   </S.PlayerBtnPlay>
                   <S.PlayerBtnNext>
@@ -45,8 +69,13 @@ function Bar({ isLoad, selectTrack }) {
                       <use xlinkHref={`${sprite}#icon-next`} />
                     </svg>
                   </S.PlayerBtnNext>
-                  <S.PlayerBtnRepeat>
-                    <svg className="player__btn-repeat-svg" alt="repeat">
+                  <S.PlayerBtnRepeat onClick={handleLoop}>
+                    <svg
+                      className={`player__btn-repeat-svg ${
+                        isLoop ? 'choose' : ''
+                      }`}
+                      alt="repeat"
+                    >
                       <use xlinkHref={`${sprite}#icon-repeat`} />
                     </svg>
                   </S.PlayerBtnRepeat>
@@ -104,6 +133,7 @@ function Bar({ isLoad, selectTrack }) {
                       className="volume__progress-line _btn"
                       type="range"
                       name="range"
+                      onChange={(e) => setVolume(e.target.value)}
                     />
                   </div>
                 </div>

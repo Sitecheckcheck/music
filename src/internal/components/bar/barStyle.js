@@ -216,6 +216,10 @@ export const PlayerBtnRepeat = styled(BtnIcon)`
     fill: transparent;
     stroke: #696969;
   }
+
+  .choose {
+    stroke: #fff;
+  }
 `;
 
 export const PlayerBtnShuffle = styled(BtnIcon)`
