@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { useEffect, useRef, useState } from 'react';
 import sprite from '../../../img/icon/sprite.svg';
 import BarEmpty from '../../../img/BarEmpty.png';
@@ -6,10 +5,27 @@ import * as S from './barStyle';
 import ProgressBar from './ProgressBar';
 
 function Bar({ isLoad, selectTrack }) {
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true);
   const [isLoop, setIsLoop] = useState(false);
-  const [volume, setVolume] = useState(50);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
+  const [data, setData] = useState(0);
   const audioRef = useRef(null);
+
+  function strPadLeft(string, pad, length) {
+    return (new Array(length + 1).join(pad) + string).slice(-length);
+  }
+
+  const secondsToTime = (time) => {
+    const minutes = Math.floor(time / 60);
+    const seconds = time - minutes * 60;
+    const finalTime = `${strPadLeft(minutes, '0', 2)}:${strPadLeft(
+      seconds,
+      '0',
+      2,
+    )}`;
+    return finalTime;
+  };
 
   const handleStart = () => {
     audioRef.current.play();
@@ -26,24 +42,57 @@ function Bar({ isLoad, selectTrack }) {
     setIsLoop(!isLoop);
   };
 
+  const handleVolume = (e) => {
+    const { value } = e.target;
+    const volume = Number(value) / 20;
+    audioRef.current.volume = volume;
+  };
+
   const togglePlay = isPlaying ? handleStop : handleStart;
+
+  const timeUpdate = () => {
+    setCurrentTime(audioRef.current.currentTime);
+  };
+
+  useEffect(() => {
+    setDuration(audioRef.current.duration);
+    if (data) {
+      audioRef.current.currentTime = data;
+      setData(0);
+    }
+
+    audioRef.current.addEventListener('timeupdate', () => {
+      timeUpdate();
+    });
+  });
 
   if (selectTrack != null) {
     return (
       <>
         <audio
-          src={selectTrack.track_file}
           controls
           ref={audioRef}
+          src={selectTrack.track_file}
           style={{ marginTop: 20 }}
-        />
+          autoPlay
+        >
+          <track kind="captions" />
+        </audio>
 
         <S.Bar>
           <div className="bar__content">
+            <p className="time-duration">
+              {`${secondsToTime(Math.floor(currentTime))} / ${secondsToTime(
+                Math.floor(duration),
+              )}`}
+            </p>
             <ProgressBar
               selectTrack={selectTrack}
-              audioRef={audioRef}
-            ></ProgressBar>
+              currentTime={currentTime}
+              setCurrentTime={setCurrentTime}
+              setdata={setData}
+              duration={duration}
+            />
             <div className="bar__player-progress" />
             <div className="bar__player-block">
               <S.BarPlayer>
@@ -133,7 +182,9 @@ function Bar({ isLoad, selectTrack }) {
                       className="volume__progress-line _btn"
                       type="range"
                       name="range"
-                      onChange={(e) => setVolume(e.target.value)}
+                      min={0}
+                      max={20}
+                      onChange={(e) => handleVolume(e)}
                     />
                   </div>
                 </div>

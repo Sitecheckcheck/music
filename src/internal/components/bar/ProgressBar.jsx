@@ -1,5 +1,3 @@
-/* eslint-disable */
-import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 export const StyledProgressInput = styled.input`
@@ -58,16 +56,12 @@ export const StyledProgressInput = styled.input`
   }
 `;
 
-export default function ProgressBar({ selectTrack, audioRef }) {
-  const [currentTime, setCurrentTime] = useState('');
-  const duration = selectTrack.duration_in_seconds;
-  const [plaingNow, setplaingNow] = useState(null);
-
-  useEffect(() => {
-    setCurrentTime(audioRef.current.currentTime);
-  });
-  
-
+export default function ProgressBar({
+  duration,
+  setCurrentTime,
+  currentTime,
+  setData,
+}) {
   return (
     <StyledProgressInput
       type="range"
@@ -75,7 +69,10 @@ export default function ProgressBar({ selectTrack, audioRef }) {
       max={duration}
       value={currentTime}
       step={0.01}
-      onChange={(event) => setCurrentTime(event.target.value)}
+      onChange={(event) => {
+        setCurrentTime(event.target.value);
+        setData(event.target.value);
+      }}
       $color="#ff0000"
     />
   );
