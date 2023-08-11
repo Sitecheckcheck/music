@@ -13,16 +13,10 @@ function AppRoutes(props) {
       <Route path="*" element={<NotFound />} />
       <Route path="signin" element={<Signin />} />
       <Route path="signup" element={<Signup />} />
-
-      <Route element={<ProtectedRoute isAllowed={Boolean(props.user)} />}>
-        <Route
-          path=""
-          element={
-            <MainPage isLoad={props.isLoad} setIsLoad={props.setIsLoad} />
-          }
-        />
-      </Route>
-
+      <Route
+        path="/"
+        element={<MainPage isLoad={props.isLoad} setIsLoad={props.setIsLoad} />}
+      />
       <Route element={<ProtectedRoute isAllowed={Boolean(props.user)} />}>
         <Route path="mytrack" element={<MyTracks />} />
       </Route>

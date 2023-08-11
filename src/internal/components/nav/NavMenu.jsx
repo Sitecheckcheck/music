@@ -1,8 +1,12 @@
 import { NavLink } from 'react-router-dom';
-import Cookies from 'js-cookie';
 import * as S from './styles';
 
 function NavMenu() {
+
+  const logOut = () => {
+    localStorage.removeItem('user');
+  }
+
   return (
     <S.NavMenuStyle>
       <S.MenuList>
@@ -15,10 +19,7 @@ function NavMenu() {
         <S.MenuItem>
           <NavLink
             to="/signin"
-            onClick={() => {
-              Cookies.remove('token', 'pasha');
-              window.location.reload();
-            }}
+            onClick={logOut}
           >
             Выйти
           </NavLink>
