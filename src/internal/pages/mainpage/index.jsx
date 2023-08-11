@@ -17,7 +17,9 @@ function MainPage({ isLoad, setIsLoad }) {
           selectTrack={selectTrack}
           setSelectTrack={setSelectTrack}
         />
-        <Bar isLoad={isLoad} selectTrack={selectTrack} />
+        {selectTrack != null ? (
+          <Bar isLoad={isLoad} selectTrack={selectTrack} />
+        ) : null}
         <Footer />
       </Container>
     </Wrapper>

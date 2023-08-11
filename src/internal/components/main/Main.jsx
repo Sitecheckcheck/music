@@ -3,9 +3,7 @@ import CenterBlock from '../centerblock/CenterBlock';
 import Sidebar from '../sidebar/Sidebar';
 import SMain from './mainStyle';
 
-function Main({
-  isLoad, setIsLoad, selectTrack, setSelectTrack,
-}) {
+function Main({ isLoad, setIsLoad, selectTrack, setSelectTrack }) {
   return (
     <SMain>
       <Nav />

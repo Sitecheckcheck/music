@@ -117,7 +117,24 @@ export const ContentPlaylist = styled.div`
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
   flex-direction: column;
-  overflow-y: auto;
+  overflow: auto;
+  height: 60vh;
+
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #4b4949;
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #ffffff;
+    border-radius: 10px;
+    width: 4px;
+    height: 65px;
+  }
 `;
 
 export const playlistTitleSvg = styled.svg`

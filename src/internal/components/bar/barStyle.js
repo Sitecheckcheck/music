@@ -36,6 +36,12 @@ export const Bar = styled.div`
     -ms-flex-pack: justify;
     justify-content: space-between;
   }
+
+  .time-duration {
+    padding-right: 5px;
+    width: 100%;
+    text-align: right;
+  }
 `;
 
 export const BarPlayer = styled.div`
@@ -215,6 +221,10 @@ export const PlayerBtnRepeat = styled(BtnIcon)`
     height: 12px;
     fill: transparent;
     stroke: #696969;
+  }
+
+  .choose {
+    stroke: #fff;
   }
 `;
 

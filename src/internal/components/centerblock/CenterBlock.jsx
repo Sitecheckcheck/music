@@ -6,9 +6,7 @@ import Filter from './filter/Filter';
 import * as S from './centerBlockStyle';
 import { getPlaylist } from '../../api';
 
-function CenterBlock({
-  isLoad, setIsLoad, selectTrack, setSelectTrack,
-}) {
+function CenterBlock({ isLoad, setIsLoad, selectTrack, setSelectTrack }) {
   const [playlist, setplaylist] = useState([]);
   const [getTracksError, setGetTracksError] = useState(null);
 
@@ -40,7 +38,9 @@ function CenterBlock({
       artist={item.author}
       album={item.album}
       time={`${Math.floor(item.duration_in_seconds / 60)}:${
-        item.duration_in_seconds % 60
+        item.duration_in_seconds % 60 < 10
+          ? `0${item.duration_in_seconds % 60}`
+          : item.duration_in_seconds % 60
       }`}
     />
   ));

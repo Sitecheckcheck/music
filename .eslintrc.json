@@ -4,10 +4,10 @@
     "es2021": true
   },
   "extends": [
-    "prettier",
     "airbnb",
     "plugin:react/recommended",
-    "plugin:react/jsx-runtime"
+    "plugin:react/jsx-runtime",
+    "prettier"
   ],
   "parserOptions": {
     "ecmaFeatures": {
@@ -26,7 +26,8 @@
     "linebreak-style": "off",
     "indent": ["error", 2, { "SwitchCase": 1 }],
     "import/prefer-default-export": "off",
-    "comma-dangle": [2, "always-multiline"]
+    "comma-dangle": [2, "always-multiline"],
+    "object-curly-newline": "off"
   },
   "settings": {
     "react": {

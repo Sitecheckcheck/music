@@ -1,11 +1,14 @@
 // const token = '';
 
 export async function getPlaylist() {
-  const response = await fetch('https://painassasin.online/catalog/track/all/', {
-    // headers: {
-    //   Authorization: `Bearer ${token}`,
-    // },
-  });
+  const response = await fetch(
+    'https://painassasin.online/catalog/track/all/',
+    {
+      // headers: {
+      //   Authorization: `Bearer ${token}`,
+      // },
+    },
+  );
 
   if (!response.ok) {
     throw new Error('Ошибка сервера');

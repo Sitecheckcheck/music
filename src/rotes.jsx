@@ -17,7 +17,9 @@ function AppRoutes(props) {
       <Route element={<ProtectedRoute isAllowed={Boolean(props.user)} />}>
         <Route
           path=""
-          element={<MainPage isLoad={props.isLoad} setIsLoad={props.setIsLoad} />}
+          element={
+            <MainPage isLoad={props.isLoad} setIsLoad={props.setIsLoad} />
+          }
         />
       </Route>
 
