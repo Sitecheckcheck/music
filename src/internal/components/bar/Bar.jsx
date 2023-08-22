@@ -26,7 +26,7 @@ function Bar({ isLoad, selectTrack }) {
     )}`;
     return finalTime;
   };
-
+  
   const handleStart = () => {
     audioRef.current.play();
     setIsPlaying(true);
@@ -38,42 +38,37 @@ function Bar({ isLoad, selectTrack }) {
   };
 
   const handlePrev = () => {
-    alert('кнопка пока не реализована');
+    // alert('кнопка пока не реализована');
   };
 
   const handleNext = () => {
-    alert('кнопка пока не реализована');
+    // alert('кнопка пока не реализована');
   };
 
   const handleShuffle = () => {
-    alert('кнопка пока не реализована');
+    // alert('кнопка пока не реализована');
   };
 
   const handleLoop = () => {
     audioRef.current.loop = !audioRef.current.loop;
     setIsLoop(!isLoop);
   };
-
+ 
   const handleVolume = (e) => {
-    const { value } = e.target;
-    const volume = Number(value) / 20;
+    const volume = e.target.value / 100;
     audioRef.current.volume = volume;
   };
 
   const togglePlay = isPlaying ? handleStop : handleStart;
 
-  const timeUpdate = () => {
-    setCurrentTime(audioRef.current.currentTime);
-  };
-
   useEffect(() => {
     if (data) {
       audioRef.current.currentTime = data;
-      setData(0);
+      setData(null);
     }
-
+    
     audioRef.current.addEventListener('timeupdate', () => {
-      timeUpdate();
+      setCurrentTime(audioRef.current.currentTime);
     });
   });
 
@@ -112,7 +107,7 @@ function Bar({ isLoad, selectTrack }) {
             setData={setData}
             duration={duration}
           />
-          <div className="bar__player-progress" />
+          {/* <div className="bar__player-progress" /> */}
           <div className="bar__player-block">
             <S.BarPlayer>
               <div className="player__controls">
@@ -202,7 +197,7 @@ function Bar({ isLoad, selectTrack }) {
                     type="range"
                     name="range"
                     min={0}
-                    max={20}
+                    max={100}
                     onChange={(e) => handleVolume(e)}
                   />
                 </div>
