@@ -3,6 +3,7 @@ import { useState } from 'react';
 import './signin.css';
 import logoModal from '../../../img/logo_modal.png';
 import { authUser } from '../../api';
+import { useUserNameContext } from '../../../contexts/userName';
 /* eslint-disable */
 function Signin() {
 
@@ -11,6 +12,7 @@ function Signin() {
   const [errorMessage, setErrorMessage] = useState();
   const [disabled, setDisabled] = useState(false);
   const navigate = useNavigate();
+  const {setUserName} = useUserNameContext()
 
   const getAuthUser = async () => {
     try {
@@ -22,7 +24,8 @@ function Signin() {
         setErrorMessage(user.detail);
       }
 
-      if (user.id) {       
+      if (user.id) { 
+        setUserName(user.username)    
         navigate('/');
       }
     } catch (error) {
