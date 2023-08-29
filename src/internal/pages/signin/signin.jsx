@@ -4,7 +4,7 @@ import './signin.css';
 import logoModal from '../../../img/logo_modal.png';
 import { authUser } from '../../api';
 import { useUserNameContext } from '../../../contexts/userName';
-/* eslint-disable */
+
 function Signin() {
 
   const [login, setLogin] = useState('');

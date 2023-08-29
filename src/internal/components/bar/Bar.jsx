@@ -10,6 +10,7 @@ function Bar({ isLoad, selectTrack }) {
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [data, setData] = useState(0);
+  const [volume, setVolume] = useState(50);
   const audioRef = useRef(null);
 
   function strPadLeft(string, pad, length) {
@@ -53,11 +54,6 @@ function Bar({ isLoad, selectTrack }) {
     audioRef.current.loop = !audioRef.current.loop;
     setIsLoop(!isLoop);
   };
- 
-  const handleVolume = (e) => {
-    const volume = e.target.value / 100;
-    audioRef.current.volume = volume;
-  };
 
   const togglePlay = isPlaying ? handleStop : handleStart;
 
@@ -75,6 +71,11 @@ function Bar({ isLoad, selectTrack }) {
   useEffect(() => {
     handleStart();
   }, [selectTrack]);
+
+  useEffect(() => {
+    audioRef.current.volume = volume / 100;
+    audioRef.current.loop = isLoop;
+  }, [isLoop, volume]);
 
   const onLoadedMetadata = () => {
     setDuration(audioRef.current.duration);
@@ -107,7 +108,6 @@ function Bar({ isLoad, selectTrack }) {
             setData={setData}
             duration={duration}
           />
-          {/* <div className="bar__player-progress" /> */}
           <div className="bar__player-block">
             <S.BarPlayer>
               <div className="player__controls">
@@ -195,10 +195,9 @@ function Bar({ isLoad, selectTrack }) {
                   <input
                     className="volume__progress-line _btn"
                     type="range"
-                    name="range"
                     min={0}
                     max={100}
-                    onChange={(e) => handleVolume(e)}
+                    onChange={(e) => setVolume(e.target.value)}
                   />
                 </div>
               </div>

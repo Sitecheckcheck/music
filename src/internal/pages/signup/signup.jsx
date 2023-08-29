@@ -1,13 +1,9 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import './signup.css';
 import logoModal from '../../../img/logo_modal.png';
 import { registerUser } from '../../api';
-// import blackLogo from '../../assets/img/black-logo.png';
-// import { useLoginContext } from '../../contexts/login';
-// import { useUserContext } from '../../contexts/user';
-
-/* eslint-disable */
+import { useUserNameContext } from '../../../contexts/userName';
 
 function Signup() {
 
@@ -17,11 +13,13 @@ function Signup() {
   const [errorMessage, setErrorMessage] = useState();
   const [disabled, setDisabled] = useState();
   const navigate = useNavigate();
+  const {setUserName} = useUserNameContext()
 
   const getRegisterUser = async () => {
     try {
       setDisabled(true);
       const user = await registerUser(login, password);
+      localStorage.setItem('user', user.username);
       if (user.email) {
         if (user.email !== login) {
           setErrorMessage(user.email[0]);
@@ -35,8 +33,7 @@ function Signup() {
       }
 
       if (user.email === login && user.id) {
-        // setCurrentUser(user);
-        // toggleLogin(true);
+        setUserName(user.username)
         navigate('/');
       }
     } catch (error) {
@@ -65,7 +62,9 @@ function Signup() {
       <div className="modal__block">
         <form className="modal__form-login" id="formLogIn" action="#">
           <div className="modal__logo">
-            <img src={logoModal} alt="logo" />
+            <NavLink to="/">
+              <img src={logoModal} alt="logo" />
+            </NavLink>
           </div>
           <input
             className="modal__input login"

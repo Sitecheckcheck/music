@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React, { useState } from 'react';
+import { useState } from 'react';
 import AppRoutes from '../rotes';
 import { UserNameContext } from '../contexts/userName';
 
@@ -8,11 +8,11 @@ function App() {
 
   const [userName, setUserName] = useState(localStorage.getItem('user'));
 
-  const value = {userName, setUserName}
+  // const value = {userName, setUserName}
 
   return (
-    <UserNameContext.Provider value={ value }>
-      <AppRoutes isLoad={isLoad} setIsLoad={setIsLoad} />
+    <UserNameContext.Provider value={{userName, setUserName}}>
+      <AppRoutes isLoad={isLoad} setIsLoad={setIsLoad} user={userName} />
     </UserNameContext.Provider>
   );
 }

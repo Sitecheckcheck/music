@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { NavLink } from 'react-router-dom';
 import playlist01 from '../../../img/playlist01.png';
 import playlist02 from '../../../img/playlist02.png';
@@ -15,7 +14,7 @@ import { useUserNameContext } from '../../../contexts/userName';
 
 function Sidebar({ isLoad }) {
   const user = useUserNameContext();
-  let userName = user.userName
+  let {userName} = user
   
   if (userName) {
     const index = userName.lastIndexOf('@');

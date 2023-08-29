@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import NotFound from './internal/pages/not-found';
 import MainPage from './internal/pages/mainpage';
@@ -8,6 +9,8 @@ import { ProtectedRoute } from './internal/components/protected-route';
 import { ListMusic } from './internal/pages/listmusic';
 
 function AppRoutes(props) {
+  const [selectTrack, setSelectTrack] = useState(null);
+  console.log(props.user);
   return (
     <Routes>
       <Route path="*" element={<NotFound />} />
@@ -15,10 +18,27 @@ function AppRoutes(props) {
       <Route path="signup" element={<Signup />} />
       <Route
         path="/"
-        element={<MainPage isLoad={props.isLoad} setIsLoad={props.setIsLoad} />}
+        element={
+          <MainPage
+            isLoad={props.isLoad}
+            setIsLoad={props.setIsLoad}
+            selectTrack={selectTrack}
+            setSelectTrack={setSelectTrack}
+          />
+        }
       />
       <Route element={<ProtectedRoute isAllowed={Boolean(props.user)} />}>
-        <Route path="mytrack" element={<MyTracks />} />
+        <Route
+          path="mytrack"
+          element={
+            <MyTracks
+              isLoad={props.isLoad}
+              setIsLoad={props.setIsLoad}
+              selectTrack={selectTrack}
+              setSelectTrack={setSelectTrack}
+            />
+          }
+        />
       </Route>
 
       <Route element={<ProtectedRoute isAllowed={Boolean(props.user)} />}>
