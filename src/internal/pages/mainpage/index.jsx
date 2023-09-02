@@ -18,7 +18,6 @@ function MainPage({ isLoad, setIsLoad, setSelectTrack }) {
         <Main
           isLoad={isLoad}
           setIsLoad={setIsLoad}
-          // selectTrack={selectTrack}
           setSelectTrack={setSelectTrack}
         />
         {selectTrack != null ? (

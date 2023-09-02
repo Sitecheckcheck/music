@@ -1,7 +1,7 @@
-import PlaylistItem from '../../centerblock/playlist/PlaylistItem';
-import sprite from '../../../../img/icon/sprite.svg';
-import tracks from '../../../../Tracks';
-import * as S from '../../centerblock/centerBlockStyle';
+import PlaylistItem from '../centerblock/playlist/PlaylistItem';
+import sprite from '../../../img/icon/sprite.svg';
+import tracks from '../../../Tracks';
+import * as S from '../centerblock/centerBlockStyle';
 
 function MyTracksCenterBlock() {
   const playListItems = tracks.map((item) => (

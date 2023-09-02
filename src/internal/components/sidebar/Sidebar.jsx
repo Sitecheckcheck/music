@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom';
+import { useEffect } from 'react';
 import playlist01 from '../../../img/playlist01.png';
 import playlist02 from '../../../img/playlist02.png';
 import playlist03 from '../../../img/playlist03.png';
@@ -12,14 +13,18 @@ import {
 } from './styles';
 import { useUserNameContext } from '../../../contexts/userName';
 
-function Sidebar({ isLoad }) {
+function Sidebar({ isLoad, setIsLoad }) {
   const user = useUserNameContext();
-  let {userName} = user
+  let { userName } = user;
 
   if (userName) {
     const index = userName.lastIndexOf('@');
     userName = userName.substring(0, index);
   }
+
+  useEffect(() => {
+    setTimeout(() => {setIsLoad(false)}, 500);
+  });
 
   return (
     <MainSidebar>
@@ -31,15 +36,15 @@ function Sidebar({ isLoad }) {
         <SidebarList>
           <SidebarItem
             playlist={isLoad ? playlist00 : playlist01}
-            page="playlist/3"
+            page="/playlist/3"
           />
           <SidebarItem
             playlist={isLoad ? playlist00 : playlist02}
-            page="playlist/1"
+            page="/playlist/1"
           />
           <SidebarItem
             playlist={isLoad ? playlist00 : playlist03}
-            page="playlist/2"
+            page="/playlist/2"
           />
         </SidebarList>
       </SidebarBlock>

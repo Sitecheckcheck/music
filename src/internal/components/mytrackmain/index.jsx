@@ -2,14 +2,13 @@ import { NavLink } from 'react-router-dom';
 import Nav from '../nav/Nav';
 import { MainSidebar, SidebarPersonal } from '../sidebar/styles';
 import SMain from '../main/mainStyle';
-import MyTracksCenterBlock from './mytrackcenterblock/mytrackcenterblock';
+import MyTracksCenterBlock from './mytrackcenterblock';
 import { useUserNameContext } from '../../../contexts/userName';
 
 function MyTrackMain({ isLoad, setIsLoad, selectTrack, setSelectTrack }) {
-
   const user = useUserNameContext();
-  let {userName} = user
-  
+  let { userName } = user;
+
   if (userName) {
     const index = userName.lastIndexOf('@');
     userName = userName.substring(0, index);

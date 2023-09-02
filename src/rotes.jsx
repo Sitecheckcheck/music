@@ -41,7 +41,16 @@ function AppRoutes(props) {
       </Route>
 
       <Route element={<ProtectedRoute isAllowed={Boolean(props.user)} />}>
-        <Route path="playlist/:id" element={<ListMusic />} />
+        <Route
+          path="playlist/:id"
+          element={
+            <ListMusic
+              isLoad={props.isLoad}
+              setIsLoad={props.setIsLoad}
+              selectTrack={selectTrack}
+            />
+          }
+        />
       </Route>
     </Routes>
   );

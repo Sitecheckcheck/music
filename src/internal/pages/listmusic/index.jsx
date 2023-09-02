@@ -1,14 +1,14 @@
-import { NavLink, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import Bar from '../../components/bar/Bar';
 import Footer from '../../components/footer/Footer';
 import GlobalStyle, { Wrapper, Container } from '../../styles';
 import Nav from '../../components/nav/Nav';
-import { MainSidebar, SidebarPersonal } from '../../components/sidebar/styles';
 import SMain from '../../components/main/mainStyle';
 import ListindiCenterBlock from '../../components/listindi/listindicenterblock';
 import { ListNames } from '../../../constans';
+import Sidebar from '../../components/sidebar/Sidebar';
 
-export function ListMusic() {
+export function ListMusic({ isLoad, setIsLoad, selectTrack }) {
   const params = useParams();
 
   const ListName = ListNames.find(
@@ -22,14 +22,11 @@ export function ListMusic() {
         <SMain>
           <Nav />
           <ListindiCenterBlock listNam={ListName.listName} />
-          <MainSidebar>
-            <SidebarPersonal>
-              <NavLink to="/mytrack">Sergey.Ivanov</NavLink>
-              <div />
-            </SidebarPersonal>
-          </MainSidebar>
+          <Sidebar isLoad={isLoad} setIsLoad={setIsLoad} playlist />
         </SMain>
-        <Bar />
+        {selectTrack != null ? (
+          <Bar isLoad={isLoad} />
+        ) : null}
         <Footer />
       </Container>
     </Wrapper>

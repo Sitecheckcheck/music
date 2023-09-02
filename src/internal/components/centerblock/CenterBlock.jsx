@@ -9,7 +9,7 @@ import { getPlaylist } from '../../api';
 function CenterBlock({ isLoad, setIsLoad, selectTrack, setSelectTrack }) {
   const [playlist, setplaylist] = useState([]);
   const [getTracksError, setGetTracksError] = useState(null);
-
+ 
   const getAllTracks = async () => {
     try {
       const tracks = await getPlaylist();

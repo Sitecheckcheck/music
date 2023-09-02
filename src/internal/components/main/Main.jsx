@@ -14,7 +14,7 @@ function Main({ isLoad, setIsLoad}) {
           isLoad={isLoad}
           setIsLoad={setIsLoad}
         />
-        <Sidebar isLoad={isLoad} playlist />
+        <Sidebar isLoad={isLoad} setIsLoad={setIsLoad} playlist />
       </SMain>
   );
 }
