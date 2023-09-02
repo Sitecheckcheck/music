@@ -57,7 +57,6 @@ export const StyledProgressInput = styled.input`
 
 export default function ProgressBar({
   duration,
-  setCurrentTime,
   currentTime,
   setData,
 }) {
@@ -69,7 +68,6 @@ export default function ProgressBar({
       value={currentTime}
       step={0.01}
       onChange={(event) => {
-        setCurrentTime(event.target.value);
         setData(event.target.value);
       }}
     />

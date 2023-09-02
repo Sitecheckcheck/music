@@ -2,8 +2,13 @@ import MainMyTrackMain from '../../components/mytrackmain';
 import Bar from '../../components/bar/Bar';
 import Footer from '../../components/footer/Footer';
 import GlobalStyle, { Wrapper, Container } from '../../styles';
+import { useSelectTrackContext } from '../../../contexts/selectTrack';
+/* eslint-disable */
+function MyTracks({ isLoad, setIsLoad, setSelectTrack }) {
+  const selectTrackContext = useSelectTrackContext();
 
-function MyTracks({ isLoad, setIsLoad, selectTrack, setSelectTrack }) {
+  let { selectTrack } = selectTrackContext;
+
   return (
     <Wrapper>
       <Container>
@@ -15,7 +20,7 @@ function MyTracks({ isLoad, setIsLoad, selectTrack, setSelectTrack }) {
           setSelectTrack={setSelectTrack}
         />
         {selectTrack != null ? (
-          <Bar isLoad={isLoad} selectTrack={selectTrack} />
+          <Bar isLoad={isLoad} />
         ) : null}
         <Footer />
       </Container>

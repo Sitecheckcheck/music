@@ -5,7 +5,7 @@ import CenterBlock from '../centerblock/CenterBlock';
 import Sidebar from '../sidebar/Sidebar';
 import SMain from './mainStyle';
 
-function Main({ isLoad, setIsLoad, selectTrack, setSelectTrack }) {
+function Main({ isLoad, setIsLoad}) {
 
   return (
       <SMain>
@@ -13,8 +13,6 @@ function Main({ isLoad, setIsLoad, selectTrack, setSelectTrack }) {
         <CenterBlock
           isLoad={isLoad}
           setIsLoad={setIsLoad}
-          selectTrack={selectTrack}
-          setSelectTrack={setSelectTrack}
         />
         <Sidebar isLoad={isLoad} playlist />
       </SMain>

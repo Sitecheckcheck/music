@@ -3,15 +3,23 @@ import sprite from '../../../img/icon/sprite.svg';
 import BarEmpty from '../../../img/BarEmpty.png';
 import * as S from './barStyle';
 import ProgressBar from './ProgressBar';
+import { useSelectTrackContext } from '../../../contexts/selectTrack';
+import { useIsPlayingContext } from '../../../contexts/IsPlaying';
+/* eslint-disable */
 
-function Bar({ isLoad, selectTrack }) {
-  const [isPlaying, setIsPlaying] = useState(true);
+function Bar({ isLoad }) {
+  // const [isPlaying, setIsPlaying] = useState(true);
   const [isLoop, setIsLoop] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [data, setData] = useState(0);
   const [volume, setVolume] = useState(50);
   const audioRef = useRef(null);
+  const selectTrackContext = useSelectTrackContext();
+  let { selectTrack } = selectTrackContext;
+  const isPlayingContext = useIsPlayingContext();
+  let { isPlaying } = isPlayingContext;
+  let { setIsPlaying } = isPlayingContext;
 
   function strPadLeft(string, pad, length) {
     return (new Array(length + 1).join(pad) + string).slice(-length);
@@ -27,7 +35,7 @@ function Bar({ isLoad, selectTrack }) {
     )}`;
     return finalTime;
   };
-  
+
   const handleStart = () => {
     audioRef.current.play();
     setIsPlaying(true);
@@ -58,15 +66,27 @@ function Bar({ isLoad, selectTrack }) {
   const togglePlay = isPlaying ? handleStop : handleStart;
 
   useEffect(() => {
-    if (data) {
       audioRef.current.currentTime = data;
-      setData(null);
-    }
-    
-    audioRef.current.addEventListener('timeupdate', () => {
-      setCurrentTime(audioRef.current.currentTime);
-    });
-  });
+  }, [data])
+
+  useEffect(() => {
+    const ref = audioRef.current;
+    const handleTimeUpdateEvent = () => {
+      if (ref.currentTime && ref.duration) {
+        setCurrentTime(ref.currentTime);
+        setDuration(ref.duration);
+      } else {
+        setCurrentTime(0);
+        setDuration(0);
+      }
+    };
+
+    ref.addEventListener('timeupdate', handleTimeUpdateEvent);
+
+    return () => {
+      ref.removeEventListener('timeupdate', handleTimeUpdateEvent);
+    };
+  }, []);
 
   useEffect(() => {
     handleStart();
@@ -86,7 +106,7 @@ function Bar({ isLoad, selectTrack }) {
       <audio
         controls
         ref={audioRef}
-        src={selectTrack.track_file}
+        src={selectTrack?.track_file}
         style={{ marginTop: 20 }}
         autoPlay
         onLoadedMetadata={onLoadedMetadata}

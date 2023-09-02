@@ -2,18 +2,24 @@
 import { useState } from 'react';
 import AppRoutes from '../rotes';
 import { UserNameContext } from '../contexts/userName';
+import { selectTrackContext } from '../contexts/selectTrack';
+import { isPlayingContext } from '../contexts/IsPlaying';
 
 function App() {
   const [isLoad, setIsLoad] = useState(true);
 
   const [userName, setUserName] = useState(localStorage.getItem('user'));
-
-  // const value = {userName, setUserName}
+  const [selectTrack, setSelectTrack] = useState(null);
+  const [isPlaying, setIsPlaying] = useState(false);
 
   return (
-    <UserNameContext.Provider value={{userName, setUserName}}>
-      <AppRoutes isLoad={isLoad} setIsLoad={setIsLoad} user={userName} />
-    </UserNameContext.Provider>
+    <isPlayingContext.Provider value={{ isPlaying, setIsPlaying }}>
+      <selectTrackContext.Provider value={{ selectTrack, setSelectTrack }}>
+        <UserNameContext.Provider value={{ userName, setUserName }}>
+          <AppRoutes isLoad={isLoad} setIsLoad={setIsLoad} user={userName} />
+        </UserNameContext.Provider>
+      </selectTrackContext.Provider>
+    </isPlayingContext.Provider>
   );
 }
 

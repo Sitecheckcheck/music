@@ -15,12 +15,11 @@ import { useUserNameContext } from '../../../contexts/userName';
 function Sidebar({ isLoad }) {
   const user = useUserNameContext();
   let {userName} = user
-  
+
   if (userName) {
     const index = userName.lastIndexOf('@');
     userName = userName.substring(0, index);
   }
-
 
   return (
     <MainSidebar>

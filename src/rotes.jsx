@@ -10,7 +10,7 @@ import { ListMusic } from './internal/pages/listmusic';
 
 function AppRoutes(props) {
   const [selectTrack, setSelectTrack] = useState(null);
-  console.log(props.user);
+
   return (
     <Routes>
       <Route path="*" element={<NotFound />} />
@@ -34,7 +34,6 @@ function AppRoutes(props) {
             <MyTracks
               isLoad={props.isLoad}
               setIsLoad={props.setIsLoad}
-              selectTrack={selectTrack}
               setSelectTrack={setSelectTrack}
             />
           }
