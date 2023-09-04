@@ -5,7 +5,7 @@ import SMain from '../main/mainStyle';
 import MyTracksCenterBlock from './mytrackcenterblock';
 import { useUserNameContext } from '../../../contexts/userName';
 
-function MyTrackMain({ isLoad, setIsLoad, selectTrack, setSelectTrack }) {
+function MyTrackMain({ isLoad, setIsLoad }) {
   const user = useUserNameContext();
   let { userName } = user;
 
@@ -20,8 +20,6 @@ function MyTrackMain({ isLoad, setIsLoad, selectTrack, setSelectTrack }) {
       <MyTracksCenterBlock
         isLoad={isLoad}
         setIsLoad={setIsLoad}
-        selectTrack={selectTrack}
-        setSelectTrack={setSelectTrack}
       />
       <MainSidebar>
         <SidebarPersonal>

@@ -8,7 +8,6 @@ import { useSelectTrackContext } from '../../../contexts/selectTrack';
 function MainPage({ isLoad, setIsLoad, setSelectTrack }) {
 
   const selectTrackContext = useSelectTrackContext()
-
   let { selectTrack } = selectTrackContext
 
   return (
@@ -18,7 +17,6 @@ function MainPage({ isLoad, setIsLoad, setSelectTrack }) {
         <Main
           isLoad={isLoad}
           setIsLoad={setIsLoad}
-          setSelectTrack={setSelectTrack}
         />
         {selectTrack != null ? (
           <Bar isLoad={isLoad} />

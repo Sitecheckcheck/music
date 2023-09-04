@@ -6,7 +6,6 @@ import { useSelectTrackContext } from '../../../../contexts/selectTrack';
 function PlaylistItem(props) {
 
   const selectTrackContext = useSelectTrackContext()
-
   let {setSelectTrack} = selectTrackContext
 
   function selectTrackFunction(item) {
