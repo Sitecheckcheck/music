@@ -5,6 +5,7 @@ function NavMenu() {
 
   const logOut = () => {
     localStorage.removeItem('user');
+    localStorage.removeItem('refresh');
   }
 
   return (
