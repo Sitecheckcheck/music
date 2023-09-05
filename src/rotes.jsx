@@ -8,29 +8,24 @@ import { ProtectedRoute } from './internal/components/protected-route';
 import { ListMusic } from './internal/pages/listmusic';
 
 function AppRoutes(props) {
-
   return (
     <Routes>
       <Route path="*" element={<NotFound />} />
       <Route path="signin" element={<Signin />} />
       <Route path="signup" element={<Signup />} />
-      <Route
-        path="/"
-        element={
-          <MainPage
-            isLoad={props.isLoad}
-            setIsLoad={props.setIsLoad}
-          />
-        }
-      />
+      <Route element={<ProtectedRoute isAllowed={Boolean(props.user)} />}>
+        <Route
+          path="/"
+          element={
+            <MainPage isLoad={props.isLoad} setIsLoad={props.setIsLoad} />
+          }
+        />
+      </Route>
       <Route element={<ProtectedRoute isAllowed={Boolean(props.user)} />}>
         <Route
           path="mytrack"
           element={
-            <MyTracks
-              isLoad={props.isLoad}
-              setIsLoad={props.setIsLoad}
-            />
+            <MyTracks isLoad={props.isLoad} setIsLoad={props.setIsLoad} />
           }
         />
       </Route>
@@ -39,10 +34,7 @@ function AppRoutes(props) {
         <Route
           path="playlist/:id"
           element={
-            <ListMusic
-              isLoad={props.isLoad}
-              setIsLoad={props.setIsLoad}
-            />
+            <ListMusic isLoad={props.isLoad} setIsLoad={props.setIsLoad} />
           }
         />
       </Route>
