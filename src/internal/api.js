@@ -51,3 +51,23 @@ export async function authUser(login, password) {
   const data = await response.json();
   return data;
 }
+
+export async function getToken(login, password) {
+  const response = await fetch('https://painassasin.online/user/token/', {
+    method: 'POST',
+    body: JSON.stringify({
+      email: `${login}`,
+      password: `${password}`,
+    }),
+    headers: {
+      'content-type': 'application/json',
+    },
+  });
+
+  if (!response.ok && !response.status === '400') {
+    throw new Error('Сервер сломался');
+  }
+
+  const data = await response.json();
+  return data;
+}

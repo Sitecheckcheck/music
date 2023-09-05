@@ -2,31 +2,36 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import './signin.css';
 import logoModal from '../../../img/logo_modal.png';
-import { authUser } from '../../api';
+import { authUser, getToken } from '../../api';
 import { useUserNameContext } from '../../../contexts/userName';
+import { useTokenContext } from '../../../contexts/token';
 
 function Signin() {
-
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState();
   const [disabled, setDisabled] = useState(false);
   const navigate = useNavigate();
-  const {setUserName} = useUserNameContext()
+  const { setUserName } = useUserNameContext();
+  const { setToken } = useTokenContext();
 
   const getAuthUser = async () => {
     try {
       setDisabled(true);
       const user = await authUser(login, password);
       localStorage.setItem('user', user.username);
+      const token = await getToken(login, password);
+      localStorage.setItem('refresh', token.refresh);
 
       if (user.detail) {
         setErrorMessage(user.detail);
       }
 
-      if (user.id) { 
-        setUserName(user.username)    
-        navigate('/');
+      if (user.id && token.refresh) {
+        setUserName(user.username);
+        setToken(token.refresh);
+        navigate('/'); 
+        console.log(token);
       }
     } catch (error) {
       console.log(error.message);
@@ -44,7 +49,7 @@ function Signin() {
       getAuthUser();
     }
   };
-  
+
   return (
     <div className="container-enter">
       <div className="modal__block">
