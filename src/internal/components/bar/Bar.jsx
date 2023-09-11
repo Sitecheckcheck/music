@@ -9,7 +9,7 @@ import { useIsPlayingContext } from '../../../contexts/IsPlaying';
 
 function Bar({ isLoad }) {
   // const [isPlaying, setIsPlaying] = useState(true);
-  const [isLoop, setIsLoop] = useState(false);
+  const [loop, setLoop] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [data, setData] = useState(0);
@@ -47,20 +47,19 @@ function Bar({ isLoad }) {
   };
 
   const handlePrev = () => {
-    // alert('кнопка пока не реализована');
+    alert('кнопка пока не реализована');
   };
 
   const handleNext = () => {
-    // alert('кнопка пока не реализована');
+    alert('кнопка пока не реализована');
   };
 
   const handleShuffle = () => {
-    // alert('кнопка пока не реализована');
+    alert('кнопка пока не реализована');
   };
 
   const handleLoop = () => {
-    audioRef.current.loop = !audioRef.current.loop;
-    setIsLoop(!isLoop);
+    setLoop(!loop);
   };
 
   const togglePlay = isPlaying ? handleStop : handleStart;
@@ -94,8 +93,7 @@ function Bar({ isLoad }) {
 
   useEffect(() => {
     audioRef.current.volume = volume / 100;
-    audioRef.current.loop = isLoop;
-  }, [isLoop, volume]);
+  }, [volume]);
 
   const onLoadedMetadata = () => {
     setDuration(audioRef.current.duration);
@@ -110,6 +108,7 @@ function Bar({ isLoad }) {
         style={{ marginTop: 20 }}
         autoPlay
         onLoadedMetadata={onLoadedMetadata}
+        loop={loop}
       >
         <track kind="captions" />
       </audio>
@@ -154,9 +153,11 @@ function Bar({ isLoad }) {
                 </S.PlayerBtnNext>
                 <S.PlayerBtnRepeat onClick={handleLoop}>
                   <svg
-                    className={`player__btn-repeat-svg ${
-                      isLoop ? 'choose' : ''
-                    }`}
+                    className={
+                      !loop
+                        ? "player__btn-repeat-svg"
+                        : "player__btn-repeat-svg-choose"
+                    }
                     alt="repeat"
                   >
                     <use xlinkHref={`${sprite}#icon-repeat`} />
