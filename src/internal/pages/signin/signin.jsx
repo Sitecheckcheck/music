@@ -31,7 +31,6 @@ function Signin() {
         setUserName(user.username);
         setToken(token.refresh);
         navigate('/'); 
-        console.log(token);
       }
     } catch (error) {
       console.log(error.message);

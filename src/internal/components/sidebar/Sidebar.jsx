@@ -12,13 +12,15 @@ import {
   SidebarList,
 } from './styles';
 import { useUserNameContext } from '../../../contexts/userName';
-import { logOut } from '../nav/NavMenu';
 import exit from '../../../img/exit.svg'
+import { useLogOutContext } from '../../../contexts/LogOut';
 
 function Sidebar({ isLoad, setIsLoad }) {
   const user = useUserNameContext();
   let { userName } = user;
-  console.log(user);
+
+  const {logOut} = useLogOutContext();
+
   if (userName) {
     const index = userName.lastIndexOf('@');
     userName = userName.substring(0, index);

@@ -1,12 +1,9 @@
 import { NavLink } from 'react-router-dom';
 import * as S from './styles';
-
-export const logOut = () => {
-  localStorage.removeItem('user');
-  localStorage.removeItem('refresh');
-}
+import { useLogOutContext } from '../../../contexts/LogOut';
 
 function NavMenu() {
+  const { logOut } = useLogOutContext();
 
   return (
     <S.NavMenuStyle>
@@ -18,10 +15,7 @@ function NavMenu() {
           <NavLink to="/mytrack">Мой плейлист</NavLink>
         </S.MenuItem>
         <S.MenuItem>
-          <NavLink
-            to="/signin"
-            onClick={logOut}
-          >
+          <NavLink to="/signin" onClick={logOut}>
             Выйти
           </NavLink>
         </S.MenuItem>
