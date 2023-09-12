@@ -65,8 +65,8 @@ function Bar({ isLoad }) {
   const togglePlay = isPlaying ? handleStop : handleStart;
 
   useEffect(() => {
-      audioRef.current.currentTime = data;
-  }, [data])
+    audioRef.current.currentTime = data;
+  }, [data]);
 
   useEffect(() => {
     const ref = audioRef.current;
@@ -101,17 +101,19 @@ function Bar({ isLoad }) {
 
   return (
     <>
-      <audio
-        controls
-        ref={audioRef}
-        src={selectTrack?.track_file}
-        style={{ marginTop: 20 }}
-        autoPlay
-        onLoadedMetadata={onLoadedMetadata}
-        loop={loop}
-      >
-        <track kind="captions" />
-      </audio>
+      <S.Bar>
+        <audio
+          controls
+          ref={audioRef}
+          src={selectTrack?.track_file}
+          style={{ marginTop: 20 }}
+          autoPlay
+          onLoadedMetadata={onLoadedMetadata}
+          loop={loop}
+        >
+          <track kind="captions" />
+        </audio>
+      </S.Bar>
 
       <S.Bar>
         <div className="bar__content">
@@ -155,8 +157,8 @@ function Bar({ isLoad }) {
                   <svg
                     className={
                       !loop
-                        ? "player__btn-repeat-svg"
-                        : "player__btn-repeat-svg-choose"
+                        ? 'player__btn-repeat-svg'
+                        : 'player__btn-repeat-svg-choose'
                     }
                     alt="repeat"
                   >

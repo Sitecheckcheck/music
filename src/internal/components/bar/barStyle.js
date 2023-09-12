@@ -181,11 +181,11 @@ export const PlayerBtnNext = styled.div`
 `;
 
 export const BtnIcon = styled.div`
-  &:hover svg {
-    fill: transparent;
-    stroke: #acacac;
-    cursor: pointer;
-  }
+  // &:hover svg {
+  //   fill: transparent;
+  //   stroke: #acacac;
+  //   cursor: pointer;
+  // }
 
   &:active svg {
     fill: transparent;

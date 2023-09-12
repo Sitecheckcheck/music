@@ -1,12 +1,12 @@
 import { NavLink } from 'react-router-dom';
 import * as S from './styles';
 
-function NavMenu() {
+export const logOut = () => {
+  localStorage.removeItem('user');
+  localStorage.removeItem('refresh');
+}
 
-  const logOut = () => {
-    localStorage.removeItem('user');
-    localStorage.removeItem('refresh');
-  }
+function NavMenu() {
 
   return (
     <S.NavMenuStyle>

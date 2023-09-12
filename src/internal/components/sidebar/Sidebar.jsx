@@ -12,25 +12,31 @@ import {
   SidebarList,
 } from './styles';
 import { useUserNameContext } from '../../../contexts/userName';
+import { logOut } from '../nav/NavMenu';
+import exit from '../../../img/exit.svg'
 
 function Sidebar({ isLoad, setIsLoad }) {
   const user = useUserNameContext();
   let { userName } = user;
-
+  console.log(user);
   if (userName) {
     const index = userName.lastIndexOf('@');
     userName = userName.substring(0, index);
   }
 
   useEffect(() => {
-    setTimeout(() => {setIsLoad(false)}, 500);
+    setTimeout(() => {
+      setIsLoad(false);
+    }, 500);
   });
 
   return (
     <MainSidebar>
       <SidebarPersonal>
         <NavLink to="/mytrack">{userName}</NavLink>
-        <div />
+        <NavLink to="/signin" onClick={logOut}>
+          <img src={exit} alt="exit"  />
+        </NavLink>
       </SidebarPersonal>
       <SidebarBlock>
         <SidebarList>
