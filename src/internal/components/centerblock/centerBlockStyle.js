@@ -118,7 +118,7 @@ export const ContentPlaylist = styled.div`
   -ms-flex-direction: column;
   flex-direction: column;
   overflow: auto;
-  height: 60vh;
+  height: 65vh;
 
   &::-webkit-scrollbar {
     width: 4px;

@@ -1,20 +1,21 @@
+/* eslint-disable */
+import React from 'react';
 import Nav from '../nav/Nav';
 import CenterBlock from '../centerblock/CenterBlock';
 import Sidebar from '../sidebar/Sidebar';
 import SMain from './mainStyle';
 
-function Main({ isLoad, setIsLoad, selectTrack, setSelectTrack }) {
+function Main({ isLoad, setIsLoad}) {
+
   return (
-    <SMain>
-      <Nav />
-      <CenterBlock
-        isLoad={isLoad}
-        setIsLoad={setIsLoad}
-        selectTrack={selectTrack}
-        setSelectTrack={setSelectTrack}
-      />
-      <Sidebar isLoad={isLoad} playlist />
-    </SMain>
+      <SMain>
+        <Nav />
+        <CenterBlock
+          isLoad={isLoad}
+          setIsLoad={setIsLoad}
+        />
+        <Sidebar isLoad={isLoad} setIsLoad={setIsLoad} playlist />
+      </SMain>
   );
 }
 

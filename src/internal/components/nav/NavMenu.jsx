@@ -1,8 +1,10 @@
 import { NavLink } from 'react-router-dom';
-import Cookies from 'js-cookie';
 import * as S from './styles';
+import { useLogOutContext } from '../../../contexts/LogOut';
 
 function NavMenu() {
+  const { logOut } = useLogOutContext();
+
   return (
     <S.NavMenuStyle>
       <S.MenuList>
@@ -13,13 +15,7 @@ function NavMenu() {
           <NavLink to="/mytrack">Мой плейлист</NavLink>
         </S.MenuItem>
         <S.MenuItem>
-          <NavLink
-            to="/signin"
-            onClick={() => {
-              Cookies.remove('token', 'pasha');
-              window.location.reload();
-            }}
-          >
+          <NavLink to="/signin" onClick={logOut}>
             Выйти
           </NavLink>
         </S.MenuItem>

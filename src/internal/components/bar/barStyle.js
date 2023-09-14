@@ -181,11 +181,11 @@ export const PlayerBtnNext = styled.div`
 `;
 
 export const BtnIcon = styled.div`
-  &:hover svg {
-    fill: transparent;
-    stroke: #acacac;
-    cursor: pointer;
-  }
+  // &:hover svg {
+  //   fill: transparent;
+  //   stroke: #acacac;
+  //   cursor: pointer;
+  // }
 
   &:active svg {
     fill: transparent;
@@ -223,7 +223,10 @@ export const PlayerBtnRepeat = styled(BtnIcon)`
     stroke: #696969;
   }
 
-  .choose {
+  .player__btn-repeat-svg-choose {
+    width: 18px;
+    height: 12px;
+    fill: transparent;
     stroke: #fff;
   }
 `;

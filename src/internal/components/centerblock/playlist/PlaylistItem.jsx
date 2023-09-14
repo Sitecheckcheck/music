@@ -1,9 +1,15 @@
+/* eslint-disable */
 import sprite from '../../../../img/icon/sprite.svg';
 import * as S from './playliststyle';
+import { useSelectTrackContext } from '../../../../contexts/selectTrack';
 
 function PlaylistItem(props) {
+
+  const selectTrackContext = useSelectTrackContext()
+  let {setSelectTrack} = selectTrackContext
+
   function selectTrackFunction(item) {
-    props.setSelectTrack(item);
+    setSelectTrack(item)
   }
 
   return (
