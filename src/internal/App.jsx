@@ -5,7 +5,8 @@ import { UserNameContext } from '../contexts/userName';
 import { selectTrackContext } from '../contexts/selectTrack';
 import { isPlayingContext } from '../contexts/IsPlaying';
 import { tokenContext } from '../contexts/token';
-import { logOutContext } from '../contexts/LogOut'
+import { logOutContext } from '../contexts/LogOut';
+import BarPlayer from './components/bar/BarPlayer';
 
 function App() {
   const [isLoad, setIsLoad] = useState(true);
@@ -17,10 +18,11 @@ function App() {
   const logOut = () => {
     localStorage.removeItem('user');
     localStorage.removeItem('refresh');
+    setSelectTrack(null)
   };
 
   return (
-  <logOutContext.Provider value={{logOut}}>
+    <logOutContext.Provider value={{ logOut }}>
       <tokenContext.Provider value={{ token, setToken }}>
         <isPlayingContext.Provider value={{ isPlaying, setIsPlaying }}>
           <selectTrackContext.Provider value={{ selectTrack, setSelectTrack }}>
@@ -30,6 +32,9 @@ function App() {
                 setIsLoad={setIsLoad}
                 user={userName}
               />
+              {selectTrack != null
+                ? <BarPlayer isLoad={isLoad} />
+                : null}
             </UserNameContext.Provider>
           </selectTrackContext.Provider>
         </isPlayingContext.Provider>

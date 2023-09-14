@@ -1,11 +1,11 @@
 import { Route, Routes } from 'react-router-dom';
 import NotFound from './internal/pages/not-found';
-import MainPage from './internal/pages/mainpage';
+import MainPage from './internal/pages/mainpage/mainpage';
 import Signin from './internal/pages/signin/signin';
 import Signup from './internal/pages/signup/signup';
-import MyTracks from './internal/pages/mytracks';
+import MyTracks from './internal/pages/mytracks/myTracksPage';
 import { ProtectedRoute } from './internal/components/protected-route';
-import { ListMusic } from './internal/pages/listmusic';
+import { ListMusic } from './internal/pages/listmusic/listmusic';
 
 function AppRoutes(props) {
   return (

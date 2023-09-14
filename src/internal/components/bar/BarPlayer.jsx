@@ -7,7 +7,7 @@ import { useSelectTrackContext } from '../../../contexts/selectTrack';
 import { useIsPlayingContext } from '../../../contexts/IsPlaying';
 /* eslint-disable */
 
-function Bar({ isLoad }) {
+function BarPlayer ({ isLoad }) {
   // const [isPlaying, setIsPlaying] = useState(true);
   const [loop, setLoop] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
@@ -232,4 +232,4 @@ function Bar({ isLoad }) {
   );
 }
 
-export default Bar;
+export default BarPlayer;
