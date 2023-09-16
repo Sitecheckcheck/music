@@ -1,25 +1,23 @@
 import { useEffect, useRef, useState } from 'react';
+import { useSelector } from 'react-redux';
 import sprite from '../../../img/icon/sprite.svg';
 import BarEmpty from '../../../img/BarEmpty.png';
 import * as S from './barStyle';
 import ProgressBar from './ProgressBar';
-import { useSelectTrackContext } from '../../../contexts/selectTrack';
 import { useIsPlayingContext } from '../../../contexts/IsPlaying';
 /* eslint-disable */
 
 function BarPlayer ({ isLoad }) {
-  // const [isPlaying, setIsPlaying] = useState(true);
   const [loop, setLoop] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [data, setData] = useState(0);
   const [volume, setVolume] = useState(50);
   const audioRef = useRef(null);
-  const selectTrackContext = useSelectTrackContext();
-  let { selectTrack } = selectTrackContext;
   const isPlayingContext = useIsPlayingContext();
   let { isPlaying } = isPlayingContext;
   let { setIsPlaying } = isPlayingContext;
+  const selectTrack = useSelector(state => state.selectTrack.selectTrack )
 
   function strPadLeft(string, pad, length) {
     return (new Array(length + 1).join(pad) + string).slice(-length);

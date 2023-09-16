@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { Route, Routes } from 'react-router-dom';
 import NotFound from './internal/pages/not-found';
 import MainPage from './internal/pages/mainpage/mainpage';

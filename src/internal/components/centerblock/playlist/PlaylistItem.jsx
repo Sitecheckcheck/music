@@ -1,23 +1,19 @@
 /* eslint-disable */
 import sprite from '../../../../img/icon/sprite.svg';
 import * as S from './playliststyle';
-import { useSelectTrackContext } from '../../../../contexts/selectTrack';
+import { useDispatch } from 'react-redux';
+import { selectTrackFunction } from '../../../../store/slice';
 
 function PlaylistItem(props) {
 
-  const selectTrackContext = useSelectTrackContext()
-  let {setSelectTrack} = selectTrackContext
-
-  function selectTrackFunction(item) {
-    setSelectTrack(item)
-  }
+  const dispatch = useDispatch();
 
   return (
     <S.PlaylistItem>
       <div
         className="playlist__track track"
         onClick={() => {
-          selectTrackFunction(props.item);
+          dispatch(selectTrackFunction(props.item));
         }}
       >
         <S.TrackTitle>

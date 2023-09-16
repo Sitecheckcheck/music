@@ -1,9 +1,13 @@
+/* eslint-disable */
 import { NavLink } from 'react-router-dom';
 import * as S from './styles';
-import { useLogOutContext } from '../../../contexts/LogOut';
+import { logOut } from '../../App';
+import { useDispatch } from 'react-redux';
+import { selectTrackFunction } from '../../../store/slice';
 
 function NavMenu() {
-  const { logOut } = useLogOutContext();
+
+  const dispatch = useDispatch();
 
   return (
     <S.NavMenuStyle>
@@ -15,7 +19,10 @@ function NavMenu() {
           <NavLink to="/mytrack">Мой плейлист</NavLink>
         </S.MenuItem>
         <S.MenuItem>
-          <NavLink to="/signin" onClick={logOut}>
+          <NavLink to="/signin" onClick={() => {
+            logOut();
+            dispatch(selectTrackFunction(null));
+          }}>
             Выйти
           </NavLink>
         </S.MenuItem>

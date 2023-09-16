@@ -7,11 +7,8 @@ import SMain from '../../components/main/mainStyle';
 import ListindiCenterBlock from '../../components/listindi/listindicenterblock';
 import { ListNames } from '../../../constans';
 import Sidebar from '../../components/sidebar/Sidebar';
-import { useSelectTrackContext } from '../../../contexts/selectTrack';
 
 export function ListMusic({ isLoad, setIsLoad }) {
-  const selectTrackContext = useSelectTrackContext();
-  const { selectTrack } = selectTrackContext;
 
   const params = useParams();
 
@@ -28,9 +25,6 @@ export function ListMusic({ isLoad, setIsLoad }) {
           <ListindiCenterBlock listNam={ListName.listName} />
           <Sidebar isLoad={isLoad} setIsLoad={setIsLoad} playlist />
         </SMain>
-        {/* {selectTrack != null ? (
-          <Bar isLoad={isLoad} />
-        ) : null} */}
         <Footer />
       </Container>
     </Wrapper>

@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { NavLink } from 'react-router-dom';
 import { useEffect } from 'react';
 import playlist01 from '../../../img/playlist01.png';
@@ -11,15 +12,16 @@ import {
   SidebarBlock,
   SidebarList,
 } from './styles';
-import { useUserNameContext } from '../../../contexts/userName';
-import exit from '../../../img/exit.svg'
-import { useLogOutContext } from '../../../contexts/LogOut';
+import exit from '../../../img/exit.svg';
+import { logOut } from '../../App';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectTrackFunction } from '../../../store/slice';
+
+
 
 function Sidebar({ isLoad, setIsLoad }) {
-  const user = useUserNameContext();
-  let { userName } = user;
-
-  const {logOut} = useLogOutContext();
+  let userName = useSelector(state => state.userName.userName )
+  const dispatch = useDispatch();
 
   if (userName) {
     const index = userName.lastIndexOf('@');
@@ -36,8 +38,14 @@ function Sidebar({ isLoad, setIsLoad }) {
     <MainSidebar>
       <SidebarPersonal>
         <NavLink to="/mytrack">{userName}</NavLink>
-        <NavLink to="/signin" onClick={logOut}>
-          <img src={exit} alt="exit"  />
+        <NavLink
+          to="/signin"
+          onClick={() => {
+            logOut();
+            dispatch(selectTrackFunction(null));
+          }}
+        >
+          <img src={exit} alt="exit" />
         </NavLink>
       </SidebarPersonal>
       <SidebarBlock>
