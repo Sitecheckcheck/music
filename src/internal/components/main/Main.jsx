@@ -5,17 +5,18 @@ import CenterBlock from '../centerblock/CenterBlock';
 import Sidebar from '../sidebar/Sidebar';
 import SMain from './mainStyle';
 
-function Main({ isLoad, setIsLoad}) {
-
+function Main({ isLoad, setIsLoad, playlist, setplaylist }) {
   return (
-      <SMain>
-        <Nav />
-        <CenterBlock
-          isLoad={isLoad}
-          setIsLoad={setIsLoad}
-        />
-        <Sidebar isLoad={isLoad} setIsLoad={setIsLoad} playlist />
-      </SMain>
+    <SMain>
+      <Nav />
+      <CenterBlock
+        isLoad={isLoad}
+        setIsLoad={setIsLoad}
+        playlist={playlist}
+        setplaylist={setplaylist}
+      />
+      <Sidebar isLoad={isLoad} setIsLoad={setIsLoad} playlist />
+    </SMain>
   );
 }
 

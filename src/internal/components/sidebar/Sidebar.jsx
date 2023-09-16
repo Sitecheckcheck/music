@@ -15,12 +15,10 @@ import {
 import exit from '../../../img/exit.svg';
 import { logOut } from '../../App';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectTrackFunction } from '../../../store/slice';
-
-
+import { selectTrackFunction } from '../../../store/sliceSelectTrack';
 
 function Sidebar({ isLoad, setIsLoad }) {
-  let userName = useSelector(state => state.userName.userName )
+  let userName = useSelector((state) => state.userName.userName);
   const dispatch = useDispatch();
 
   if (userName) {

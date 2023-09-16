@@ -3,10 +3,9 @@ import { NavLink } from 'react-router-dom';
 import * as S from './styles';
 import { logOut } from '../../App';
 import { useDispatch } from 'react-redux';
-import { selectTrackFunction } from '../../../store/slice';
+import { selectTrackFunction } from '../../../store/sliceSelectTrack';
 
 function NavMenu() {
-
   const dispatch = useDispatch();
 
   return (
@@ -19,10 +18,13 @@ function NavMenu() {
           <NavLink to="/mytrack">Мой плейлист</NavLink>
         </S.MenuItem>
         <S.MenuItem>
-          <NavLink to="/signin" onClick={() => {
-            logOut();
-            dispatch(selectTrackFunction(null));
-          }}>
+          <NavLink
+            to="/signin"
+            onClick={() => {
+              logOut();
+              dispatch(selectTrackFunction(null));
+            }}
+          >
             Выйти
           </NavLink>
         </S.MenuItem>

@@ -1,7 +1,7 @@
 /* eslint-disable */
 import { createSlice } from '@reduxjs/toolkit';
 
-const slice = createSlice({
+const sliceSelectTrack = createSlice({
   name: 'selectTrack',
   initialState: {
     selectTrack: null,
@@ -13,5 +13,5 @@ const slice = createSlice({
   },
 });
 
-export const { selectTrackFunction } = slice.actions;
-export default slice.reducer;
+export const { selectTrackFunction } = sliceSelectTrack.actions;
+export default sliceSelectTrack.reducer;

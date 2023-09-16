@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import sprite from '../../../img/icon/sprite.svg';
@@ -5,9 +6,11 @@ import BarEmpty from '../../../img/BarEmpty.png';
 import * as S from './barStyle';
 import ProgressBar from './ProgressBar';
 import { useIsPlayingContext } from '../../../contexts/IsPlaying';
-/* eslint-disable */
+import { useDispatch } from 'react-redux';
+import { getPlaylistId } from '../../api';
+import { selectTrackFunction } from '../../../store/sliceSelectTrack';
 
-function BarPlayer ({ isLoad }) {
+function BarPlayer({ isLoad, playlist }) {
   const [loop, setLoop] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
@@ -17,7 +20,8 @@ function BarPlayer ({ isLoad }) {
   const isPlayingContext = useIsPlayingContext();
   let { isPlaying } = isPlayingContext;
   let { setIsPlaying } = isPlayingContext;
-  const selectTrack = useSelector(state => state.selectTrack.selectTrack )
+  const selectTrack = useSelector((state) => state.selectTrack.selectTrack);
+  const dispatch = useDispatch();
 
   function strPadLeft(string, pad, length) {
     return (new Array(length + 1).join(pad) + string).slice(-length);
@@ -44,12 +48,24 @@ function BarPlayer ({ isLoad }) {
     setIsPlaying(false);
   };
 
-  const handlePrev = () => {
-    alert('кнопка пока не реализована');
+  const handlePrev = async () => {
+    try {
+      const prevTrack = await getPlaylistId(selectTrack.id - 1);
+      dispatch(selectTrackFunction(prevTrack));
+    } catch (e) {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0;
+      audioRef.current.play();
+    }
   };
 
-  const handleNext = () => {
-    alert('кнопка пока не реализована');
+  const handleNext = async () => {
+    try {
+      const nextTrack = await getPlaylistId(selectTrack.id + 1);
+      dispatch(selectTrackFunction(nextTrack));
+    } catch (e) {
+      dispatch(selectTrackFunction(playlist[0]));
+    }
   };
 
   const handleShuffle = () => {
@@ -92,6 +108,12 @@ function BarPlayer ({ isLoad }) {
   useEffect(() => {
     audioRef.current.volume = volume / 100;
   }, [volume]);
+
+  useEffect(() => {
+    if (audioRef.current.currentTime === audioRef.current.duration) {
+      handleNext();
+    }
+  });
 
   const onLoadedMetadata = () => {
     setDuration(audioRef.current.duration);

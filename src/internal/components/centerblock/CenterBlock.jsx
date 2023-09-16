@@ -6,10 +6,9 @@ import Filter from './filter/Filter';
 import * as S from './centerBlockStyle';
 import { getPlaylist } from '../../api';
 
-function CenterBlock({ isLoad, setIsLoad }) {
-  const [playlist, setplaylist] = useState([]);
+function CenterBlock({ isLoad, setIsLoad, playlist, setplaylist }) {
   const [getTracksError, setGetTracksError] = useState(null);
- 
+
   const getAllTracks = async () => {
     try {
       const tracks = await getPlaylist();

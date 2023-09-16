@@ -1,7 +1,6 @@
 /* eslint-disable */
 import { useState } from 'react';
 import AppRoutes from '../rotes';
-import { UserNameContext } from '../contexts/userName';
 import { isPlayingContext } from '../contexts/IsPlaying';
 import { tokenContext } from '../contexts/token';
 import BarPlayer from './components/bar/BarPlayer';
@@ -16,6 +15,7 @@ function App() {
   const [isLoad, setIsLoad] = useState(true);
   const [isPlaying, setIsPlaying] = useState(false);
   const [token, setToken] = useState(null);
+  const [playlist, setplaylist] = useState([]);
   const selectTrack = useSelector(state => state.selectTrack.selectTrack )
   const userName = useSelector(state => state.userName.userName )
  
@@ -28,9 +28,11 @@ function App() {
                 isLoad={isLoad}
                 setIsLoad={setIsLoad}
                 user={userName}
+                playlist={playlist} 
+                setplaylist={setplaylist}
               />
               {selectTrack != null
-                ? <BarPlayer isLoad={isLoad} />
+                ? <BarPlayer isLoad={isLoad} playlist={playlist} />
                 : null}
         </isPlayingContext.Provider>
       </tokenContext.Provider>

@@ -1,12 +1,16 @@
 /* eslint-disable */
 import sprite from '../../../../img/icon/sprite.svg';
 import * as S from './playliststyle';
-import { useDispatch } from 'react-redux';
-import { selectTrackFunction } from '../../../../store/slice';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectTrackFunction } from '../../../../store/sliceSelectTrack';
+import point from '../../../../img/PointTrack.png';
+import { useIsPlayingContext } from '../../../../contexts/IsPlaying';
 
 function PlaylistItem(props) {
-
   const dispatch = useDispatch();
+  const selectTrack = useSelector(state => state.selectTrack.selectTrack)
+  const isPlayingContext = useIsPlayingContext();
+  let { isPlaying } = isPlayingContext;
 
   return (
     <S.PlaylistItem>
@@ -18,9 +22,13 @@ function PlaylistItem(props) {
       >
         <S.TrackTitle>
           <div className="track__title-image">
-            <svg className="track__title-svg" alt="music">
-              <use xlinkHref={`${sprite}#icon-note`} />
-            </svg>
+            {selectTrack && props.item.id === selectTrack.id ? (
+              <img src={point} alt="point" className={isPlaying ? 'playing-dot' : ''} />
+            ) : (
+              <svg className="track__title-svg" alt="music">
+                <use xlinkHref={`${sprite}#icon-note`} />
+              </svg>
+            )}
           </div>
           <div className="track__title-text">
             <div className="track__title-link">
