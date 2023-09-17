@@ -22,7 +22,7 @@ function PlaylistItem(props) {
       >
         <S.TrackTitle>
           <div className="track__title-image">
-            {selectTrack && props.item.id === selectTrack.id ? (
+            {selectTrack && props.item && props.item.id === selectTrack.id ? (
               <img src={point} alt="point" className={isPlaying ? 'playing-dot' : ''} />
             ) : (
               <svg className="track__title-svg" alt="music">

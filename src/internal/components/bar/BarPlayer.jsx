@@ -7,11 +7,12 @@ import * as S from './barStyle';
 import ProgressBar from './ProgressBar';
 import { useIsPlayingContext } from '../../../contexts/IsPlaying';
 import { useDispatch } from 'react-redux';
-import { getPlaylistId } from '../../api';
 import { selectTrackFunction } from '../../../store/sliceSelectTrack';
+import { playlistFunction } from '../../../store/slicePlaylist';
 
-function BarPlayer({ isLoad, playlist }) {
+function BarPlayer({isLoadTrack, setIsLoadTrack}) {
   const [loop, setLoop] = useState(false);
+  const [shaffle, setShaffle] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [data, setData] = useState(0);
@@ -22,6 +23,8 @@ function BarPlayer({ isLoad, playlist }) {
   let { setIsPlaying } = isPlayingContext;
   const selectTrack = useSelector((state) => state.selectTrack.selectTrack);
   const dispatch = useDispatch();
+  const playlist = useSelector((state) => state.playlist.playlist);
+  const playlistUI = useSelector((state) => state.playlistUI.playlistUI);
 
   function strPadLeft(string, pad, length) {
     return (new Array(length + 1).join(pad) + string).slice(-length);
@@ -44,32 +47,52 @@ function BarPlayer({ isLoad, playlist }) {
   };
 
   const handleStop = () => {
-    audioRef.current.pause();
-    setIsPlaying(false);
-  };
-
-  const handlePrev = async () => {
-    try {
-      const prevTrack = await getPlaylistId(selectTrack.id - 1);
-      dispatch(selectTrackFunction(prevTrack));
-    } catch (e) {
+    audioRef.current.play().then(() => {
       audioRef.current.pause();
-      audioRef.current.currentTime = 0;
-      audioRef.current.play();
+      setIsPlaying(false);
+    });
+  };
+
+  const handlePrev = () => {
+    const playPromise = audioRef.current.play();
+
+    if (playPromise) {
+      playPromise.then(() => {
+        if (playlist.indexOf(selectTrack) < playlist.length - 1) {
+          const nextTrack = playlist[playlist.indexOf(selectTrack) - 1];
+          dispatch(selectTrackFunction(nextTrack));
+        } else {
+          dispatch(selectTrackFunction(playlist[0]));
+        }
+      });
     }
   };
 
-  const handleNext = async () => {
-    try {
-      const nextTrack = await getPlaylistId(selectTrack.id + 1);
-      dispatch(selectTrackFunction(nextTrack));
-    } catch (e) {
-      dispatch(selectTrackFunction(playlist[0]));
-    }
+  const handleNext = () => {
+    setIsLoadTrack(true);
+
+    audioRef.current.play().then(() => {
+      if (playlist.indexOf(selectTrack) < playlist.length - 1) {
+        const nextTrack = playlist[playlist.indexOf(selectTrack) + 1];
+        dispatch(selectTrackFunction(nextTrack));
+        setIsLoadTrack(false);
+      } else {
+        dispatch(selectTrackFunction(playlist[0]));
+        setIsLoadTrack(false);
+      }
+    });
   };
 
   const handleShuffle = () => {
-    alert('кнопка пока не реализована');
+    if (!shaffle) {
+      setShaffle(!shaffle);
+      const shafflePlaylist = [...playlist];
+      shafflePlaylist.sort(() => Math.random() - 0.5);
+      dispatch(playlistFunction(shafflePlaylist));
+    } else {
+      dispatch(playlistFunction(playlistUI));
+      setShaffle(!shaffle);
+    }
   };
 
   const handleLoop = () => {
@@ -103,6 +126,9 @@ function BarPlayer({ isLoad, playlist }) {
 
   useEffect(() => {
     handleStart();
+    audioRef.current.play().then(()=> {
+      setIsLoadTrack(false)
+    })
   }, [selectTrack]);
 
   useEffect(() => {
@@ -186,13 +212,20 @@ function BarPlayer({ isLoad, playlist }) {
                   </svg>
                 </S.PlayerBtnRepeat>
                 <S.PlayerBtnShuffle onClick={handleShuffle}>
-                  <svg className="player__btn-shuffle-svg" alt="shuffle">
+                  <svg
+                    className={
+                      !shaffle
+                        ? 'player__btn-shuffle-svg'
+                        : 'player__btn-shuffle-svg-choose'
+                    }
+                    alt="shuffle"
+                  >
                     <use xlinkHref={`${sprite}#icon-shuffle`} />
                   </svg>
                 </S.PlayerBtnShuffle>
               </div>
               <div className="player__track-play track-play">
-                {isLoad ? (
+                {isLoadTrack ? (
                   <img src={BarEmpty} alt="" />
                 ) : (
                   <S.TrackPlayContain>

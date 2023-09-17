@@ -11,8 +11,6 @@ function MainPage({ isLoad, setIsLoad, playlist, setplaylist }) {
         <Main
           isLoad={isLoad}
           setIsLoad={setIsLoad}
-          playlist={playlist}
-          setplaylist={setplaylist}
         />
         <Footer />
       </Container>

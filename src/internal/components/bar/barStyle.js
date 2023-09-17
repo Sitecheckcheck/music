@@ -246,6 +246,13 @@ export const PlayerBtnShuffle = styled(BtnIcon)`
     fill: transparent;
     stroke: #696969;
   }
+
+  .player__btn-shuffle-svg-choose {
+    width: 19px;
+    height: 12px;
+    fill: transparent;
+    stroke: #fff;
+  }
 `;
 /* eslint-disable */
 export const TrackPlayContain = styled.div`

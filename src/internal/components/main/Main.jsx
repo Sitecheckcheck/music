@@ -12,10 +12,8 @@ function Main({ isLoad, setIsLoad, playlist, setplaylist }) {
       <CenterBlock
         isLoad={isLoad}
         setIsLoad={setIsLoad}
-        playlist={playlist}
-        setplaylist={setplaylist}
       />
-      <Sidebar isLoad={isLoad} setIsLoad={setIsLoad} playlist />
+      <Sidebar isLoad={isLoad} setIsLoad={setIsLoad} />
     </SMain>
   );
 }

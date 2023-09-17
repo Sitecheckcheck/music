@@ -4,7 +4,7 @@ import AppRoutes from '../rotes';
 import { isPlayingContext } from '../contexts/IsPlaying';
 import { tokenContext } from '../contexts/token';
 import BarPlayer from './components/bar/BarPlayer';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 export const logOut = () => {
   localStorage.removeItem('user');
@@ -13,9 +13,9 @@ export const logOut = () => {
 
 function App() {
   const [isLoad, setIsLoad] = useState(true);
+  const [isLoadTrack, setIsLoadTrack] = useState(true);
   const [isPlaying, setIsPlaying] = useState(false);
   const [token, setToken] = useState(null);
-  const [playlist, setplaylist] = useState([]);
   const selectTrack = useSelector(state => state.selectTrack.selectTrack )
   const userName = useSelector(state => state.userName.userName )
  
@@ -28,11 +28,9 @@ function App() {
                 isLoad={isLoad}
                 setIsLoad={setIsLoad}
                 user={userName}
-                playlist={playlist} 
-                setplaylist={setplaylist}
               />
               {selectTrack != null
-                ? <BarPlayer isLoad={isLoad} playlist={playlist} />
+                ? <BarPlayer isLoadTrack={isLoadTrack} setIsLoadTrack={setIsLoadTrack} />
                 : null}
         </isPlayingContext.Provider>
       </tokenContext.Provider>
