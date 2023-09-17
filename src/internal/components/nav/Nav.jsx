@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { useState } from 'react';
 import logo from '../../../img/logo.png';
 import NavMenu from './NavMenu';

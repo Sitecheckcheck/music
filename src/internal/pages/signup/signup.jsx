@@ -1,25 +1,30 @@
-import { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import './signup.css';
 import logoModal from '../../../img/logo_modal.png';
-import { registerUser } from '../../api';
-import { useUserNameContext } from '../../../contexts/userName';
+import { registerUser, getToken } from '../../api';
+import { useTokenContext } from '../../../hooks/token';
+import { userNameFunction } from '../../../store/sliceUserName';
 
 function Signup() {
-
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState();
-  const [disabled, setDisabled] = useState();
+  const [disabled, setDisabled] = useState(false);
+  const [confirmPassword, setConfirmPassword] = useState('');
   const navigate = useNavigate();
-  const {setUserName} = useUserNameContext()
+  const { setToken } = useTokenContext();
+  const dispatch = useDispatch();
 
   const getRegisterUser = async () => {
     try {
       setDisabled(true);
       const user = await registerUser(login, password);
       localStorage.setItem('user', user.username);
+      const token = await getToken(login, password);
+      localStorage.setItem('refresh', token.refresh);
+
       if (user.email) {
         if (user.email !== login) {
           setErrorMessage(user.email[0]);
@@ -33,7 +38,8 @@ function Signup() {
       }
 
       if (user.email === login && user.id) {
-        setUserName(user.username)
+        dispatch(userNameFunction(user.username));
+        setToken(token.refresh);
         navigate('/');
       }
     } catch (error) {
@@ -96,7 +102,7 @@ function Signup() {
               setConfirmPassword(e.target.value);
             }}
           />
-          <p style={{color: 'red'}}>{errorMessage}</p>
+          <p style={{ color: 'red' }}>{errorMessage}</p>
           <button
             type="button"
             className="modal__btn-signup-ent"

@@ -1,9 +1,8 @@
-/* eslint-disable */
 import Main from '../../components/main/Main';
 import Footer from '../../components/footer/Footer';
 import GlobalStyle, { Wrapper, Container } from '../../styles';
 
-function MainPage({ isLoad, setIsLoad, playlist, setplaylist }) {
+function MainPage({ isLoad, setIsLoad }) {
   return (
     <Wrapper>
       <Container>

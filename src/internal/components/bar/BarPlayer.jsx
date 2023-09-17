@@ -1,12 +1,10 @@
-/* eslint-disable */
 import { useEffect, useRef, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import sprite from '../../../img/icon/sprite.svg';
 import BarEmpty from '../../../img/BarEmpty.png';
 import * as S from './barStyle';
 import ProgressBar from './ProgressBar';
-import { useIsPlayingContext } from '../../../contexts/IsPlaying';
-import { useDispatch } from 'react-redux';
+import { useIsPlayingContext } from '../../../hooks/IsPlaying';
 import { selectTrackFunction } from '../../../store/sliceSelectTrack';
 import { playlistFunction } from '../../../store/slicePlaylist';
 
@@ -19,8 +17,8 @@ function BarPlayer({ isLoadTrack, setIsLoadTrack }) {
   const [volume, setVolume] = useState(50);
   const audioRef = useRef(null);
   const isPlayingContext = useIsPlayingContext();
-  let { isPlaying } = isPlayingContext;
-  let { setIsPlaying } = isPlayingContext;
+  const { isPlaying } = isPlayingContext;
+  const { setIsPlaying } = isPlayingContext;
   const selectTrack = useSelector((state) => state.selectTrack.selectTrack);
   const dispatch = useDispatch();
   const playlist = useSelector((state) => state.playlist.playlist);

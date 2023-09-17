@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import './signin.css';
 import logoModal from '../../../img/logo_modal.png';
 import { authUser, getToken } from '../../api';
-import { useTokenContext } from '../../../contexts/token';
+import { useTokenContext } from '../../../hooks/token';
 import { userNameFunction } from '../../../store/sliceUserName';
 
 function Signin() {
@@ -31,7 +31,7 @@ function Signin() {
       if (user.id && token.refresh) {
         dispatch(userNameFunction(user.username));
         setToken(token.refresh);
-        navigate('/'); 
+        navigate('/');
       }
     } catch (error) {
       console.log(error.message);

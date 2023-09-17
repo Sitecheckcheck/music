@@ -1,6 +1,6 @@
-/* eslint-disable */
 import { NavLink } from 'react-router-dom';
 import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import playlist01 from '../../../img/playlist01.png';
 import playlist02 from '../../../img/playlist02.png';
 import playlist03 from '../../../img/playlist03.png';
@@ -14,7 +14,6 @@ import {
 } from './styles';
 import exit from '../../../img/exit.svg';
 import { logOut } from '../../App';
-import { useDispatch, useSelector } from 'react-redux';
 import { selectTrackFunction } from '../../../store/sliceSelectTrack';
 
 function Sidebar({ isLoad, setIsLoad }) {

@@ -1,11 +1,9 @@
-/* eslint-disable */
-import React from 'react';
 import Nav from '../nav/Nav';
 import CenterBlock from '../centerblock/CenterBlock';
 import Sidebar from '../sidebar/Sidebar';
 import SMain from './mainStyle';
 
-function Main({ isLoad, setIsLoad, playlist, setplaylist }) {
+function Main({ isLoad, setIsLoad }) {
   return (
     <SMain>
       <Nav />

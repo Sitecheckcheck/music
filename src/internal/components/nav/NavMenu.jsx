@@ -1,8 +1,7 @@
-/* eslint-disable */
 import { NavLink } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import * as S from './styles';
 import { logOut } from '../../App';
-import { useDispatch } from 'react-redux';
 import { selectTrackFunction } from '../../../store/sliceSelectTrack';
 
 function NavMenu() {

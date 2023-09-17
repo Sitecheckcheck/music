@@ -1,7 +1,7 @@
-/* eslint-disable */
 import MyTrackMain from '../../components/mytrackmain';
 import Footer from '../../components/footer/Footer';
 import GlobalStyle, { Wrapper, Container } from '../../styles';
+
 function MyTracks({ isLoad, setIsLoad }) {
 
   return (

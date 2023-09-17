@@ -29,7 +29,10 @@
     "comma-dangle": [2, "always-multiline"],
     "object-curly-newline": "off",
     "no-console": "off",
-    "import/no-extraneous-dependencies": ["error", {"devDependencies": false, "optionalDependencies": false, "peerDependencies": false}]
+    "import/no-extraneous-dependencies": "off",
+    "import/no-cycle": "off",
+    "react/jsx-no-constructed-context-values": "off",
+    "no-param-reassign": "off"
   },
   "settings": {
     "react": {

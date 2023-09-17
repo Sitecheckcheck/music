@@ -1,12 +1,11 @@
-/* eslint-disable */
 import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import PlaylistItem from './playlist/PlaylistItem';
 import sprite from '../../../img/icon/sprite.svg';
 import PlaylistItemEmpty from './playlist/PlayListItemEmpty';
 import Filter from './filter/Filter';
 import * as S from './centerBlockStyle';
 import { getPlaylist } from '../../api';
-import { useDispatch, useSelector } from 'react-redux';
 import { playlistFunction } from '../../../store/slicePlaylist';
 import { playlistUIFunction } from '../../../store/slicePlaylistUI';
 
