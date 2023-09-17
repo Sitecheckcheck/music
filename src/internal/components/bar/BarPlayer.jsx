@@ -10,7 +10,7 @@ import { useDispatch } from 'react-redux';
 import { selectTrackFunction } from '../../../store/sliceSelectTrack';
 import { playlistFunction } from '../../../store/slicePlaylist';
 
-function BarPlayer({isLoadTrack, setIsLoadTrack}) {
+function BarPlayer({ isLoadTrack, setIsLoadTrack }) {
   const [loop, setLoop] = useState(false);
   const [shaffle, setShaffle] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
@@ -54,18 +54,19 @@ function BarPlayer({isLoadTrack, setIsLoadTrack}) {
   };
 
   const handlePrev = () => {
-    const playPromise = audioRef.current.play();
-
-    if (playPromise) {
-      playPromise.then(() => {
-        if (playlist.indexOf(selectTrack) < playlist.length - 1) {
-          const nextTrack = playlist[playlist.indexOf(selectTrack) - 1];
-          dispatch(selectTrackFunction(nextTrack));
-        } else {
-          dispatch(selectTrackFunction(playlist[0]));
-        }
-      });
-    }
+    audioRef.current.play().then(() => {
+      if (
+        playlist.indexOf(selectTrack) < playlist.length - 1 &&
+        currentTime < 5
+      ) {
+        const prevTrack = playlist[playlist.indexOf(selectTrack) - 1];
+        dispatch(selectTrackFunction(prevTrack));
+      } else {
+        audioRef.current.pause();
+        audioRef.current.currentTime = 0;
+        audioRef.current.play();
+      }
+    });
   };
 
   const handleNext = () => {
@@ -126,9 +127,9 @@ function BarPlayer({isLoadTrack, setIsLoadTrack}) {
 
   useEffect(() => {
     handleStart();
-    audioRef.current.play().then(()=> {
-      setIsLoadTrack(false)
-    })
+    audioRef.current.play().then(() => {
+      setIsLoadTrack(false);
+    });
   }, [selectTrack]);
 
   useEffect(() => {
