@@ -17,10 +17,7 @@ function AppRoutes(props) {
         <Route
           path="/"
           element={
-            <MainPage
-              isLoad={props.isLoad}
-              setIsLoad={props.setIsLoad}
-            />
+            <MainPage isLoad={props.isLoad} setIsLoad={props.setIsLoad} />
           }
         />
       </Route>

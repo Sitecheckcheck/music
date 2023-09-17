@@ -11,8 +11,8 @@ import { playlistUIFunction } from '../../../store/slicePlaylistUI';
 
 function CenterBlock({ isLoad, setIsLoad }) {
   const [getTracksError, setGetTracksError] = useState(null);
-  const dispatch = useDispatch()
-  const playlistUI = useSelector(state => state.playlistUI.playlistUI)
+  const dispatch = useDispatch();
+  const playlistUI = useSelector((state) => state.playlistUI.playlistUI);
 
   const getAllTracks = async () => {
     try {

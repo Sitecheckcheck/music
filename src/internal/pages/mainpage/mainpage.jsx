@@ -7,10 +7,7 @@ function MainPage({ isLoad, setIsLoad }) {
     <Wrapper>
       <Container>
         <GlobalStyle />
-        <Main
-          isLoad={isLoad}
-          setIsLoad={setIsLoad}
-        />
+        <Main isLoad={isLoad} setIsLoad={setIsLoad} />
         <Footer />
       </Container>
     </Wrapper>

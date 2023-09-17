@@ -55,11 +55,7 @@ export const StyledProgressInput = styled.input`
   }
 `;
 
-export default function ProgressBar({
-  duration,
-  currentTime,
-  setData,
-}) {
+export default function ProgressBar({ duration, currentTime, setData }) {
   return (
     <StyledProgressInput
       type="range"

@@ -85,7 +85,7 @@ export const TrackTitle = styled.div`
     display: block;
     animation: bubble_out 0.6s ease-in-out infinite both;
   }
-  
+
   @keyframes bubble_out {
     0%,
     to {

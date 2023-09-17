@@ -7,10 +7,7 @@ function Main({ isLoad, setIsLoad }) {
   return (
     <SMain>
       <Nav />
-      <CenterBlock
-        isLoad={isLoad}
-        setIsLoad={setIsLoad}
-      />
+      <CenterBlock isLoad={isLoad} setIsLoad={setIsLoad} />
       <Sidebar isLoad={isLoad} setIsLoad={setIsLoad} />
     </SMain>
   );

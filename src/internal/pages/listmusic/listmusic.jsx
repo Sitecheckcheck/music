@@ -8,7 +8,6 @@ import { ListNames } from '../../../constans';
 import Sidebar from '../../components/sidebar/Sidebar';
 
 export function ListMusic({ isLoad, setIsLoad }) {
-
   const params = useParams();
 
   const ListName = ListNames.find(
