@@ -54,7 +54,6 @@ function BarPlayer({ isLoadTrack, setIsLoadTrack }) {
   const handlePrev = () => {
     audioRef.current.play().then(() => {
       if (
-        playlist.indexOf(selectTrack) < playlist.length - 1 &&
         currentTime < 5
       ) {
         const prevTrack = playlist[playlist.indexOf(selectTrack) - 1];
