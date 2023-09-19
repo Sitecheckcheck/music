@@ -1,30 +1,37 @@
-/* eslint-disable */
+import { useDispatch, useSelector } from 'react-redux';
 import sprite from '../../../../img/icon/sprite.svg';
 import * as S from './playliststyle';
-import { useSelectTrackContext } from '../../../../contexts/selectTrack';
+import { selectTrackFunction } from '../../../../store/sliceSelectTrack';
+import point from '../../../../img/PointTrack.png';
+import { useIsPlayingContext } from '../../../../hooks/IsPlaying';
 
-function PlaylistItem(props) {
-
-  const selectTrackContext = useSelectTrackContext()
-  let {setSelectTrack} = selectTrackContext
-
-  function selectTrackFunction(item) {
-    setSelectTrack(item)
-  }
+export const PlaylistItem = (props) => {
+  const dispatch = useDispatch();
+  const selectTrack = useSelector((state) => state.selectTrack.selectTrack);
+  const isPlayingContext = useIsPlayingContext();
+  const { isPlaying } = isPlayingContext;
 
   return (
     <S.PlaylistItem>
       <div
         className="playlist__track track"
         onClick={() => {
-          selectTrackFunction(props.item);
+          dispatch(selectTrackFunction(props.item));
         }}
       >
         <S.TrackTitle>
           <div className="track__title-image">
-            <svg className="track__title-svg" alt="music">
-              <use xlinkHref={`${sprite}#icon-note`} />
-            </svg>
+            {selectTrack && props.item && props.item.id === selectTrack.id ? (
+              <img
+                src={point}
+                alt="point"
+                className={isPlaying ? 'playing-dot' : ''}
+              />
+            ) : (
+              <svg className="track__title-svg" alt="music">
+                <use xlinkHref={`${sprite}#icon-note`} />
+              </svg>
+            )}
           </div>
           <div className="track__title-text">
             <div className="track__title-link">
@@ -48,6 +55,4 @@ function PlaylistItem(props) {
       </div>
     </S.PlaylistItem>
   );
-}
-
-export default PlaylistItem;
+};

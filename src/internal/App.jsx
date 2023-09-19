@@ -1,46 +1,35 @@
-/* eslint-disable */
 import { useState } from 'react';
-import AppRoutes from '../rotes';
-import { UserNameContext } from '../contexts/userName';
-import { selectTrackContext } from '../contexts/selectTrack';
-import { isPlayingContext } from '../contexts/IsPlaying';
-import { tokenContext } from '../contexts/token';
-import { logOutContext } from '../contexts/LogOut';
-import BarPlayer from './components/bar/BarPlayer';
+import { useSelector } from 'react-redux';
+import { AppRoutes } from '../rotes';
+import { isPlayingContext } from '../hooks/IsPlaying';
+import { tokenContext } from '../hooks/token';
+import { BarPlayer } from './components/bar/BarPlayer';
 
-function App() {
+export const logOut = () => {
+  localStorage.removeItem('user');
+  localStorage.removeItem('refresh');
+  window.location.reload();
+};
+
+export const App = () => {
   const [isLoad, setIsLoad] = useState(true);
-  const [userName, setUserName] = useState(localStorage.getItem('user'));
-  const [selectTrack, setSelectTrack] = useState(null);
+  const [isLoadTrack, setIsLoadTrack] = useState(true);
   const [isPlaying, setIsPlaying] = useState(false);
   const [token, setToken] = useState(null);
-
-  const logOut = () => {
-    localStorage.removeItem('user');
-    localStorage.removeItem('refresh');
-    setSelectTrack(null)
-  };
+  const selectTrack = useSelector((state) => state.selectTrack.selectTrack);
+  const userName = useSelector((state) => state.userName.userName);
 
   return (
-    <logOutContext.Provider value={{ logOut }}>
-      <tokenContext.Provider value={{ token, setToken }}>
-        <isPlayingContext.Provider value={{ isPlaying, setIsPlaying }}>
-          <selectTrackContext.Provider value={{ selectTrack, setSelectTrack }}>
-            <UserNameContext.Provider value={{ userName, setUserName }}>
-              <AppRoutes
-                isLoad={isLoad}
-                setIsLoad={setIsLoad}
-                user={userName}
-              />
-              {selectTrack != null
-                ? <BarPlayer isLoad={isLoad} />
-                : null}
-            </UserNameContext.Provider>
-          </selectTrackContext.Provider>
-        </isPlayingContext.Provider>
-      </tokenContext.Provider>
-    </logOutContext.Provider>
+    <tokenContext.Provider value={{ token, setToken }}>
+      <isPlayingContext.Provider value={{ isPlaying, setIsPlaying }}>
+        <AppRoutes isLoad={isLoad} setIsLoad={setIsLoad} user={userName} />
+        {selectTrack != null ? (
+          <BarPlayer
+            isLoadTrack={isLoadTrack}
+            setIsLoadTrack={setIsLoadTrack}
+          />
+        ) : null}
+      </isPlayingContext.Provider>
+    </tokenContext.Provider>
   );
-}
-
-export default App;
+};

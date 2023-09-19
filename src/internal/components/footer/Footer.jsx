@@ -1,7 +1,2 @@
-function Footer() {
-  return <footer className="footer" />;
-}
-
-export default Footer;
-
+export const Footer = () => <footer className="footer" />;
 /* eslint-disable */

@@ -1,5 +1,20 @@
 export async function getPlaylist() {
-  const response = await fetch('https://skypro-music-api.skyeng.tech/catalog/track/all/');
+  const response = await fetch(
+    'https://skypro-music-api.skyeng.tech/catalog/track/all/',
+  );
+
+  if (!response.ok) {
+    throw new Error('Ошибка сервера');
+  }
+
+  const data = await response.json();
+  return data;
+}
+
+export async function getPlaylistId(id) {
+  const response = await fetch(
+    `https://skypro-music-api.skyeng.tech/catalog/track/${id}`,
+  );
 
   if (!response.ok) {
     throw new Error('Ошибка сервера');
@@ -55,17 +70,20 @@ export async function getPlaylist() {
 // }
 
 export async function registerUser(login, password) {
-  const response = await fetch('https://skypro-music-api.skyeng.tech/user/signup/', {
-    method: 'POST',
-    body: JSON.stringify({
-      email: `${login}`,
-      password: `${password}`,
-      username: `${login}`,
-    }),
-    headers: {
-      'content-type': 'application/json',
+  const response = await fetch(
+    'https://skypro-music-api.skyeng.tech/user/signup/',
+    {
+      method: 'POST',
+      body: JSON.stringify({
+        email: `${login}`,
+        password: `${password}`,
+        username: `${login}`,
+      }),
+      headers: {
+        'content-type': 'application/json',
+      },
     },
-  });
+  );
 
   if (!response.ok && !response.status === '400') {
     throw new Error('Сервер сломался');
@@ -76,16 +94,19 @@ export async function registerUser(login, password) {
 }
 
 export async function authUser(login, password) {
-  const response = await fetch('https://skypro-music-api.skyeng.tech/user/login/', {
-    method: 'POST',
-    body: JSON.stringify({
-      email: `${login}`,
-      password: `${password}`,
-    }),
-    headers: {
-      'content-type': 'application/json',
+  const response = await fetch(
+    'https://skypro-music-api.skyeng.tech/user/login/',
+    {
+      method: 'POST',
+      body: JSON.stringify({
+        email: `${login}`,
+        password: `${password}`,
+      }),
+      headers: {
+        'content-type': 'application/json',
+      },
     },
-  });
+  );
 
   if (!response.ok && !response.status === '400') {
     throw new Error('Сервер сломался');
@@ -101,16 +122,19 @@ export async function authUser(login, password) {
 // }
 
 export async function getToken(login, password) {
-  const response = await fetch('https://skypro-music-api.skyeng.tech/user/token/', {
-    method: 'POST',
-    body: JSON.stringify({
-      email: `${login}`,
-      password: `${password}`,
-    }),
-    headers: {
-      'content-type': 'application/json',
+  const response = await fetch(
+    'https://skypro-music-api.skyeng.tech/user/token/',
+    {
+      method: 'POST',
+      body: JSON.stringify({
+        email: `${login}`,
+        password: `${password}`,
+      }),
+      headers: {
+        'content-type': 'application/json',
+      },
     },
-  });
+  );
 
   if (!response.ok && !response.status === '400') {
     throw new Error('Сервер сломался');

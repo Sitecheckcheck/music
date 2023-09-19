@@ -1,13 +1,16 @@
 import { NavLink } from 'react-router-dom';
-import Nav from '../nav/Nav';
+import { useDispatch, useSelector } from 'react-redux';
+import { Nav } from '../nav/Nav';
 import { MainSidebar, SidebarPersonal } from '../sidebar/styles';
 import SMain from '../main/mainStyle';
-import MyTracksCenterBlock from './mytrackcenterblock';
-import { useUserNameContext } from '../../../contexts/userName';
+import { MyTracksCenterBlock } from './mytrackcenterblock';
+import { logOut } from '../../App';
+import { selectTrackFunction } from '../../../store/sliceSelectTrack';
+import exit from '../../../img/exit.svg';
 
-function MyTrackMain({ isLoad, setIsLoad }) {
-  const user = useUserNameContext();
-  let { userName } = user;
+export const MyTrackMain = ({ isLoad, setIsLoad }) => {
+  let userName = useSelector((state) => state.userName.userName);
+  const dispatch = useDispatch();
 
   if (userName) {
     const index = userName.lastIndexOf('@');
@@ -17,18 +20,21 @@ function MyTrackMain({ isLoad, setIsLoad }) {
   return (
     <SMain>
       <Nav />
-      <MyTracksCenterBlock
-        isLoad={isLoad}
-        setIsLoad={setIsLoad}
-      />
+      <MyTracksCenterBlock isLoad={isLoad} setIsLoad={setIsLoad} />
       <MainSidebar>
         <SidebarPersonal>
           <NavLink to="/mytrack">{userName}</NavLink>
-          <div />
+          <NavLink
+            to="/signin"
+            onClick={() => {
+              logOut();
+              dispatch(selectTrackFunction(null));
+            }}
+          >
+            <img src={exit} alt="exit" />
+          </NavLink>
         </SidebarPersonal>
       </MainSidebar>
     </SMain>
   );
-}
-
-export default MyTrackMain;
+};

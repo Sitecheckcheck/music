@@ -1,19 +1,24 @@
 import { useEffect, useState } from 'react';
-import PlaylistItem from './playlist/PlaylistItem';
+import { useDispatch, useSelector } from 'react-redux';
+import { PlaylistItem } from './playlist/PlaylistItem';
 import sprite from '../../../img/icon/sprite.svg';
-import PlaylistItemEmpty from './playlist/PlayListItemEmpty';
-import Filter from './filter/Filter';
+import { PlaylistItemEmpty } from './playlist/PlayListItemEmpty';
+import { Filter } from './filter/Filter';
 import * as S from './centerBlockStyle';
 import { getPlaylist } from '../../api';
+import { playlistFunction } from '../../../store/slicePlaylist';
+import { playlistUIFunction } from '../../../store/slicePlaylistUI';
 
-function CenterBlock({ isLoad, setIsLoad }) {
-  const [playlist, setplaylist] = useState([]);
+export const CenterBlock = ({ isLoad, setIsLoad }) => {
   const [getTracksError, setGetTracksError] = useState(null);
- 
+  const dispatch = useDispatch();
+  const playlistUI = useSelector((state) => state.playlistUI.playlistUI);
+
   const getAllTracks = async () => {
     try {
       const tracks = await getPlaylist();
-      setplaylist(tracks);
+      dispatch(playlistUIFunction(tracks));
+      dispatch(playlistFunction(tracks));
       setIsLoad(false);
     } catch (error) {
       setGetTracksError(
@@ -28,7 +33,7 @@ function CenterBlock({ isLoad, setIsLoad }) {
     getAllTracks();
   }, []);
 
-  const playListItems = playlist.map((item) => (
+  const playListItems = playlistUI.map((item) => (
     <PlaylistItem
       item={item}
       key={item.id}
@@ -79,6 +84,4 @@ function CenterBlock({ isLoad, setIsLoad }) {
       </div>
     </S.MainCenterblock>
   );
-}
-
-export default CenterBlock;
+};

@@ -1,19 +1,20 @@
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import './signin.css';
 import logoModal from '../../../img/logo_modal.png';
 import { authUser, getToken } from '../../api';
-import { useUserNameContext } from '../../../contexts/userName';
-import { useTokenContext } from '../../../contexts/token';
+import { useTokenContext } from '../../../hooks/token';
+import { userNameFunction } from '../../../store/sliceUserName';
 
-function Signin() {
+export const Signin = () => {
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState();
   const [disabled, setDisabled] = useState(false);
   const navigate = useNavigate();
-  const { setUserName } = useUserNameContext();
   const { setToken } = useTokenContext();
+  const dispatch = useDispatch();
 
   const getAuthUser = async () => {
     try {
@@ -28,9 +29,9 @@ function Signin() {
       }
 
       if (user.id && token.refresh) {
-        setUserName(user.username);
+        dispatch(userNameFunction(user.username));
         setToken(token.refresh);
-        navigate('/'); 
+        navigate('/');
       }
     } catch (error) {
       console.log(error.message);
@@ -95,6 +96,4 @@ function Signin() {
       </div>
     </div>
   );
-}
-
-export default Signin;
+};

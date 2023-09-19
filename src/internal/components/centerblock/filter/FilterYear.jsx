@@ -1,7 +1,7 @@
 import tracks from '../../../../Tracks';
 import { Filters } from './filterStyle';
 
-function FilterYear() {
+export const FilterYear = () => {
   const arr = tracks.map((item) => item.release_date);
   const arr2 = arr.filter((item, index) => arr.indexOf(item) === index).sort();
 
@@ -16,6 +16,4 @@ function FilterYear() {
       <ul className="filtersList">{filterYearItems}</ul>
     </Filters>
   );
-}
-
-export default FilterYear;
+};

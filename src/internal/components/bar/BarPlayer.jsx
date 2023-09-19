@@ -1,25 +1,28 @@
 import { useEffect, useRef, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import sprite from '../../../img/icon/sprite.svg';
 import BarEmpty from '../../../img/BarEmpty.png';
 import * as S from './barStyle';
-import ProgressBar from './ProgressBar';
-import { useSelectTrackContext } from '../../../contexts/selectTrack';
-import { useIsPlayingContext } from '../../../contexts/IsPlaying';
-/* eslint-disable */
+import { ProgressBar } from './ProgressBar';
+import { useIsPlayingContext } from '../../../hooks/IsPlaying';
+import { selectTrackFunction } from '../../../store/sliceSelectTrack';
+import { playlistFunction } from '../../../store/slicePlaylist';
 
-function BarPlayer ({ isLoad }) {
-  // const [isPlaying, setIsPlaying] = useState(true);
+export const BarPlayer = ({ isLoadTrack, setIsLoadTrack }) => {
   const [loop, setLoop] = useState(false);
+  const [shaffle, setShaffle] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [data, setData] = useState(0);
   const [volume, setVolume] = useState(50);
   const audioRef = useRef(null);
-  const selectTrackContext = useSelectTrackContext();
-  let { selectTrack } = selectTrackContext;
   const isPlayingContext = useIsPlayingContext();
-  let { isPlaying } = isPlayingContext;
-  let { setIsPlaying } = isPlayingContext;
+  const { isPlaying } = isPlayingContext;
+  const { setIsPlaying } = isPlayingContext;
+  const selectTrack = useSelector((state) => state.selectTrack.selectTrack);
+  const dispatch = useDispatch();
+  const playlist = useSelector((state) => state.playlist.playlist);
+  const playlistUI = useSelector((state) => state.playlistUI.playlistUI);
 
   function strPadLeft(string, pad, length) {
     return (new Array(length + 1).join(pad) + string).slice(-length);
@@ -42,20 +45,50 @@ function BarPlayer ({ isLoad }) {
   };
 
   const handleStop = () => {
-    audioRef.current.pause();
-    setIsPlaying(false);
+    audioRef.current.play().then(() => {
+      audioRef.current.pause();
+      setIsPlaying(false);
+    });
   };
 
   const handlePrev = () => {
-    alert('кнопка пока не реализована');
+    audioRef.current.play().then(() => {
+      if (currentTime < 5) {
+        const prevTrack = playlist[playlist.indexOf(selectTrack) - 1];
+        dispatch(selectTrackFunction(prevTrack));
+      } else {
+        audioRef.current.pause();
+        audioRef.current.currentTime = 0;
+        audioRef.current.play();
+      }
+    });
   };
 
   const handleNext = () => {
-    alert('кнопка пока не реализована');
+    setIsLoadTrack(true);
+
+    audioRef.current.play().then(() => {
+      if (playlist.indexOf(selectTrack) < playlist.length - 1) {
+        const nextTrack = playlist[playlist.indexOf(selectTrack) + 1];
+        dispatch(selectTrackFunction(nextTrack));
+        setIsLoadTrack(false);
+      } else {
+        // dispatch(selectTrackFunction(playlist[0]));
+        setIsLoadTrack(false);
+      }
+    });
   };
 
   const handleShuffle = () => {
-    alert('кнопка пока не реализована');
+    if (!shaffle) {
+      setShaffle(!shaffle);
+      const shafflePlaylist = [...playlist];
+      shafflePlaylist.sort(() => Math.random() - 0.5);
+      dispatch(playlistFunction(shafflePlaylist));
+    } else {
+      dispatch(playlistFunction(playlistUI));
+      setShaffle(!shaffle);
+    }
   };
 
   const handleLoop = () => {
@@ -89,11 +122,20 @@ function BarPlayer ({ isLoad }) {
 
   useEffect(() => {
     handleStart();
+    audioRef.current.play().then(() => {
+      setIsLoadTrack(false);
+    });
   }, [selectTrack]);
 
   useEffect(() => {
     audioRef.current.volume = volume / 100;
   }, [volume]);
+
+  useEffect(() => {
+    if (audioRef.current.currentTime === audioRef.current.duration) {
+      handleNext();
+    }
+  });
 
   const onLoadedMetadata = () => {
     setDuration(audioRef.current.duration);
@@ -166,13 +208,20 @@ function BarPlayer ({ isLoad }) {
                   </svg>
                 </S.PlayerBtnRepeat>
                 <S.PlayerBtnShuffle onClick={handleShuffle}>
-                  <svg className="player__btn-shuffle-svg" alt="shuffle">
+                  <svg
+                    className={
+                      !shaffle
+                        ? 'player__btn-shuffle-svg'
+                        : 'player__btn-shuffle-svg-choose'
+                    }
+                    alt="shuffle"
+                  >
                     <use xlinkHref={`${sprite}#icon-shuffle`} />
                   </svg>
                 </S.PlayerBtnShuffle>
               </div>
               <div className="player__track-play track-play">
-                {isLoad ? (
+                {isLoadTrack ? (
                   <img src={BarEmpty} alt="" />
                 ) : (
                   <S.TrackPlayContain>
@@ -230,6 +279,4 @@ function BarPlayer ({ isLoad }) {
       </S.Bar>
     </>
   );
-}
-
-export default BarPlayer;
+};

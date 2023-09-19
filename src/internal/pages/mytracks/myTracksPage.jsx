@@ -1,23 +1,14 @@
-/* eslint-disable */
-import MyTrackMain from '../../components/mytrackmain';
-import Footer from '../../components/footer/Footer';
+import { MyTrackMain } from '../../components/mytrackmain';
+import { Footer } from '../../components/footer/Footer';
 import GlobalStyle, { Wrapper, Container } from '../../styles';
-import { useSelectTrackContext } from '../../../contexts/selectTrack';
-function MyTracks({ isLoad, setIsLoad }) {
-  const selectTrackContext = useSelectTrackContext();
 
-  let { selectTrack } = selectTrackContext;
+export const MyTracks = ({ isLoad, setIsLoad }) => (
+  <Wrapper>
+    <Container>
+      <GlobalStyle />
+      <MyTrackMain isLoad={isLoad} setIsLoad={setIsLoad} />
 
-  return (
-    <Wrapper>
-      <Container>
-        <GlobalStyle />
-        <MyTrackMain isLoad={isLoad} setIsLoad={setIsLoad} />
-
-        <Footer />
-      </Container>
-    </Wrapper>
-  );
-}
-
-export default MyTracks;
+      <Footer />
+    </Container>
+  </Wrapper>
+);
