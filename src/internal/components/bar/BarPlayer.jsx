@@ -76,7 +76,7 @@ function BarPlayer({ isLoadTrack, setIsLoadTrack }) {
         dispatch(selectTrackFunction(nextTrack));
         setIsLoadTrack(false);
       } else {
-        dispatch(selectTrackFunction(playlist[0]));
+        // dispatch(selectTrackFunction(playlist[0]));
         setIsLoadTrack(false);
       }
     });
