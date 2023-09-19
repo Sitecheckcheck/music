@@ -5,7 +5,7 @@ import playlist01 from '../../../img/playlist01.png';
 import playlist02 from '../../../img/playlist02.png';
 import playlist03 from '../../../img/playlist03.png';
 import playlist00 from '../../../img/playlist00.png';
-import SidebarItem from './SidebarItem';
+import { SidebarItem } from './SidebarItem';
 import {
   MainSidebar,
   SidebarPersonal,
@@ -16,7 +16,7 @@ import exit from '../../../img/exit.svg';
 import { logOut } from '../../App';
 import { selectTrackFunction } from '../../../store/sliceSelectTrack';
 
-function Sidebar({ isLoad, setIsLoad }) {
+export const Sidebar = ({ isLoad, setIsLoad }) => {
   let userName = useSelector((state) => state.userName.userName);
   const dispatch = useDispatch();
 
@@ -63,6 +63,4 @@ function Sidebar({ isLoad, setIsLoad }) {
       </SidebarBlock>
     </MainSidebar>
   );
-}
-
-export default Sidebar;
+};

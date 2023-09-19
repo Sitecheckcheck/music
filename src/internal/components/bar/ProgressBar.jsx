@@ -55,17 +55,15 @@ export const StyledProgressInput = styled.input`
   }
 `;
 
-export default function ProgressBar({ duration, currentTime, setData }) {
-  return (
-    <StyledProgressInput
-      type="range"
-      min={0}
-      max={duration}
-      value={currentTime}
-      step={0.01}
-      onChange={(event) => {
-        setData(event.target.value);
-      }}
-    />
-  );
-}
+export const ProgressBar = ({ duration, currentTime, setData }) => (
+  <StyledProgressInput
+    type="range"
+    min={0}
+    max={duration}
+    value={currentTime}
+    step={0.01}
+    onChange={(event) => {
+      setData(event.target.value);
+    }}
+  />
+);

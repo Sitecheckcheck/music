@@ -1,14 +1,14 @@
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import Nav from '../nav/Nav';
+import { Nav } from '../nav/Nav';
 import { MainSidebar, SidebarPersonal } from '../sidebar/styles';
 import SMain from '../main/mainStyle';
-import MyTracksCenterBlock from './mytrackcenterblock';
+import { MyTracksCenterBlock } from './mytrackcenterblock';
 import { logOut } from '../../App';
 import { selectTrackFunction } from '../../../store/sliceSelectTrack';
 import exit from '../../../img/exit.svg';
 
-function MyTrackMain({ isLoad, setIsLoad }) {
+export const MyTrackMain = ({ isLoad, setIsLoad }) => {
   let userName = useSelector((state) => state.userName.userName);
   const dispatch = useDispatch();
 
@@ -37,6 +37,4 @@ function MyTrackMain({ isLoad, setIsLoad }) {
       </MainSidebar>
     </SMain>
   );
-}
-
-export default MyTrackMain;
+};

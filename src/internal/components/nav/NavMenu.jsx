@@ -4,7 +4,7 @@ import * as S from './styles';
 import { logOut } from '../../App';
 import { selectTrackFunction } from '../../../store/sliceSelectTrack';
 
-function NavMenu() {
+export const NavMenu = () => {
   const dispatch = useDispatch();
 
   return (
@@ -30,6 +30,4 @@ function NavMenu() {
       </S.MenuList>
     </S.NavMenuStyle>
   );
-}
-
-export default NavMenu;
+};

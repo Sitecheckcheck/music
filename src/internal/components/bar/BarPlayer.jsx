@@ -3,12 +3,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import sprite from '../../../img/icon/sprite.svg';
 import BarEmpty from '../../../img/BarEmpty.png';
 import * as S from './barStyle';
-import ProgressBar from './ProgressBar';
+import { ProgressBar } from './ProgressBar';
 import { useIsPlayingContext } from '../../../hooks/IsPlaying';
 import { selectTrackFunction } from '../../../store/sliceSelectTrack';
 import { playlistFunction } from '../../../store/slicePlaylist';
 
-function BarPlayer({ isLoadTrack, setIsLoadTrack }) {
+export const BarPlayer = ({ isLoadTrack, setIsLoadTrack }) => {
   const [loop, setLoop] = useState(false);
   const [shaffle, setShaffle] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
@@ -53,9 +53,7 @@ function BarPlayer({ isLoadTrack, setIsLoadTrack }) {
 
   const handlePrev = () => {
     audioRef.current.play().then(() => {
-      if (
-        currentTime < 5
-      ) {
+      if (currentTime < 5) {
         const prevTrack = playlist[playlist.indexOf(selectTrack) - 1];
         dispatch(selectTrackFunction(prevTrack));
       } else {
@@ -281,6 +279,4 @@ function BarPlayer({ isLoadTrack, setIsLoadTrack }) {
       </S.Bar>
     </>
   );
-}
-
-export default BarPlayer;
+};

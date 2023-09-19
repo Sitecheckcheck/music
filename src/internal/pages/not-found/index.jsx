@@ -1,9 +1,5 @@
-function NotFound() {
-  return (
-    <div>
-      <h1>Page was not found</h1>
-    </div>
-  );
-}
-
-export default NotFound;
+export const NotFound = () => (
+  <div>
+    <h1>Page was not found</h1>
+  </div>
+);

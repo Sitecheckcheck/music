@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import logo from '../../../img/logo.png';
-import NavMenu from './NavMenu';
+import { NavMenu } from './NavMenu';
 import * as S from './styles';
 
-function Nav() {
+export const Nav = () => {
   const [openNav, setOpenNav] = useState(false);
 
   return (
@@ -19,6 +19,4 @@ function Nav() {
       {openNav && <NavMenu />}
     </S.MainNav>
   );
-}
-
-export default Nav;
+};

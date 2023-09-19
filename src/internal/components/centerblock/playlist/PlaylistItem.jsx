@@ -5,7 +5,7 @@ import { selectTrackFunction } from '../../../../store/sliceSelectTrack';
 import point from '../../../../img/PointTrack.png';
 import { useIsPlayingContext } from '../../../../hooks/IsPlaying';
 
-function PlaylistItem(props) {
+export const PlaylistItem = (props) => {
   const dispatch = useDispatch();
   const selectTrack = useSelector((state) => state.selectTrack.selectTrack);
   const isPlayingContext = useIsPlayingContext();
@@ -55,6 +55,4 @@ function PlaylistItem(props) {
       </div>
     </S.PlaylistItem>
   );
-}
-
-export default PlaylistItem;
+};

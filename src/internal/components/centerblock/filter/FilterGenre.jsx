@@ -1,7 +1,7 @@
 import tracks from '../../../../Tracks';
 import { Filters } from './filterStyle';
 
-function FilterGenre() {
+export const FilterGenre = () => {
   const arr = tracks.map((item) => item.genre);
   const arr2 = arr.filter((item, index) => arr.indexOf(item) === index);
 
@@ -16,6 +16,4 @@ function FilterGenre() {
       <ul className="filtersList">{filterGenreItems}</ul>
     </Filters>
   );
-}
-
-export default FilterGenre;
+};

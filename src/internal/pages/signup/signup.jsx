@@ -7,7 +7,7 @@ import { registerUser, getToken } from '../../api';
 import { useTokenContext } from '../../../hooks/token';
 import { userNameFunction } from '../../../store/sliceUserName';
 
-function Signup() {
+export const Signup = () => {
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState();
@@ -116,6 +116,4 @@ function Signup() {
       </div>
     </div>
   );
-}
-
-export default Signup;
+};

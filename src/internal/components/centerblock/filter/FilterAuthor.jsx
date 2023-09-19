@@ -1,7 +1,7 @@
 import tracks from '../../../../Tracks';
 import { Filters } from './filterStyle';
 
-function FilterAuthor() {
+export const FilterAuthor = () => {
   const arr = tracks.map((item) => item.author);
   const arr2 = arr.filter((item, index) => arr.indexOf(item) === index).sort();
 
@@ -16,6 +16,4 @@ function FilterAuthor() {
       <ul className="filtersList">{filterAuthorItems}</ul>
     </Filters>
   );
-}
-
-export default FilterAuthor;
+};

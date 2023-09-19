@@ -1,9 +1,9 @@
-import PlaylistItem from '../../centerblock/playlist/PlaylistItem';
+import { PlaylistItem } from '../../centerblock/playlist/PlaylistItem';
 import sprite from '../../../../img/icon/sprite.svg';
 import tracks from '../../../../Tracks';
 import * as S from '../../centerblock/centerBlockStyle';
 
-function List100CenterBlock(props) {
+export const List100CenterBlock = (props) => {
   const playListItems = tracks.map((item) => (
     <PlaylistItem
       key={item.id}
@@ -42,6 +42,4 @@ function List100CenterBlock(props) {
       </div>
     </S.MainCenterblock>
   );
-}
-
-export default List100CenterBlock;
+};

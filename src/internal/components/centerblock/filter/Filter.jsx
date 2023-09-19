@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import FilterAuthor from './FilterAuthor';
-import FilterGenre from './FilterGenre';
-import FilterYear from './FilterYear';
+import { FilterAuthor } from './FilterAuthor';
+import { FilterGenre } from './FilterGenre';
+import { FilterYear } from './FilterYear';
 import { CenterblockFilter, FilterButton } from './filterStyle';
 
-function Filter() {
+export const Filter = () => {
   const [visibleFilter, setVisibleFilter] = useState(null);
 
   const toggleVisibleFilter = (filter) => {
@@ -40,6 +40,4 @@ function Filter() {
       </div>
     </CenterblockFilter>
   );
-}
-
-export default Filter;
+};

@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import PlaylistItem from './playlist/PlaylistItem';
+import { PlaylistItem } from './playlist/PlaylistItem';
 import sprite from '../../../img/icon/sprite.svg';
-import PlaylistItemEmpty from './playlist/PlayListItemEmpty';
-import Filter from './filter/Filter';
+import { PlaylistItemEmpty } from './playlist/PlayListItemEmpty';
+import { Filter } from './filter/Filter';
 import * as S from './centerBlockStyle';
 import { getPlaylist } from '../../api';
 import { playlistFunction } from '../../../store/slicePlaylist';
 import { playlistUIFunction } from '../../../store/slicePlaylistUI';
 
-function CenterBlock({ isLoad, setIsLoad }) {
+export const CenterBlock = ({ isLoad, setIsLoad }) => {
   const [getTracksError, setGetTracksError] = useState(null);
   const dispatch = useDispatch();
   const playlistUI = useSelector((state) => state.playlistUI.playlistUI);
@@ -84,6 +84,4 @@ function CenterBlock({ isLoad, setIsLoad }) {
       </div>
     </S.MainCenterblock>
   );
-}
-
-export default CenterBlock;
+};

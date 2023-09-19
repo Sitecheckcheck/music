@@ -1,16 +1,17 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import AppRoutes from '../rotes';
+import { AppRoutes } from '../rotes';
 import { isPlayingContext } from '../hooks/IsPlaying';
 import { tokenContext } from '../hooks/token';
-import BarPlayer from './components/bar/BarPlayer';
+import { BarPlayer } from './components/bar/BarPlayer';
 
 export const logOut = () => {
   localStorage.removeItem('user');
   localStorage.removeItem('refresh');
+  window.location.reload();
 };
 
-function App() {
+export const App = () => {
   const [isLoad, setIsLoad] = useState(true);
   const [isLoadTrack, setIsLoadTrack] = useState(true);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -31,6 +32,4 @@ function App() {
       </isPlayingContext.Provider>
     </tokenContext.Provider>
   );
-}
-
-export default App;
+};
