@@ -4,7 +4,7 @@ import userNameReduser from './sliceUserName';
 import playlistReduser from './slicePlaylist';
 import playlistUIReduser from './slicePlaylistUI';
 
-export default configureStore({
+export const store = configureStore({
   reducer: {
     selectTrack: selectTrackReducer,
     userName: userNameReduser,
