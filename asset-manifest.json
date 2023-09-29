@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/static/css/main.32669fa6.css",
-    "main.js": "/static/js/main.44e43a6f.js",
-    "static/media/playlist01.png": "/static/media/playlist01.1f0f03b6028fe76c9c24.png",
-    "static/media/Stratos-Regular.woff": "/static/media/Stratos-Regular.d20eb275042a513c8d55.woff",
-    "static/media/playlist03.png": "/static/media/playlist03.09e115ca5326c4224eb5.png",
-    "static/media/playlist02.png": "/static/media/playlist02.1ebc1a93e700376dd918.png",
-    "static/media/Stratos-Regular.woff2": "/static/media/Stratos-Regular.ec4882423f79afa46408.woff2",
-    "static/media/sprite.svg": "/static/media/sprite.670db0571faa9688dd153af699ef40de.svg",
-    "index.html": "/index.html",
-    "static/media/exit.svg": "/static/media/exit.63261365c638e438dee82af3dd69d491.svg",
-    "main.32669fa6.css.map": "/static/css/main.32669fa6.css.map",
-    "main.44e43a6f.js.map": "/static/js/main.44e43a6f.js.map"
+    "main.css": "/music/static/css/main.13cad0a6.css",
+    "main.js": "/music/static/js/main.a70819c7.js",
+    "static/media/playlist01.png": "/music/static/media/playlist01.1f0f03b6028fe76c9c24.png",
+    "static/media/Stratos-Regular.woff": "/music/static/media/Stratos-Regular.d20eb275042a513c8d55.woff",
+    "static/media/playlist03.png": "/music/static/media/playlist03.09e115ca5326c4224eb5.png",
+    "static/media/playlist02.png": "/music/static/media/playlist02.1ebc1a93e700376dd918.png",
+    "static/media/Stratos-Regular.woff2": "/music/static/media/Stratos-Regular.ec4882423f79afa46408.woff2",
+    "static/media/sprite.svg": "/music/static/media/sprite.670db0571faa9688dd153af699ef40de.svg",
+    "index.html": "/music/index.html",
+    "static/media/exit.svg": "/music/static/media/exit.63261365c638e438dee82af3dd69d491.svg",
+    "main.13cad0a6.css.map": "/music/static/css/main.13cad0a6.css.map",
+    "main.a70819c7.js.map": "/music/static/js/main.a70819c7.js.map"
   },
   "entrypoints": [
-    "static/css/main.32669fa6.css",
-    "static/js/main.44e43a6f.js"
+    "static/css/main.13cad0a6.css",
+    "static/js/main.a70819c7.js"
   ]
 }
