@@ -7,7 +7,7 @@ import { ListindiCenterBlock } from '../../components/listindi/listindicenterblo
 import { ListNames } from '../../../constans';
 import { Sidebar } from '../../components/sidebar/Sidebar';
 
-export const ListMusic = ({ isLoad, setIsLoad }) => {
+export const ListMusic = () => {
   const params = useParams();
 
   const ListName = ListNames.find(
@@ -21,7 +21,7 @@ export const ListMusic = ({ isLoad, setIsLoad }) => {
         <SMain>
           <Nav />
           <ListindiCenterBlock listNam={ListName.listName} />
-          <Sidebar isLoad={isLoad} setIsLoad={setIsLoad} playlist />
+          <Sidebar  />
         </SMain>
         <Footer />
       </Container>

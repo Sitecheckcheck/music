@@ -23,6 +23,7 @@ export const Signin = () => {
       localStorage.setItem('user', user.username);
       const token = await getToken(login, password);
       localStorage.setItem('refresh', token.refresh);
+      localStorage.setItem('access', token.access);
 
       if (user.detail) {
         setErrorMessage(user.detail);

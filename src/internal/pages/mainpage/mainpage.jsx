@@ -2,11 +2,11 @@ import { Main } from '../../components/main/Main';
 import { Footer } from '../../components/footer/Footer';
 import GlobalStyle, { Wrapper, Container } from '../../styles';
 
-export const MainPage = ({ isLoad, setIsLoad }) => (
+export const MainPage = () => (
   <Wrapper>
     <Container>
       <GlobalStyle />
-      <Main isLoad={isLoad} setIsLoad={setIsLoad} />
+      <Main />
       <Footer />
     </Container>
   </Wrapper>

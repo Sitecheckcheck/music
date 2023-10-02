@@ -1,4 +1,4 @@
-import { PlaylistItem } from '../../centerblock/playlist/PlaylistItem';
+import { PlaylistItem } from '../../centerblock/PlaylistItem/PlaylistItem';
 import sprite from '../../../../img/icon/sprite.svg';
 import tracks from '../../../../Tracks';
 import * as S from '../../centerblock/centerBlockStyle';

@@ -1,20 +1,16 @@
-import { PlaylistItem } from '../centerblock/playlist/PlaylistItem';
+/* eslint-disable */
+import { useSelector } from 'react-redux';
 import sprite from '../../../img/icon/sprite.svg';
-import tracks from '../../../Tracks';
+// import tracks from '../../../Tracks';
 import * as S from '../centerblock/centerBlockStyle';
+import { Playlist } from '../centerblock/Playlist/Playlist';
 
 export const MyTracksCenterBlock = () => {
-  const playListItems = tracks.map((item) => (
-    <PlaylistItem
-      key={item.id}
-      track={item.name}
-      artist={item.author}
-      album={item.album}
-      time={`${Math.floor(item.duration_in_seconds / 60)}:${
-        item.duration_in_seconds % 60
-      }`}
-    />
-  ));
+  const { favoritePlaylistUI, status, error } = useSelector(
+    (state) => state.favoritePlaylistUI,
+  );
+
+  const { favoritePlaylist } = useSelector((state) => state.favoritePlaylist);
 
   return (
     <S.MainCenterblock>
@@ -26,20 +22,7 @@ export const MyTracksCenterBlock = () => {
       </div>
       <h2 className="centerblock__h2">Мои треки</h2>
 
-      <div className="centerblock__content">
-        <S.ContentTitle>
-          <div className="playlist-title__col col01">Трек</div>
-          <div className="playlist-title__col col02">ИСПОЛНИТЕЛЬ</div>
-          <div className="playlist-title__col col03">АЛЬБОМ</div>
-          <div className="playlist-title__col col04">
-            <S.playlistTitleSvg alt="time">
-              <use xlinkHref={`${sprite}#icon-watch`} />
-            </S.playlistTitleSvg>
-          </div>
-        </S.ContentTitle>
-
-        <S.ContentPlaylist>{playListItems}</S.ContentPlaylist>
-      </div>
+      <Playlist playlistUI={favoritePlaylistUI} status={status} error={error} playlist={favoritePlaylist} />
     </S.MainCenterblock>
   );
 };

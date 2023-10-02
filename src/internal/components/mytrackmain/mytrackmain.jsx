@@ -8,7 +8,7 @@ import { logOut } from '../../App';
 import { selectTrackFunction } from '../../../store/sliceSelectTrack';
 import exit from '../../../img/exit.svg';
 
-export const MyTrackMain = ({ isLoad, setIsLoad }) => {
+export const MyTrackMain = () => {
   let userName = useSelector((state) => state.userName.userName);
   const dispatch = useDispatch();
 
@@ -20,7 +20,7 @@ export const MyTrackMain = ({ isLoad, setIsLoad }) => {
   return (
     <SMain>
       <Nav />
-      <MyTracksCenterBlock isLoad={isLoad} setIsLoad={setIsLoad} />
+      <MyTracksCenterBlock />
       <MainSidebar>
         <SidebarPersonal>
           <NavLink to="/mytrack">{userName}</NavLink>

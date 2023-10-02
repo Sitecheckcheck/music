@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { useEffect, useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import sprite from '../../../img/icon/sprite.svg';
@@ -23,6 +24,7 @@ export const BarPlayer = ({ isLoadTrack, setIsLoadTrack }) => {
   const dispatch = useDispatch();
   const playlist = useSelector((state) => state.playlist.playlist);
   const playlistUI = useSelector((state) => state.playlistUI.playlistUI);
+  const [firstPlaylist] = useState(playlist);
 
   function strPadLeft(string, pad, length) {
     return (new Array(length + 1).join(pad) + string).slice(-length);
@@ -68,12 +70,12 @@ export const BarPlayer = ({ isLoadTrack, setIsLoadTrack }) => {
     setIsLoadTrack(true);
 
     audioRef.current.play().then(() => {
-      if (playlist.indexOf(selectTrack) < playlist.length - 1) {
+if (playlist.indexOf(selectTrack) < playlist.length - 1) {
         const nextTrack = playlist[playlist.indexOf(selectTrack) + 1];
         dispatch(selectTrackFunction(nextTrack));
         setIsLoadTrack(false);
       } else {
-        // dispatch(selectTrackFunction(playlist[0]));
+// dispatch(selectTrackFunction(playlist[0]));
         setIsLoadTrack(false);
       }
     });
@@ -86,7 +88,8 @@ export const BarPlayer = ({ isLoadTrack, setIsLoadTrack }) => {
       shafflePlaylist.sort(() => Math.random() - 0.5);
       dispatch(playlistFunction(shafflePlaylist));
     } else {
-      dispatch(playlistFunction(playlistUI));
+      // dispatch(playlistFunction(playlistUI));
+      dispatch(playlistFunction(firstPlaylist));
       setShaffle(!shaffle);
     }
   };
