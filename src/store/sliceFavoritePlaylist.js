@@ -8,9 +8,6 @@ export const fetchFavoritePlaylist = createAsyncThunk(
 
     const accessToken = localStorage.getItem('access');
     
-
-    
-
     try {
       const response = await fetch(
         'https://skypro-music-api.skyeng.tech/catalog/track/favorite/all/', {
@@ -34,7 +31,7 @@ export const fetchFavoritePlaylist = createAsyncThunk(
       }
       
       const data = await response.json();
-      
+
       return data;
     } catch (error) {
       return rejectWithValue(error.message);

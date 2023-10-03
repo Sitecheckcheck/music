@@ -7,7 +7,6 @@ import * as S from './barStyle';
 import { ProgressBar } from './ProgressBar';
 import { useIsPlayingContext } from '../../../hooks/IsPlaying';
 import { selectTrackFunction } from '../../../store/sliceSelectTrack';
-// import { playlistFunction } from '../../../store/slicePlaylist';
 
 export const BarPlayer = ({ isLoadTrack, setIsLoadTrack, playlist, setPlaylist }) => {
   const [loop, setLoop] = useState(false);
@@ -54,13 +53,17 @@ export const BarPlayer = ({ isLoadTrack, setIsLoadTrack, playlist, setPlaylist }
 
   const handlePrev = () => {
     audioRef.current.play().then(() => {
-      if (currentTime < 5) {
-        const prevTrack = playlist[playlist.indexOf(selectTrack) - 1];
-        dispatch(selectTrackFunction(prevTrack));
+      if (playlist.indexOf(selectTrack) !== 0) {
+        if (currentTime < 5) {
+          const prevTrack = playlist[playlist.indexOf(selectTrack) - 1];
+          dispatch(selectTrackFunction(prevTrack));
+        } else {
+          audioRef.current.pause();
+          audioRef.current.currentTime = 0;
+          audioRef.current.play();
+        }
       } else {
-        audioRef.current.pause();
-        audioRef.current.currentTime = 0;
-        audioRef.current.play();
+        setIsLoadTrack(false);
       }
     });
   };

@@ -1,13 +1,11 @@
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { AppRoutes } from '../rotes';
 import { isPlayingContext } from '../hooks/IsPlaying';
 import { tokenContext } from '../hooks/token';
 import { BarPlayer } from './components/bar/BarPlayer';
-import { fetchPlaylist } from '../store/slicePlaylist';
-import { fetchPlaylistUI } from '../store/slicePlaylistUI';
-import { fetchFavoritePlaylist } from '../store/sliceFavoritePlaylist';
-import { fetchFavoritePlaylistUI } from '../store/sliceFavoritePlaylistUI';
+// import { fetchPlaylist } from '../store/slicePlaylist';
+// import { fetchFavoritePlaylist } from '../store/sliceFavoritePlaylist';
 
 export const logOut = () => {
   localStorage.removeItem('user');
@@ -23,14 +21,11 @@ export const App = () => {
   const userName = useSelector((state) => state.userName.userName);
   const [playlist, setPlaylist] = useState(null)
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(fetchPlaylistUI());
-    dispatch(fetchPlaylist());
-    dispatch(fetchFavoritePlaylist());
-    dispatch(fetchFavoritePlaylistUI());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(fetchPlaylist());
+  // }, [dispatch]);
 
   return (
     <tokenContext.Provider value={{ token, setToken }}>

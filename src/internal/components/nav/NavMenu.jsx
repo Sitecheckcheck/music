@@ -1,11 +1,9 @@
 /* eslint-disable */
 import { NavLink } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import * as S from './styles';
 import { logOut } from '../../App';
 import { selectTrackFunction } from '../../../store/sliceSelectTrack';
-import { fetchPlaylistUI, playlistUIFunction } from '../../../store/slicePlaylistUI';
-import { fetchPlaylist, playlistFunction } from '../../../store/slicePlaylist';
 
 export const NavMenu = () => {
   const dispatch = useDispatch();
@@ -16,10 +14,6 @@ export const NavMenu = () => {
         <S.MenuItem>
           <NavLink
             to="/"
-            // onClick={() => {
-            //   dispatch(fetchPlaylistUI());
-            //   dispatch(fetchPlaylist());
-            // }}
           >
             Главное
           </NavLink>
@@ -27,10 +21,6 @@ export const NavMenu = () => {
         <S.MenuItem>
           <NavLink
             to="/mytrack"
-            // onClick={() => {
-            //   dispatch(playlistUIFunction(favoritPLUI));
-            //   dispatch(playlistFunction(favoritPL));
-            // }}
           >
             Мой плейлист
           </NavLink>
