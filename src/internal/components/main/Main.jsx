@@ -3,10 +3,10 @@ import { CenterBlock } from '../centerblock/CenterBlock';
 import { Sidebar } from '../sidebar/Sidebar';
 import SMain from './mainStyle';
 
-export const Main = () => (
+export const Main = ({setPlaylist}) => (
   <SMain>
     <Nav />
-    <CenterBlock />
+    <CenterBlock setPlaylist={setPlaylist} />
     <Sidebar />
   </SMain>
 );

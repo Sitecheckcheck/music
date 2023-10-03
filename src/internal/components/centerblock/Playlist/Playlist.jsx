@@ -1,17 +1,16 @@
 // /* eslint-disable */
 import { PlaylistItemEmpty } from '../PlaylistItem/PlayListItemEmpty';
 import { Filter } from '../filter/Filter';
-import * as S from "../centerBlockStyle";
-import sprite from '../../../../img/icon/sprite.svg'
+import * as S from '../centerBlockStyle';
+import sprite from '../../../../img/icon/sprite.svg';
 import { PlaylistItem } from '../PlaylistItem/PlaylistItem';
 
-export const Playlist = ({playlistUI, playlist, status, error}) => {
-  
-  const playListItems = playlistUI.map((item) => (
+export const Playlist = ({ list, status, error, setPlaylist }) => {
+  const playListItems = list.map((item) => (
     <PlaylistItem
-      item={
-        playlist.filter((x) => x.id === item.id)[0]
-      }
+      list={list}
+      setPlaylist={setPlaylist}
+      item={list.filter((x) => x.id === item.id)[0]}
       key={item.id}
       track={item.name}
       artist={item.author}
@@ -57,5 +56,5 @@ export const Playlist = ({playlistUI, playlist, status, error}) => {
         )}
       </div>
     </>
-  )
+  );
 };

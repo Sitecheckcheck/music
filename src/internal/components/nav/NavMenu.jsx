@@ -9,12 +9,6 @@ import { fetchPlaylist, playlistFunction } from '../../../store/slicePlaylist';
 
 export const NavMenu = () => {
   const dispatch = useDispatch();
-  const favoritPLUI = useSelector(
-    (state) => state.favoritePlaylistUI.favoritePlaylistUI,
-  );
-  const favoritPL = useSelector(
-    (state) => state.favoritePlaylist.favoritePlaylist,
-  );
 
   return (
     <S.NavMenuStyle>

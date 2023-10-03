@@ -8,7 +8,7 @@ import { logOut } from '../../App';
 import { selectTrackFunction } from '../../../store/sliceSelectTrack';
 import exit from '../../../img/exit.svg';
 
-export const MyTrackMain = () => {
+export const MyTrackMain = ({setPlaylist}) => {
   let userName = useSelector((state) => state.userName.userName);
   const dispatch = useDispatch();
 
@@ -20,7 +20,7 @@ export const MyTrackMain = () => {
   return (
     <SMain>
       <Nav />
-      <MyTracksCenterBlock />
+      <MyTracksCenterBlock setPlaylist={setPlaylist} />
       <MainSidebar>
         <SidebarPersonal>
           <NavLink to="/mytrack">{userName}</NavLink>

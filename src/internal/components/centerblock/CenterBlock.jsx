@@ -1,15 +1,16 @@
-// /* eslint-disable */
+/* eslint-disable */
 import { useSelector } from 'react-redux';
 import sprite from '../../../img/icon/sprite.svg';
 import * as S from './centerBlockStyle';
 import { Playlist } from './Playlist/Playlist';
 
-export const CenterBlock = () => {
-  const { playlistUI, status, error } = useSelector(
-    (state) => state.playlistUI,
-  );
+export const CenterBlock = ({setPlaylist}) => {
+  // const { playlistUI, status, error } = useSelector(
+  //   (state) => state.playlistUI,
+  // );
 
-  const { playlist } = useSelector((state) => state.playlist);
+  const { playlist, status, error } = useSelector((state) => state.playlist);
+
 
   return (
     <S.MainCenterblock>
@@ -21,7 +22,13 @@ export const CenterBlock = () => {
       </div>
       <h2 className="centerblock__h2">Треки</h2>
 
-      <Playlist playlistUI={playlistUI} status={status} error={error} playlist={playlist} />
+      <Playlist
+        // listUI={playlistUI}
+        status={status}
+        error={error}
+        list={playlist}
+        setPlaylist={setPlaylist}
+      />
     </S.MainCenterblock>
   );
 };

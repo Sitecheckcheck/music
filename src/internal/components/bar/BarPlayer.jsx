@@ -1,4 +1,4 @@
-/* eslint-disable */
+// /* eslint-disable */
 import { useEffect, useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import sprite from '../../../img/icon/sprite.svg';
@@ -7,9 +7,9 @@ import * as S from './barStyle';
 import { ProgressBar } from './ProgressBar';
 import { useIsPlayingContext } from '../../../hooks/IsPlaying';
 import { selectTrackFunction } from '../../../store/sliceSelectTrack';
-import { playlistFunction } from '../../../store/slicePlaylist';
+// import { playlistFunction } from '../../../store/slicePlaylist';
 
-export const BarPlayer = ({ isLoadTrack, setIsLoadTrack }) => {
+export const BarPlayer = ({ isLoadTrack, setIsLoadTrack, playlist, setPlaylist }) => {
   const [loop, setLoop] = useState(false);
   const [shaffle, setShaffle] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
@@ -22,8 +22,7 @@ export const BarPlayer = ({ isLoadTrack, setIsLoadTrack }) => {
   const { setIsPlaying } = isPlayingContext;
   const selectTrack = useSelector((state) => state.selectTrack.selectTrack);
   const dispatch = useDispatch();
-  const playlist = useSelector((state) => state.playlist.playlist);
-  const playlistUI = useSelector((state) => state.playlistUI.playlistUI);
+  // const playlist = useSelector((state) => state.playlist.playlist);
   const [firstPlaylist] = useState(playlist);
 
   function strPadLeft(string, pad, length) {
@@ -70,12 +69,12 @@ export const BarPlayer = ({ isLoadTrack, setIsLoadTrack }) => {
     setIsLoadTrack(true);
 
     audioRef.current.play().then(() => {
-if (playlist.indexOf(selectTrack) < playlist.length - 1) {
+      if (playlist.indexOf(selectTrack) < playlist.length - 1) {
         const nextTrack = playlist[playlist.indexOf(selectTrack) + 1];
         dispatch(selectTrackFunction(nextTrack));
         setIsLoadTrack(false);
       } else {
-// dispatch(selectTrackFunction(playlist[0]));
+        // dispatch(selectTrackFunction(playlist[0]));
         setIsLoadTrack(false);
       }
     });
@@ -86,10 +85,11 @@ if (playlist.indexOf(selectTrack) < playlist.length - 1) {
       setShaffle(!shaffle);
       const shafflePlaylist = [...playlist];
       shafflePlaylist.sort(() => Math.random() - 0.5);
-      dispatch(playlistFunction(shafflePlaylist));
+      // dispatch(playlistFunction(shafflePlaylist));
+      setPlaylist(shafflePlaylist)
     } else {
-      // dispatch(playlistFunction(playlistUI));
-      dispatch(playlistFunction(firstPlaylist));
+      // dispatch(playlistFunction(firstPlaylist));
+      setPlaylist(firstPlaylist)
       setShaffle(!shaffle);
     }
   };

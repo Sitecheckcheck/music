@@ -15,13 +15,13 @@ export const AppRoutes = (props) => (
     <Route element={<ProtectedRoute isAllowed={Boolean(props.user)} />}>
       <Route
         path="/"
-        element={<MainPage />}
+        element={<MainPage setPlaylist={props.setPlaylist} />}
       />
     </Route>
     <Route element={<ProtectedRoute isAllowed={Boolean(props.user)} />}>
       <Route
         path="mytrack"
-        element={<MyTracks />}
+        element={<MyTracks setPlaylist={props.setPlaylist} />}
       />
     </Route>
 

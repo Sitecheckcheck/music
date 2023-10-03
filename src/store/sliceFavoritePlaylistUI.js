@@ -1,6 +1,6 @@
 /* eslint-disable */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-// import { getToken } from '../internal/api';
+import { refreshingToken } from '../internal/api';
 
 export const fetchFavoritePlaylistUI = createAsyncThunk(
   'favoritePlaylistUI/fetchFavoritePlaylistUI',
@@ -19,7 +19,14 @@ export const fetchFavoritePlaylistUI = createAsyncThunk(
       );
 
       if (!response.ok) {
-        throw new Error('Ошибка сервера');
+        if(response.status === 401) {
+          const token = await refreshingToken(refteshToken)
+          console.log(token)
+          localStorage.setItem('access', token.access);
+          // window.location.reload();
+        } else {
+          throw new Error('Ошибка сервера');
+        }  
       }
 
       const data = await response.json();

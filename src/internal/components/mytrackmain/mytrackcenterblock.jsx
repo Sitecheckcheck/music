@@ -1,16 +1,16 @@
 /* eslint-disable */
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import sprite from '../../../img/icon/sprite.svg';
 // import tracks from '../../../Tracks';
 import * as S from '../centerblock/centerBlockStyle';
 import { Playlist } from '../centerblock/Playlist/Playlist';
 
-export const MyTracksCenterBlock = () => {
-  const { favoritePlaylistUI, status, error } = useSelector(
-    (state) => state.favoritePlaylistUI,
-  );
+export const MyTracksCenterBlock = ({setPlaylist}) => {
+  // const { favoritePlaylistUI, status, error } = useSelector(
+  //   (state) => state.favoritePlaylistUI,
+  // );
 
-  const { favoritePlaylist } = useSelector((state) => state.favoritePlaylist);
+  const { favoritePlaylist, status, error } = useSelector((state) => state.favoritePlaylist);
 
   return (
     <S.MainCenterblock>
@@ -22,7 +22,13 @@ export const MyTracksCenterBlock = () => {
       </div>
       <h2 className="centerblock__h2">Мои треки</h2>
 
-      <Playlist playlistUI={favoritePlaylistUI} status={status} error={error} playlist={favoritePlaylist} />
+      <Playlist
+        // listUI={favoritePlaylistUI}
+        status={status}
+        error={error}
+        list={favoritePlaylist}
+        setPlaylist={setPlaylist}
+      />
     </S.MainCenterblock>
   );
 };

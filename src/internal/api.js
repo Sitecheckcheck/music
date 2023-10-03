@@ -144,6 +144,29 @@ export async function getToken(login, password) {
   return data;
 }
 
+export async function refreshingToken(refresh) {
+  const response = await fetch(
+    'https://skypro-music-api.skyeng.tech/user/token/refresh/',
+    {
+      method: 'POST',
+      body: JSON.stringify({
+        refresh: `${refresh}`,
+      }),
+      headers: {
+        'content-type': 'application/json',
+      },
+    },
+  );
+
+  if (!response.ok && !response.status === '400') {
+    throw new Error('Сервер сломался');
+  }
+
+  const data = await response.json();
+
+  return data;
+}
+
 // export async function getToken(login, password) {
 //   const token = { login, password, refresh: '1234' };
 //   return token;

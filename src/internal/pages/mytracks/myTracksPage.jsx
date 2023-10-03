@@ -2,11 +2,11 @@ import { MyTrackMain } from '../../components/mytrackmain/mytrackmain';
 import { Footer } from '../../components/footer/Footer';
 import GlobalStyle, { Wrapper, Container } from '../../styles';
 
-export const MyTracks = () => (
+export const MyTracks = ({setPlaylist}) => (
   <Wrapper>
     <Container>
       <GlobalStyle />
-      <MyTrackMain />
+      <MyTrackMain setPlaylist={setPlaylist} />
 
       <Footer />
     </Container>

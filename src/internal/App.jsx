@@ -21,6 +21,7 @@ export const App = () => {
   const [token, setToken] = useState(null);
   const selectTrack = useSelector((state) => state.selectTrack.selectTrack);
   const userName = useSelector((state) => state.userName.userName);
+  const [playlist, setPlaylist] = useState(null)
 
   const dispatch = useDispatch();
 
@@ -34,11 +35,13 @@ export const App = () => {
   return (
     <tokenContext.Provider value={{ token, setToken }}>
       <isPlayingContext.Provider value={{ isPlaying, setIsPlaying }}>
-        <AppRoutes user={userName} />
+        <AppRoutes user={userName} setPlaylist={setPlaylist} />
         {selectTrack != null ? (
           <BarPlayer
             isLoadTrack={isLoadTrack}
             setIsLoadTrack={setIsLoadTrack}
+            playlist={playlist}
+            setPlaylist={setPlaylist}
           />
         ) : null}
       </isPlayingContext.Provider>

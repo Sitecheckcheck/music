@@ -16,6 +16,7 @@ export const PlaylistItem = (props) => {
       <div
         className="playlist__track track"
         onClick={() => {
+          props.setPlaylist(props.list)
           dispatch(selectTrackFunction(props.item));
         }}
       >

@@ -20,7 +20,7 @@ export const Sidebar = () => {
   let userName = useSelector((state) => state.userName.userName);
   const dispatch = useDispatch();
   const { status } = useSelector(
-    (state) => state.playlistUI,
+    (state) => state.playlist,
   );
 
   if (userName) {

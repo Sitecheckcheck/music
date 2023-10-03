@@ -1,12 +1,14 @@
 /* eslint-disable */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-// import { getToken } from '../internal/api';
+import { refreshingToken } from '../internal/api';
 
 export const fetchFavoritePlaylist = createAsyncThunk(
   'favoritePlaylist/fetchFavoritePlaylist',
   async (_, { rejectWithValue }) => {
 
-    const accessToken  = localStorage.getItem('access');
+    const accessToken = localStorage.getItem('access');
+    
+
     
 
     try {
@@ -20,11 +22,19 @@ export const fetchFavoritePlaylist = createAsyncThunk(
       );
 
       if (!response.ok) {
-        throw new Error('Ошибка сервера');
+        if(response.status === 401) {
+          const refteshToken = localStorage.getItem('refresh');
+          const token = await refreshingToken(refteshToken)
+
+          localStorage.setItem('access', token.access);
+          window.location.reload();
+        } else {
+          throw new Error('Ошибка сервера');
+        }  
       }
-
+      
       const data = await response.json();
-
+      
       return data;
     } catch (error) {
       return rejectWithValue(error.message);
