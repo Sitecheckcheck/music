@@ -20,15 +20,13 @@ export const PlaylistItem = (props) => {
   const { isPlaying } = isPlayingContext;
   const [isLike, setIsLike] = useState(stared);
 
-  const handleLike = async () => {
+  const handleLike = () => {
     const accessToken = localStorage.getItem('access');
     if (isLike) {
-      const response = await deleteFavorite(props.item.id, accessToken);
-      console.log(response.detail);
+      deleteFavorite(props.item.id, accessToken);
       setIsLike(null);
     } else {
-      const response = await addFavorite(props.item.id, accessToken);
-      console.log(response.detail);
+      addFavorite(props.item.id, accessToken);
       setIsLike(true);
     }
   };
