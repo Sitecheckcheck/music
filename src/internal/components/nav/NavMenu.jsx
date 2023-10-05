@@ -12,18 +12,10 @@ export const NavMenu = () => {
     <S.NavMenuStyle>
       <S.MenuList>
         <S.MenuItem>
-          <NavLink
-            to="/"
-          >
-            Главное
-          </NavLink>
+          <NavLink to="/">Главное</NavLink>
         </S.MenuItem>
         <S.MenuItem>
-          <NavLink
-            to="/mytrack"
-          >
-            Мой плейлист
-          </NavLink>
+          <NavLink to="/mytrack">Мой плейлист</NavLink>
         </S.MenuItem>
         <S.MenuItem>
           <NavLink

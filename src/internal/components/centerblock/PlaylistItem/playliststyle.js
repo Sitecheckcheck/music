@@ -143,7 +143,7 @@ export const TrackTime = styled.div`
     height: 12px;
     margin-right: 17px;
     fill: transparent;
-    stroke: #B672FF;
+    stroke: #b672ff;
     cursor: pointer;
   }
 

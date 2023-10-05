@@ -12,26 +12,18 @@ export const AppRoutes = (props) => (
     <Route path="*" element={<NotFound />} />
     <Route path="signin" element={<Signin />} />
     <Route path="signup" element={<Signup />} />
-    <Route element={<ProtectedRoute isAllowed={Boolean(props.user)} />}>
-      <Route
-        path="/"
-        element={<MainPage setPlaylist={props.setPlaylist} />}
-      />
+    <Route element={<ProtectedRoute isAllowed={Boolean(props.token)} />}>
+      <Route path="/" element={<MainPage setPlaylist={props.setPlaylist} />} />
     </Route>
-    <Route element={<ProtectedRoute isAllowed={Boolean(props.user)} />}>
+    <Route element={<ProtectedRoute isAllowed={Boolean(props.token)} />}>
       <Route
         path="mytrack"
         element={<MyTracks setPlaylist={props.setPlaylist} />}
       />
     </Route>
 
-    <Route element={<ProtectedRoute isAllowed={Boolean(props.user)} />}>
-      <Route
-        path="playlist/:id"
-        element={
-          <ListMusic />
-        }
-      />
+    <Route element={<ProtectedRoute isAllowed={Boolean(props.token)} />}>
+      <Route path="playlist/:id" element={<ListMusic />} />
     </Route>
   </Routes>
 );

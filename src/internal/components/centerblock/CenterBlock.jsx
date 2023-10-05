@@ -6,8 +6,7 @@ import * as S from './centerBlockStyle';
 import { Playlist } from './Playlist/Playlist';
 import { fetchPlaylist } from '../../../store/slicePlaylist';
 
-export const CenterBlock = ({setPlaylist}) => {
-
+export const CenterBlock = ({ setPlaylist }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {

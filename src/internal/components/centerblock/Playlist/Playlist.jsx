@@ -6,11 +6,6 @@ import sprite from '../../../../img/icon/sprite.svg';
 import { PlaylistItem } from '../PlaylistItem/PlaylistItem';
 
 export const Playlist = ({ list, status, error, setPlaylist }) => {
-
-  
-
-
-
   const playListItems = list.map((item) => (
     <PlaylistItem
       list={list}

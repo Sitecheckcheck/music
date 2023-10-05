@@ -4,8 +4,7 @@ import { AppRoutes } from '../rotes';
 import { isPlayingContext } from '../hooks/IsPlaying';
 import { tokenContext } from '../hooks/token';
 import { BarPlayer } from './components/bar/BarPlayer';
-// import { fetchPlaylist } from '../store/slicePlaylist';
-// import { fetchFavoritePlaylist } from '../store/sliceFavoritePlaylist';
+import { Test } from './Test';
 
 export const logOut = () => {
   localStorage.removeItem('user');
@@ -16,21 +15,15 @@ export const logOut = () => {
 export const App = () => {
   const [isLoadTrack, setIsLoadTrack] = useState(true);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [token, setToken] = useState(null);
+  const [token, setToken] = useState(localStorage.getItem('refresh'));
   const selectTrack = useSelector((state) => state.selectTrack.selectTrack);
   const userName = useSelector((state) => state.userName.userName);
-  const [playlist, setPlaylist] = useState(null)
-
-  // const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   dispatch(fetchPlaylist());
-  // }, [dispatch]);
+  const [playlist, setPlaylist] = useState(null);
 
   return (
     <tokenContext.Provider value={{ token, setToken }}>
       <isPlayingContext.Provider value={{ isPlaying, setIsPlaying }}>
-        <AppRoutes user={userName} setPlaylist={setPlaylist} />
+        <AppRoutes user={userName} setPlaylist={setPlaylist} token={token} />
         {selectTrack != null ? (
           <BarPlayer
             isLoadTrack={isLoadTrack}
@@ -39,6 +32,7 @@ export const App = () => {
             setPlaylist={setPlaylist}
           />
         ) : null}
+        <Test />
       </isPlayingContext.Provider>
     </tokenContext.Provider>
   );

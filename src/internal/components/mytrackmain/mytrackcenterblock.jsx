@@ -1,12 +1,13 @@
-/* eslint-disable */
-import { useDispatch, useSelector } from 'react-redux';
+// /* eslint-disable */
+import { useSelector } from 'react-redux';
 import sprite from '../../../img/icon/sprite.svg';
 import * as S from '../centerblock/centerBlockStyle';
 import { Playlist } from '../centerblock/Playlist/Playlist';
 
-export const MyTracksCenterBlock = ({setPlaylist}) => {
-
-  const { favoritePlaylist, status, error } = useSelector((state) => state.favoritePlaylist);
+export const MyTracksCenterBlock = ({ setPlaylist }) => {
+  const { favoritePlaylist, status, error } = useSelector(
+    (state) => state.favoritePlaylist,
+  );
 
   return (
     <S.MainCenterblock>

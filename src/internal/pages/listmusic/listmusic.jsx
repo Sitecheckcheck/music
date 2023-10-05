@@ -21,7 +21,7 @@ export const ListMusic = () => {
         <SMain>
           <Nav />
           <ListindiCenterBlock listNam={ListName.listName} />
-          <Sidebar  />
+          <Sidebar />
         </SMain>
         <Footer />
       </Container>

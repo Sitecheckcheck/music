@@ -117,19 +117,30 @@ export async function addFavorite(id, accessToken) {
   );
 
   if (!response.ok) {
-    if(response.status === 401) {
+    if (response.status === 401) {
       const refteshToken = localStorage.getItem('refresh');
-      const token = await refreshingToken(refteshToken)
+      const token = await refreshingToken(refteshToken);
 
       localStorage.setItem('access', token.access);
+
+      const access = localStorage.getItem('access');
+
+      fetch(
+        `https://skypro-music-api.skyeng.tech/catalog/track/${id}/favorite/`,
+        {
+          method: 'POST',
+          headers: {
+            Authorization: `Bearer ${access}`,
+            'content-type': 'application/json',
+          },
+        },
+      );
       // window.location.reload();
     } else {
       throw new Error('Ошибка сервера');
-    }  
+    }
   }
-
   const data = await response.json();
-
   return data;
 }
 
@@ -146,15 +157,28 @@ export async function deleteFavorite(id, accessToken) {
   );
 
   if (!response.ok) {
-    if(response.status === 401) {
+    if (response.status === 401) {
       const refteshToken = localStorage.getItem('refresh');
-      const token = await refreshingToken(refteshToken)
+      const token = await refreshingToken(refteshToken);
 
       localStorage.setItem('access', token.access);
+
+      const access = localStorage.getItem('access');
+
+      fetch(
+        `https://skypro-music-api.skyeng.tech/catalog/track/${id}/favorite/`,
+        {
+          method: 'DELETE',
+          headers: {
+            Authorization: `Bearer ${access}`,
+            'content-type': 'application/json',
+          },
+        },
+      );
       // window.location.reload();
     } else {
       throw new Error('Ошибка сервера');
-    }  
+    }
   }
 
   const data = await response.json();

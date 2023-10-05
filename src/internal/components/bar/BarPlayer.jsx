@@ -8,7 +8,12 @@ import { ProgressBar } from './ProgressBar';
 import { useIsPlayingContext } from '../../../hooks/IsPlaying';
 import { selectTrackFunction } from '../../../store/sliceSelectTrack';
 
-export const BarPlayer = ({ isLoadTrack, setIsLoadTrack, playlist, setPlaylist }) => {
+export const BarPlayer = ({
+  isLoadTrack,
+  setIsLoadTrack,
+  playlist,
+  setPlaylist,
+}) => {
   const [loop, setLoop] = useState(false);
   const [shaffle, setShaffle] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
@@ -89,10 +94,10 @@ export const BarPlayer = ({ isLoadTrack, setIsLoadTrack, playlist, setPlaylist }
       const shafflePlaylist = [...playlist];
       shafflePlaylist.sort(() => Math.random() - 0.5);
       // dispatch(playlistFunction(shafflePlaylist));
-      setPlaylist(shafflePlaylist)
+      setPlaylist(shafflePlaylist);
     } else {
       // dispatch(playlistFunction(firstPlaylist));
-      setPlaylist(firstPlaylist)
+      setPlaylist(firstPlaylist);
       setShaffle(!shaffle);
     }
   };

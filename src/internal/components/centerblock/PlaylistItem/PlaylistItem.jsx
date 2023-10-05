@@ -1,4 +1,4 @@
-/* eslint-disable */
+// /* eslint-disable */
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import sprite from '../../../../img/icon/sprite.svg';
@@ -7,33 +7,29 @@ import { selectTrackFunction } from '../../../../store/sliceSelectTrack';
 import point from '../../../../img/PointTrack.png';
 import { useIsPlayingContext } from '../../../../hooks/IsPlaying';
 import { addFavorite, deleteFavorite } from '../../../api';
-import { fetchFavoritePlaylist } from '../../../../store/sliceFavoritePlaylist';
 import likeIcon from '../../../../img/like.svg';
 
 export const PlaylistItem = (props) => {
-
   const userName = useSelector((state) => state.userName.userName);
-  const stared = props.item.stared_user ?
-    props.item.stared_user.find(
-      (element) => element.email === userName
-    ) : true
+  const stared = props.item.stared_user
+    ? props.item.stared_user.find((element) => element.email === userName)
+    : true;
   const dispatch = useDispatch();
   const selectTrack = useSelector((state) => state.selectTrack.selectTrack);
   const isPlayingContext = useIsPlayingContext();
   const { isPlaying } = isPlayingContext;
-  const [isLike, setIsLike] = useState(stared)  
-
-  const accessToken = localStorage.getItem('access');
+  const [isLike, setIsLike] = useState(stared);
 
   const handleLike = async () => {
+    const accessToken = localStorage.getItem('access');
     if (isLike) {
-      await deleteFavorite(props.item.id, accessToken)
-      dispatch(fetchFavoritePlaylist());
-      setIsLike(null)
+      const response = await deleteFavorite(props.item.id, accessToken);
+      console.log(response.detail);
+      setIsLike(null);
     } else {
-      await addFavorite(props.item.id, accessToken);
-      dispatch(fetchFavoritePlaylist());
-      setIsLike(true)
+      const response = await addFavorite(props.item.id, accessToken);
+      console.log(response.detail);
+      setIsLike(true);
     }
   };
 

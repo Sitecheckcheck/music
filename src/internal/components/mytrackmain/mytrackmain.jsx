@@ -1,6 +1,7 @@
+/* eslint-disable */
 import { NavLink } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Nav } from '../nav/Nav';
 import { MainSidebar, SidebarPersonal } from '../sidebar/styles';
 import SMain from '../main/mainStyle';
@@ -10,8 +11,9 @@ import { selectTrackFunction } from '../../../store/sliceSelectTrack';
 import exit from '../../../img/exit.svg';
 import { fetchFavoritePlaylist } from '../../../store/sliceFavoritePlaylist';
 
-export const MyTrackMain = ({setPlaylist}) => {
+export const MyTrackMain = ({ setPlaylist }) => {
   let userName = useSelector((state) => state.userName.userName);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
