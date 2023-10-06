@@ -1,56 +1,55 @@
-import PlaylistItemEmpryImg from '../../../../img/PlaylistItemEmpry.png';
 import * as S from './playliststyle';
 
 export const PlaylistItemEmpty = () => (
   <>
     <S.PlaylistItem>
       <div className="playlist__track track">
-        <img src={PlaylistItemEmpryImg} alt="" />
+        <img src="/music/img/PlaylistItemEmpry.png" alt="" />
       </div>
     </S.PlaylistItem>
     <S.PlaylistItem>
       <div className="playlist__track track">
-        <img src={PlaylistItemEmpryImg} alt="" />
+        <img src="/music/img/PlaylistItemEmpry.png" alt="" />
       </div>
     </S.PlaylistItem>
     <S.PlaylistItem>
       <div className="playlist__track track">
-        <img src={PlaylistItemEmpryImg} alt="" />
+        <img src="/music/img/PlaylistItemEmpry.png" alt="" />
       </div>
     </S.PlaylistItem>
     <S.PlaylistItem>
       <div className="playlist__track track">
-        <img src={PlaylistItemEmpryImg} alt="" />
+        <img src="/music/img/PlaylistItemEmpry.png" alt="" />
       </div>
     </S.PlaylistItem>
     <S.PlaylistItem>
       <div className="playlist__track track">
-        <img src={PlaylistItemEmpryImg} alt="" />
+        <img src="/music/img/PlaylistItemEmpry.png" alt="" />
       </div>
     </S.PlaylistItem>
     <S.PlaylistItem>
       <div className="playlist__track track">
-        <img src={PlaylistItemEmpryImg} alt="" />
+        <img src="/music/img/PlaylistItemEmpry.png" alt="" />
       </div>
     </S.PlaylistItem>
     <S.PlaylistItem>
       <div className="playlist__track track">
-        <img src={PlaylistItemEmpryImg} alt="" />
+        <img src="/music/img/PlaylistItemEmpry.png" alt="" />
       </div>
     </S.PlaylistItem>
     <S.PlaylistItem>
       <div className="playlist__track track">
-        <img src={PlaylistItemEmpryImg} alt="" />
+        <img src="/music/img/PlaylistItemEmpry.png" alt="" />
       </div>
     </S.PlaylistItem>
     <S.PlaylistItem>
       <div className="playlist__track track">
-        <img src={PlaylistItemEmpryImg} alt="" />
+        <img src="/music/img/PlaylistItemEmpry.png" alt="" />
       </div>
     </S.PlaylistItem>
     <S.PlaylistItem>
       <div className="playlist__track track">
-        <img src={PlaylistItemEmpryImg} alt="" />
+        <img src="/music/img/PlaylistItemEmpry.png" alt="" />
       </div>
     </S.PlaylistItem>
   </>

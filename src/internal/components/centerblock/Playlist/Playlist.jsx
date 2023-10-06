@@ -2,7 +2,6 @@
 import { PlaylistItemEmpty } from '../PlaylistItem/PlayListItemEmpty';
 import { Filter } from '../filter/Filter';
 import * as S from '../centerBlockStyle';
-import sprite from '../../../../img/icon/sprite.svg';
 import { PlaylistItem } from '../PlaylistItem/PlaylistItem';
 
 export const Playlist = ({ list, status, error, setPlaylist }) => {
@@ -34,7 +33,7 @@ export const Playlist = ({ list, status, error, setPlaylist }) => {
           <div className="playlist-title__col col03">АЛЬБОМ</div>
           <div className="playlist-title__col col04">
             <S.playlistTitleSvg alt="time">
-              <use xlinkHref={`${sprite}#icon-watch`} />
+              <use xlinkHref={`${'/music/img/icon/sprite.svg'}#icon-watch`} />
             </S.playlistTitleSvg>
           </div>
         </S.ContentTitle>

@@ -2,7 +2,6 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import './signin.css';
-import logoModal from '../../../img/logo_modal.png';
 import { authUser, getToken } from '../../api';
 import { useTokenContext } from '../../../hooks/token';
 import { userNameFunction } from '../../../store/sliceUserName';
@@ -57,7 +56,7 @@ export const Signin = () => {
         <form className="modal__form-login" id="formLogIn" action="#">
           <div className="modal__logo">
             <NavLink to="/">
-              <img src={logoModal} alt="logo" />
+              <img src="/music/img/logo_modal.png" alt="logo" />
             </NavLink>
           </div>
           <input

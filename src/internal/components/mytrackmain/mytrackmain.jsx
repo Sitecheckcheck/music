@@ -1,4 +1,4 @@
-/* eslint-disable */
+// /* eslint-disable */
 import { NavLink } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -8,7 +8,6 @@ import SMain from '../main/mainStyle';
 import { MyTracksCenterBlock } from './mytrackcenterblock';
 import { logOut } from '../../App';
 import { selectTrackFunction } from '../../../store/sliceSelectTrack';
-import exit from '../../../img/exit.svg';
 import { fetchFavoritePlaylist } from '../../../store/sliceFavoritePlaylist';
 
 export const MyTrackMain = ({ setPlaylist }) => {
@@ -39,7 +38,7 @@ export const MyTrackMain = ({ setPlaylist }) => {
               dispatch(selectTrackFunction(null));
             }}
           >
-            <img src={exit} alt="exit" />
+            <img src="/music/img/exit.svg" alt="exit" />
           </NavLink>
         </SidebarPersonal>
       </MainSidebar>

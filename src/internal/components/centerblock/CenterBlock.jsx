@@ -1,7 +1,6 @@
 // /* eslint-disable */
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import sprite from '../../../img/icon/sprite.svg';
 import * as S from './centerBlockStyle';
 import { Playlist } from './Playlist/Playlist';
 import { fetchPlaylist } from '../../../store/slicePlaylist';
@@ -19,7 +18,7 @@ export const CenterBlock = ({ setPlaylist }) => {
     <S.MainCenterblock>
       <div className="centerblock__search search">
         <S.SearchSvg>
-          <use xlinkHref={`${sprite}#icon-search`} />
+          <use xlinkHref={`${'/music/img/icon/sprite.svg'}#icon-search`} />
         </S.SearchSvg>
         <S.SearchText type="search" placeholder="Поиск" name="search" />
       </div>

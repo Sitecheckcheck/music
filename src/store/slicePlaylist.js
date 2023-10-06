@@ -1,12 +1,13 @@
 // /* eslint-disable */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { baseURL } from '../internal/api';
 
 export const fetchPlaylist = createAsyncThunk(
   'playlist/fetchPlaylist',
   async (_, { rejectWithValue }) => {
     try {
       const response = await fetch(
-        'https://skypro-music-api.skyeng.tech/catalog/track/all/',
+        `${baseURL}/catalog/track/all/`,
       );
 
       if (!response.ok) {

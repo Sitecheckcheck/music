@@ -1,6 +1,6 @@
 // /* eslint-disable */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { refreshingToken } from '../internal/api';
+import { baseURL, refreshingToken } from '../internal/api';
 
 export const fetchFavoritePlaylist = createAsyncThunk(
   'favoritePlaylist/fetchFavoritePlaylist',
@@ -9,7 +9,7 @@ export const fetchFavoritePlaylist = createAsyncThunk(
 
     try {
       let response = await fetch(
-        'https://skypro-music-api.skyeng.tech/catalog/track/favorite/all/',
+        `${baseURL}/catalog/track/favorite/all/`,
         {
           method: 'GET',
           headers: {

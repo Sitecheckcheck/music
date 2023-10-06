@@ -1,13 +1,10 @@
 // /* eslint-disable */
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
-import sprite from '../../../../img/icon/sprite.svg';
 import * as S from './playliststyle';
 import { selectTrackFunction } from '../../../../store/sliceSelectTrack';
-import point from '../../../../img/PointTrack.png';
 import { useIsPlayingContext } from '../../../../hooks/IsPlaying';
 import { addFavorite, deleteFavorite } from '../../../api';
-import likeIcon from '../../../../img/like.svg';
 
 export const PlaylistItem = (props) => {
   const userName = useSelector((state) => state.userName.userName);
@@ -38,13 +35,13 @@ export const PlaylistItem = (props) => {
           <div className="track__title-image">
             {selectTrack && props.item && props.item.id === selectTrack.id ? (
               <img
-                src={point}
+                src="/music/img/PointTrack.png"
                 alt="point"
                 className={isPlaying ? 'playing-dot' : ''}
               />
             ) : (
               <svg className="track__title-svg" alt="music">
-                <use xlinkHref={`${sprite}#icon-note`} />
+                <use xlinkHref={`${'/music/img/icon/sprite.svg'}#icon-note`} />
               </svg>
             )}
           </div>
@@ -69,10 +66,14 @@ export const PlaylistItem = (props) => {
         </S.TrackAlbum>
         <S.TrackTime onClick={() => handleLike()}>
           {isLike ? (
-            <img src={likeIcon} className="track__time-svg" alt="time" />
+            <img
+              src="/music/img/like.svg"
+              className="track__time-svg"
+              alt="time"
+            />
           ) : (
             <svg className="track__time-svg" alt="time">
-              <use xlinkHref={`${sprite}#icon-like`} />
+              <use xlinkHref={`${'/music/img/icon/sprite.svg'}#icon-like`} />
             </svg>
           )}
 

@@ -1,6 +1,8 @@
+export const baseURL = "https://skypro-music-api.skyeng.tech"
+
 export async function getPlaylistId(id) {
   const response = await fetch(
-    `https://skypro-music-api.skyeng.tech/catalog/track/${id}`,
+    `${baseURL}/catalog/track/${id}`,
   );
 
   if (!response.ok) {
@@ -13,7 +15,7 @@ export async function getPlaylistId(id) {
 
 export async function registerUser(login, password) {
   const response = await fetch(
-    'https://skypro-music-api.skyeng.tech/user/signup/',
+    `${baseURL}/user/signup/`,
     {
       method: 'POST',
       body: JSON.stringify({
@@ -37,7 +39,7 @@ export async function registerUser(login, password) {
 
 export async function authUser(login, password) {
   const response = await fetch(
-    'https://skypro-music-api.skyeng.tech/user/login/',
+    `${baseURL}/user/login/`,
     {
       method: 'POST',
       body: JSON.stringify({
@@ -60,7 +62,7 @@ export async function authUser(login, password) {
 
 export async function getToken(login, password) {
   const response = await fetch(
-    'https://skypro-music-api.skyeng.tech/user/token/',
+    `${baseURL}/user/token/`,
     {
       method: 'POST',
       body: JSON.stringify({
@@ -83,7 +85,7 @@ export async function getToken(login, password) {
 
 export async function refreshingToken(refresh) {
   const response = await fetch(
-    'https://skypro-music-api.skyeng.tech/user/token/refresh/',
+    `${baseURL}/user/token/refresh/`,
     {
       method: 'POST',
       body: JSON.stringify({
@@ -106,7 +108,7 @@ export async function refreshingToken(refresh) {
 
 export async function addFavorite(id, accessToken) {
   const response = await fetch(
-    `https://skypro-music-api.skyeng.tech/catalog/track/${id}/favorite/`,
+    `${baseURL}/catalog/track/${id}/favorite/`,
     {
       method: 'POST',
       headers: {
@@ -146,7 +148,7 @@ export async function addFavorite(id, accessToken) {
 
 export async function deleteFavorite(id, accessToken) {
   const response = await fetch(
-    `https://skypro-music-api.skyeng.tech/catalog/track/${id}/favorite/`,
+    `${baseURL}/catalog/track/${id}/favorite/`,
     {
       method: 'DELETE',
       headers: {
