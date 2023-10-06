@@ -6,9 +6,7 @@ export const fetchPlaylist = createAsyncThunk(
   'playlist/fetchPlaylist',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await fetch(
-        `${baseURL}/catalog/track/all/`,
-      );
+      const response = await fetch(`${baseURL}/catalog/track/all/`);
 
       if (!response.ok) {
         throw new Error('Ошибка сервера');

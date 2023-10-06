@@ -1,8 +1,8 @@
 // /* eslint-disable */
-import { PlaylistItemEmpty } from '../PlaylistItem/PlayListItemEmpty';
-import { Filter } from '../filter/Filter';
-import * as S from '../centerBlockStyle';
-import { PlaylistItem } from '../PlaylistItem/PlaylistItem';
+import { PlaylistItemEmpty } from './PlaylistItem/PlayListItemEmpty';
+import { Filter } from './filter/Filter';
+import * as S from '../centerblock/centerBlockStyle';
+import { PlaylistItem } from './PlaylistItem/PlaylistItem';
 
 export const Playlist = ({ list, status, error, setPlaylist }) => {
   const playListItems = list.map((item) => (

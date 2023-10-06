@@ -8,15 +8,12 @@ export const fetchFavoritePlaylist = createAsyncThunk(
     const accessToken = localStorage.getItem('access');
 
     try {
-      let response = await fetch(
-        `${baseURL}/catalog/track/favorite/all/`,
-        {
-          method: 'GET',
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
+      let response = await fetch(`${baseURL}/catalog/track/favorite/all/`, {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
         },
-      );
+      });
 
       if (!response.ok) {
         if (response.status === 401) {

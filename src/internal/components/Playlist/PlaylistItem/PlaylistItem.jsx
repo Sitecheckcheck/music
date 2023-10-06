@@ -5,6 +5,7 @@ import * as S from './playliststyle';
 import { selectTrackFunction } from '../../../../store/sliceSelectTrack';
 import { useIsPlayingContext } from '../../../../hooks/IsPlaying';
 import { addFavorite, deleteFavorite } from '../../../api';
+import { fetchFavoritePlaylist } from '../../../../store/sliceFavoritePlaylist';
 
 export const PlaylistItem = (props) => {
   const userName = useSelector((state) => state.userName.userName);
@@ -20,11 +21,17 @@ export const PlaylistItem = (props) => {
   const handleLike = () => {
     const accessToken = localStorage.getItem('access');
     if (isLike) {
-      deleteFavorite(props.item.id, accessToken);
-      setIsLike(null);
+      deleteFavorite(props.item.id, accessToken).then(() => {
+        dispatch(fetchFavoritePlaylist()).then(() => {
+          setIsLike(null);
+        });
+      });
     } else {
-      addFavorite(props.item.id, accessToken);
-      setIsLike(true);
+      addFavorite(props.item.id, accessToken).then(() => {
+        dispatch(fetchFavoritePlaylist()).then(() => {
+          setIsLike(true);
+        });
+      });
     }
   };
 

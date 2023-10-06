@@ -1,7 +1,7 @@
 // /* eslint-disable */
 import { useSelector } from 'react-redux';
 import * as S from '../centerblock/centerBlockStyle';
-import { Playlist } from '../centerblock/Playlist/Playlist';
+import { Playlist } from '../Playlist/Playlist';
 
 export const MyTracksCenterBlock = ({ setPlaylist }) => {
   const { favoritePlaylist, status, error } = useSelector(

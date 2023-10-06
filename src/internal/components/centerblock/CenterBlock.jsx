@@ -2,7 +2,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import * as S from './centerBlockStyle';
-import { Playlist } from './Playlist/Playlist';
+import { Playlist } from '../Playlist/Playlist';
 import { fetchPlaylist } from '../../../store/slicePlaylist';
 
 export const CenterBlock = ({ setPlaylist }) => {

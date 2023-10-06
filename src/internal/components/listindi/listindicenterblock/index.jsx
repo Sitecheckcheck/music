@@ -1,10 +1,10 @@
-import { PlaylistItem } from '../../centerblock/PlaylistItem/PlaylistItem';
 import tracks from '../../../../Tracks';
+import { PlaylistItemEmpty } from '../../Playlist/PlaylistItem/PlayListItemEmpty';
 import * as S from '../../centerblock/centerBlockStyle';
 
 export const ListindiCenterBlock = (props) => {
   const playListItems = tracks.map((item) => (
-    <PlaylistItem
+    <PlaylistItemEmpty
       key={item.id}
       track={item.name}
       artist={item.author}
