@@ -19,7 +19,6 @@ export const PlaylistItem = styled.div`
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    cursor: pointer;
     box-sizing: border-box;
   }
 `;
@@ -67,6 +66,7 @@ export const TrackTitle = styled.div`
     font-size: 16px;
     line-height: 24px;
     color: #fff;
+    cursor: pointer;
   }
 
   .track__title-span {
@@ -135,6 +135,16 @@ export const TrackTime = styled.div`
     margin-right: 17px;
     fill: transparent;
     stroke: #696969;
+    cursor: pointer;
+  }
+
+  .track__time-svg-choose {
+    width: 14px;
+    height: 12px;
+    margin-right: 17px;
+    fill: transparent;
+    stroke: #b672ff;
+    cursor: pointer;
   }
 
   .track__time-text {

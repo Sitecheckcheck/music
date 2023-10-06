@@ -1,10 +1,6 @@
+// /* eslint-disable */
 import { NavLink } from 'react-router-dom';
-import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import playlist01 from '../../../img/playlist01.png';
-import playlist02 from '../../../img/playlist02.png';
-import playlist03 from '../../../img/playlist03.png';
-import playlist00 from '../../../img/playlist00.png';
 import { SidebarItem } from './SidebarItem';
 import {
   MainSidebar,
@@ -12,24 +8,18 @@ import {
   SidebarBlock,
   SidebarList,
 } from './styles';
-import exit from '../../../img/exit.svg';
 import { logOut } from '../../App';
 import { selectTrackFunction } from '../../../store/sliceSelectTrack';
 
-export const Sidebar = ({ isLoad, setIsLoad }) => {
+export const Sidebar = () => {
   let userName = useSelector((state) => state.userName.userName);
   const dispatch = useDispatch();
+  const { status } = useSelector((state) => state.playlist);
 
   if (userName) {
     const index = userName.lastIndexOf('@');
     userName = userName.substring(0, index);
   }
-
-  useEffect(() => {
-    setTimeout(() => {
-      setIsLoad(false);
-    }, 500);
-  });
 
   return (
     <MainSidebar>
@@ -42,21 +32,33 @@ export const Sidebar = ({ isLoad, setIsLoad }) => {
             dispatch(selectTrackFunction(null));
           }}
         >
-          <img src={exit} alt="exit" />
+          <img src="/music/img/exit.svg" alt="exit" />
         </NavLink>
       </SidebarPersonal>
       <SidebarBlock>
         <SidebarList>
           <SidebarItem
-            playlist={isLoad ? playlist00 : playlist01}
+            playlist={
+              status === 'loading'
+                ? '/music/img/playlist00.png'
+                : '/music/img/playlist01.png'
+            }
             page="/playlist/3"
           />
           <SidebarItem
-            playlist={isLoad ? playlist00 : playlist02}
+            playlist={
+              status === 'loading'
+                ? '/music/img/playlist00.png'
+                : '/music/img/playlist02.png'
+            }
             page="/playlist/1"
           />
           <SidebarItem
-            playlist={isLoad ? playlist00 : playlist03}
+            playlist={
+              status === 'loading'
+                ? '/music/img/playlist00.png'
+                : '/music/img/playlist03.png'
+            }
             page="/playlist/2"
           />
         </SidebarList>

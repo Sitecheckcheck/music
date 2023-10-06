@@ -1,20 +1,7 @@
-export async function getPlaylist() {
-  const response = await fetch(
-    'https://skypro-music-api.skyeng.tech/catalog/track/all/',
-  );
-
-  if (!response.ok) {
-    throw new Error('Ошибка сервера');
-  }
-
-  const data = await response.json();
-  return data;
-}
+export const baseURL = 'https://skypro-music-api.skyeng.tech';
 
 export async function getPlaylistId(id) {
-  const response = await fetch(
-    `https://skypro-music-api.skyeng.tech/catalog/track/${id}`,
-  );
+  const response = await fetch(`${baseURL}/catalog/track/${id}`);
 
   if (!response.ok) {
     throw new Error('Ошибка сервера');
@@ -24,66 +11,18 @@ export async function getPlaylistId(id) {
   return data;
 }
 
-// export async function getPlaylist() {
-//   const data = [
-//     {
-//       id: 1,
-//       name: 'Guilt',
-//       author: 'Nero',
-//       release_date: '2005-06-11',
-//       genre: 'Техно',
-//       duration_in_seconds: 284,
-//       album: 'Welcome Reality',
-//       logo: null,
-//       track_file:
-//         '/music/Asa Taura - Fractal.mp3',
-//       stared_user: [],
-//     },
-//     {
-//       id: 2,
-//       name: 'Elektro',
-//       author: 'Dynoro, Outwork, Mr. Gee',
-//       release_date: '2010-06-11',
-//       genre: 'Инди',
-//       duration_in_seconds: 352,
-//       album: 'Elektro',
-//       logo: null,
-//       track_file:
-//         '/music/Sinitana - Closer to Dolphins.mp3',
-//       stared_user: [],
-//     },
-//     {
-//       id: 3,
-//       name: 'I’m Fire',
-//       author: 'Ali Bakgor',
-//       release_date: '2015-06-11',
-//       genre: 'Техно',
-//       duration_in_seconds: 234,
-//       album: 'I’m Fire',
-//       logo: null,
-//       track_file:
-//         '/music/Desired Bit - Just Be Quiet (Original Mix).mp3',
-//       stared_user: [],
-//     },
-//   ];
-//   return data;
-// }
-
 export async function registerUser(login, password) {
-  const response = await fetch(
-    'https://skypro-music-api.skyeng.tech/user/signup/',
-    {
-      method: 'POST',
-      body: JSON.stringify({
-        email: `${login}`,
-        password: `${password}`,
-        username: `${login}`,
-      }),
-      headers: {
-        'content-type': 'application/json',
-      },
+  const response = await fetch(`${baseURL}/user/signup/`, {
+    method: 'POST',
+    body: JSON.stringify({
+      email: `${login}`,
+      password: `${password}`,
+      username: `${login}`,
+    }),
+    headers: {
+      'content-type': 'application/json',
     },
-  );
+  });
 
   if (!response.ok && !response.status === '400') {
     throw new Error('Сервер сломался');
@@ -94,19 +33,16 @@ export async function registerUser(login, password) {
 }
 
 export async function authUser(login, password) {
-  const response = await fetch(
-    'https://skypro-music-api.skyeng.tech/user/login/',
-    {
-      method: 'POST',
-      body: JSON.stringify({
-        email: `${login}`,
-        password: `${password}`,
-      }),
-      headers: {
-        'content-type': 'application/json',
-      },
+  const response = await fetch(`${baseURL}/user/login/`, {
+    method: 'POST',
+    body: JSON.stringify({
+      email: `${login}`,
+      password: `${password}`,
+    }),
+    headers: {
+      'content-type': 'application/json',
     },
-  );
+  });
 
   if (!response.ok && !response.status === '400') {
     throw new Error('Сервер сломался');
@@ -115,26 +51,18 @@ export async function authUser(login, password) {
   const data = await response.json();
   return data;
 }
-
-// export async function authUser(login, password) {
-//   const user = { username: login, password, id: '1' };
-//   return user;
-// }
 
 export async function getToken(login, password) {
-  const response = await fetch(
-    'https://skypro-music-api.skyeng.tech/user/token/',
-    {
-      method: 'POST',
-      body: JSON.stringify({
-        email: `${login}`,
-        password: `${password}`,
-      }),
-      headers: {
-        'content-type': 'application/json',
-      },
+  const response = await fetch(`${baseURL}/user/token/`, {
+    method: 'POST',
+    body: JSON.stringify({
+      email: `${login}`,
+      password: `${password}`,
+    }),
+    headers: {
+      'content-type': 'application/json',
     },
-  );
+  });
 
   if (!response.ok && !response.status === '400') {
     throw new Error('Сервер сломался');
@@ -144,7 +72,98 @@ export async function getToken(login, password) {
   return data;
 }
 
-// export async function getToken(login, password) {
-//   const token = { login, password, refresh: '1234' };
-//   return token;
-// }
+export async function refreshingToken(refresh) {
+  const response = await fetch(`${baseURL}/user/token/refresh/`, {
+    method: 'POST',
+    body: JSON.stringify({
+      refresh: `${refresh}`,
+    }),
+    headers: {
+      'content-type': 'application/json',
+    },
+  });
+
+  if (!response.ok && !response.status === '400') {
+    throw new Error('Сервер сломался');
+  }
+
+  const data = await response.json();
+
+  return data;
+}
+
+export async function addFavorite(id, accessToken) {
+  const response = await fetch(`${baseURL}/catalog/track/${id}/favorite/`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+      'content-type': 'application/json',
+    },
+  });
+
+  if (!response.ok) {
+    if (response.status === 401) {
+      const refteshToken = localStorage.getItem('refresh');
+      const token = await refreshingToken(refteshToken);
+
+      localStorage.setItem('access', token.access);
+
+      const access = localStorage.getItem('access');
+
+      fetch(
+        `https://skypro-music-api.skyeng.tech/catalog/track/${id}/favorite/`,
+        {
+          method: 'POST',
+          headers: {
+            Authorization: `Bearer ${access}`,
+            'content-type': 'application/json',
+          },
+        },
+      );
+      // window.location.reload();
+    } else {
+      throw new Error('Ошибка сервера');
+    }
+  }
+  const data = await response.json();
+  return data;
+}
+
+export async function deleteFavorite(id, accessToken) {
+  const response = await fetch(`${baseURL}/catalog/track/${id}/favorite/`, {
+    method: 'DELETE',
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+      'content-type': 'application/json',
+    },
+  });
+
+  if (!response.ok) {
+    if (response.status === 401) {
+      const refteshToken = localStorage.getItem('refresh');
+      const token = await refreshingToken(refteshToken);
+
+      localStorage.setItem('access', token.access);
+
+      const access = localStorage.getItem('access');
+
+      fetch(
+        `https://skypro-music-api.skyeng.tech/catalog/track/${id}/favorite/`,
+        {
+          method: 'DELETE',
+          headers: {
+            Authorization: `Bearer ${access}`,
+            'content-type': 'application/json',
+          },
+        },
+      );
+      // window.location.reload();
+    } else {
+      throw new Error('Ошибка сервера');
+    }
+  }
+
+  const data = await response.json();
+
+  return data;
+}

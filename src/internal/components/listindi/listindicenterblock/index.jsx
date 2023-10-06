@@ -1,11 +1,10 @@
-import { PlaylistItem } from '../../centerblock/playlist/PlaylistItem';
-import sprite from '../../../../img/icon/sprite.svg';
 import tracks from '../../../../Tracks';
+import { PlaylistItemEmpty } from '../../Playlist/PlaylistItem/PlayListItemEmpty';
 import * as S from '../../centerblock/centerBlockStyle';
 
 export const ListindiCenterBlock = (props) => {
   const playListItems = tracks.map((item) => (
-    <PlaylistItem
+    <PlaylistItemEmpty
       key={item.id}
       track={item.name}
       artist={item.author}
@@ -20,7 +19,7 @@ export const ListindiCenterBlock = (props) => {
     <S.MainCenterblock>
       <div className="centerblock__search search">
         <S.SearchSvg>
-          <use xlinkHref={`${sprite}#icon-search`} />
+          <use xlinkHref={`${'/music/img/icon/sprite.svg'}#icon-search`} />
         </S.SearchSvg>
         <S.SearchText type="search" placeholder="Поиск" name="search" />
       </div>
@@ -33,7 +32,7 @@ export const ListindiCenterBlock = (props) => {
           <div className="playlist-title__col col03">АЛЬБОМ</div>
           <div className="playlist-title__col col04">
             <S.playlistTitleSvg alt="time">
-              <use xlinkHref={`${sprite}#icon-watch`} />
+              <use xlinkHref={`${'/music/img/icon/sprite.svg'}#icon-watch`} />
             </S.playlistTitleSvg>
           </div>
         </S.ContentTitle>

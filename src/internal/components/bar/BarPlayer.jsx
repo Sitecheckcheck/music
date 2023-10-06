@@ -1,14 +1,17 @@
+// /* eslint-disable */
 import { useEffect, useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import sprite from '../../../img/icon/sprite.svg';
-import BarEmpty from '../../../img/BarEmpty.png';
 import * as S from './barStyle';
 import { ProgressBar } from './ProgressBar';
 import { useIsPlayingContext } from '../../../hooks/IsPlaying';
 import { selectTrackFunction } from '../../../store/sliceSelectTrack';
-import { playlistFunction } from '../../../store/slicePlaylist';
 
-export const BarPlayer = ({ isLoadTrack, setIsLoadTrack }) => {
+export const BarPlayer = ({
+  isLoadTrack,
+  setIsLoadTrack,
+  playlist,
+  setPlaylist,
+}) => {
   const [loop, setLoop] = useState(false);
   const [shaffle, setShaffle] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
@@ -21,8 +24,7 @@ export const BarPlayer = ({ isLoadTrack, setIsLoadTrack }) => {
   const { setIsPlaying } = isPlayingContext;
   const selectTrack = useSelector((state) => state.selectTrack.selectTrack);
   const dispatch = useDispatch();
-  const playlist = useSelector((state) => state.playlist.playlist);
-  const playlistUI = useSelector((state) => state.playlistUI.playlistUI);
+  const [firstPlaylist] = useState(playlist);
 
   function strPadLeft(string, pad, length) {
     return (new Array(length + 1).join(pad) + string).slice(-length);
@@ -53,13 +55,17 @@ export const BarPlayer = ({ isLoadTrack, setIsLoadTrack }) => {
 
   const handlePrev = () => {
     audioRef.current.play().then(() => {
-      if (currentTime < 5) {
-        const prevTrack = playlist[playlist.indexOf(selectTrack) - 1];
-        dispatch(selectTrackFunction(prevTrack));
+      if (playlist.indexOf(selectTrack) !== 0) {
+        if (currentTime < 5) {
+          const prevTrack = playlist[playlist.indexOf(selectTrack) - 1];
+          dispatch(selectTrackFunction(prevTrack));
+        } else {
+          audioRef.current.pause();
+          audioRef.current.currentTime = 0;
+          audioRef.current.play();
+        }
       } else {
-        audioRef.current.pause();
-        audioRef.current.currentTime = 0;
-        audioRef.current.play();
+        setIsLoadTrack(false);
       }
     });
   };
@@ -84,9 +90,9 @@ export const BarPlayer = ({ isLoadTrack, setIsLoadTrack }) => {
       setShaffle(!shaffle);
       const shafflePlaylist = [...playlist];
       shafflePlaylist.sort(() => Math.random() - 0.5);
-      dispatch(playlistFunction(shafflePlaylist));
+      setPlaylist(shafflePlaylist);
     } else {
-      dispatch(playlistFunction(playlistUI));
+      setPlaylist(firstPlaylist);
       setShaffle(!shaffle);
     }
   };
@@ -176,7 +182,9 @@ export const BarPlayer = ({ isLoadTrack, setIsLoadTrack }) => {
               <div className="player__controls">
                 <S.PlayerBtnPrev onClick={handlePrev}>
                   <svg className="player__btn-prev-svg" alt="prev">
-                    <use xlinkHref={`${sprite}#icon-prev`} />
+                    <use
+                      xlinkHref={`${'/music/img/icon/sprite.svg'}#icon-prev`}
+                    />
                   </svg>
                 </S.PlayerBtnPrev>
                 <S.PlayerBtnPlay onClick={togglePlay}>
@@ -184,15 +192,17 @@ export const BarPlayer = ({ isLoadTrack, setIsLoadTrack }) => {
                     <use
                       xlinkHref={
                         isPlaying
-                          ? `${sprite}#icon-pause`
-                          : `${sprite}#icon-play`
+                          ? `${'/music/img/icon/sprite.svg'}#icon-pause`
+                          : `${'/music/img/icon/sprite.svg'}#icon-play`
                       }
                     />
                   </svg>
                 </S.PlayerBtnPlay>
                 <S.PlayerBtnNext onClick={handleNext}>
                   <svg className="player__btn-next-svg" alt="next">
-                    <use xlinkHref={`${sprite}#icon-next`} />
+                    <use
+                      xlinkHref={`${'/music/img/icon/sprite.svg'}#icon-next`}
+                    />
                   </svg>
                 </S.PlayerBtnNext>
                 <S.PlayerBtnRepeat onClick={handleLoop}>
@@ -204,7 +214,9 @@ export const BarPlayer = ({ isLoadTrack, setIsLoadTrack }) => {
                     }
                     alt="repeat"
                   >
-                    <use xlinkHref={`${sprite}#icon-repeat`} />
+                    <use
+                      xlinkHref={`${'/music/img/icon/sprite.svg'}#icon-repeat`}
+                    />
                   </svg>
                 </S.PlayerBtnRepeat>
                 <S.PlayerBtnShuffle onClick={handleShuffle}>
@@ -216,18 +228,22 @@ export const BarPlayer = ({ isLoadTrack, setIsLoadTrack }) => {
                     }
                     alt="shuffle"
                   >
-                    <use xlinkHref={`${sprite}#icon-shuffle`} />
+                    <use
+                      xlinkHref={`${'/music/img/icon/sprite.svg'}#icon-shuffle`}
+                    />
                   </svg>
                 </S.PlayerBtnShuffle>
               </div>
               <div className="player__track-play track-play">
                 {isLoadTrack ? (
-                  <img src={BarEmpty} alt="" />
+                  <img src="/music/img/BarEmpty.png" alt="" />
                 ) : (
                   <S.TrackPlayContain>
                     <div className="track-play__image">
                       <svg className="track-play__svg" alt="music">
-                        <use xlinkHref={`${sprite}#icon-note`} />
+                        <use
+                          xlinkHref={`${'/music/img/icon/sprite.svg'}#icon-note`}
+                        />
                       </svg>
                     </div>
                     <div className="track-play__author">
@@ -245,12 +261,16 @@ export const BarPlayer = ({ isLoadTrack, setIsLoadTrack }) => {
                 <S.TrackPlayLikeDis>
                   <div className="track-play__like _btn-icon">
                     <svg className="track-play__like-svg" alt="like">
-                      <use xlinkHref={`${sprite}#icon-like`} />
+                      <use
+                        xlinkHref={`${'/music/img/icon/sprite.svg'}#icon-like`}
+                      />
                     </svg>
                   </div>
                   <div className="track-play__dislike _btn-icon">
                     <svg className="track-play__dislike-svg" alt="dislike">
-                      <use xlinkHref={`${sprite}#icon-dislike`} />
+                      <use
+                        xlinkHref={`${'/music/img/icon/sprite.svg'}#icon-dislike`}
+                      />
                     </svg>
                   </div>
                 </S.TrackPlayLikeDis>
@@ -260,7 +280,9 @@ export const BarPlayer = ({ isLoadTrack, setIsLoadTrack }) => {
               <div className="volume__content">
                 <div className="volume__image">
                   <svg className="volume__svg" alt="volume">
-                    <use xlinkHref={`${sprite}#icon-volume`} />
+                    <use
+                      xlinkHref={`${'/music/img/icon/sprite.svg'}#icon-volume`}
+                    />
                   </svg>
                 </div>
                 <div className="volume__progress _btn">

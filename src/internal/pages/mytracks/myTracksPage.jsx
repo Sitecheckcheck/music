@@ -1,12 +1,12 @@
-import { MyTrackMain } from '../../components/mytrackmain';
+import { MyTrackMain } from '../../components/mytrackmain/mytrackmain';
 import { Footer } from '../../components/footer/Footer';
 import GlobalStyle, { Wrapper, Container } from '../../styles';
 
-export const MyTracks = ({ isLoad, setIsLoad }) => (
+export const MyTracks = ({ setPlaylist }) => (
   <Wrapper>
     <Container>
       <GlobalStyle />
-      <MyTrackMain isLoad={isLoad} setIsLoad={setIsLoad} />
+      <MyTrackMain setPlaylist={setPlaylist} />
 
       <Footer />
     </Container>
