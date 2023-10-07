@@ -3,6 +3,7 @@ import selectTrackReducer from './sliceSelectTrack';
 import userNameReduser from './sliceUserName';
 import playlistReduser from './slicePlaylist';
 import favoritePlaylistReduser from './sliceFavoritePlaylist';
+// import { FavoritePlaylistApi } from '../services/favoritePlaylist';
 
 export const store = configureStore({
   reducer: {
@@ -10,5 +11,9 @@ export const store = configureStore({
     userName: userNameReduser,
     playlist: playlistReduser,
     favoritePlaylist: favoritePlaylistReduser,
+    // [FavoritePlaylistApi.reducerPath]: FavoritePlaylistApi.reducer,
   },
+
+  // middleware: (getDefaultMiddleware) =>
+  //   getDefaultMiddleware().concat(FavoritePlaylistApi.middleware),
 });

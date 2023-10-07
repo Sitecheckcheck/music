@@ -2,7 +2,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import './signup.css';
-import { registerUser, getToken } from '../../api';
+import { registerUser, getToken } from '../../../api';
 import { useTokenContext } from '../../../hooks/token';
 import { userNameFunction } from '../../../store/sliceUserName';
 

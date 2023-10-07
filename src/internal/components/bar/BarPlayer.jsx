@@ -1,10 +1,13 @@
-// /* eslint-disable */
+/* eslint-disable */
 import { useEffect, useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import * as S from './barStyle';
 import { ProgressBar } from './ProgressBar';
 import { useIsPlayingContext } from '../../../hooks/IsPlaying';
 import { selectTrackFunction } from '../../../store/sliceSelectTrack';
+import { fetchPlaylist } from '../../../store/slicePlaylist';
+import { addFavorite, deleteFavorite } from '../../../api';
+import { fetchFavoritePlaylist } from '../../../store/sliceFavoritePlaylist';
 
 export const BarPlayer = ({
   isLoadTrack,
@@ -25,6 +28,36 @@ export const BarPlayer = ({
   const selectTrack = useSelector((state) => state.selectTrack.selectTrack);
   const dispatch = useDispatch();
   const [firstPlaylist] = useState(playlist);
+  const userName = useSelector((state) => state.userName.userName);
+
+  const stared = selectTrack.stared_user
+    ? selectTrack.stared_user.find((element) => element.email === userName)
+    : true;
+
+  const [isLike, setIsLike] = useState(stared);
+
+  useEffect(() => {
+    setIsLike(stared);
+  }, [stared]);
+
+  const handleLike = () => {
+    const accessToken = localStorage.getItem('access');
+    if (isLike) {
+      deleteFavorite(selectTrack.id, accessToken).then(() => {
+        dispatch(fetchPlaylist());
+        dispatch(fetchFavoritePlaylist()).then(() => {
+          setIsLike(null);
+        });
+      });
+    } else {
+      addFavorite(selectTrack.id, accessToken).then(() => {
+        dispatch(fetchPlaylist());
+        dispatch(fetchFavoritePlaylist()).then(() => {
+          setIsLike(true);
+        });
+      });
+    }
+  };
 
   function strPadLeft(string, pad, length) {
     return (new Array(length + 1).join(pad) + string).slice(-length);
@@ -259,19 +292,33 @@ export const BarPlayer = ({
                   </S.TrackPlayContain>
                 )}
                 <S.TrackPlayLikeDis>
-                  <div className="track-play__like _btn-icon">
+                  {/* <div className="track-play__like _btn-icon">
                     <svg className="track-play__like-svg" alt="like">
                       <use
                         xlinkHref={`${'/music/img/icon/sprite.svg'}#icon-like`}
                       />
                     </svg>
-                  </div>
-                  <div className="track-play__dislike _btn-icon">
-                    <svg className="track-play__dislike-svg" alt="dislike">
-                      <use
-                        xlinkHref={`${'/music/img/icon/sprite.svg'}#icon-dislike`}
+                  </div> */}
+
+                  <div
+                    className="track-play__dislike _btn-icon"
+                    onClick={() => {
+                      handleLike();
+                    }}
+                  >
+                    {isLike ? (
+                      <img
+                        src="/music/img/like.svg"
+                        className="track__time-svg"
+                        alt="time"
                       />
-                    </svg>
+                    ) : (
+                      <svg className="track-play__like-svg" alt="like">
+                        <use
+                          xlinkHref={`${'/music/img/icon/sprite.svg'}#icon-like`}
+                        />
+                      </svg>
+                    )}
                   </div>
                 </S.TrackPlayLikeDis>
               </div>

@@ -4,8 +4,9 @@ import { useState } from 'react';
 import * as S from './playliststyle';
 import { selectTrackFunction } from '../../../../store/sliceSelectTrack';
 import { useIsPlayingContext } from '../../../../hooks/IsPlaying';
-import { addFavorite, deleteFavorite } from '../../../api';
+import { addFavorite, deleteFavorite } from '../../../../api';
 import { fetchFavoritePlaylist } from '../../../../store/sliceFavoritePlaylist';
+import { fetchPlaylist } from '../../../../store/slicePlaylist';
 
 export const PlaylistItem = (props) => {
   const userName = useSelector((state) => state.userName.userName);
@@ -18,20 +19,33 @@ export const PlaylistItem = (props) => {
   const { isPlaying } = isPlayingContext;
   const [isLike, setIsLike] = useState(stared);
 
-  const handleLike = () => {
+  const handleLike = async () => {
     const accessToken = localStorage.getItem('access');
+
+    const getNewPL = async () => {
+      const NewPlaylist = await dispatch(fetchPlaylist());
+      dispatch(fetchFavoritePlaylist());
+      if (selectTrack && props.item.id === selectTrack.id) {
+        dispatch(
+          selectTrackFunction(
+            NewPlaylist.payload.filter((x) => x.id === props.item.id)[0],
+          ),
+        );
+      }
+    };
+
     if (isLike) {
-      deleteFavorite(props.item.id, accessToken).then(() => {
-        dispatch(fetchFavoritePlaylist()).then(() => {
-          setIsLike(null);
-        });
-      });
+      await deleteFavorite(props.item.id, accessToken);
+
+      getNewPL();
+
+      setIsLike(null);
     } else {
-      addFavorite(props.item.id, accessToken).then(() => {
-        dispatch(fetchFavoritePlaylist()).then(() => {
-          setIsLike(true);
-        });
-      });
+      await addFavorite(props.item.id, accessToken);
+
+      getNewPL();
+
+      setIsLike(true);
     }
   };
 
@@ -71,18 +85,20 @@ export const PlaylistItem = (props) => {
         <S.TrackAlbum>
           <div className="track__album-link">{props.album}</div>
         </S.TrackAlbum>
-        <S.TrackTime onClick={() => handleLike()}>
-          {isLike ? (
-            <img
-              src="/music/img/like.svg"
-              className="track__time-svg"
-              alt="time"
-            />
-          ) : (
-            <svg className="track__time-svg" alt="time">
-              <use xlinkHref={`${'/music/img/icon/sprite.svg'}#icon-like`} />
-            </svg>
-          )}
+        <S.TrackTime>
+          <div onClick={(e) => handleLike(e)}>
+            {isLike ? (
+              <img
+                src="/music/img/like.svg"
+                className="track__time-svg"
+                alt="time"
+              />
+            ) : (
+              <svg className="track__time-svg" alt="time">
+                <use xlinkHref={`${'/music/img/icon/sprite.svg'}#icon-like`} />
+              </svg>
+            )}
+          </div>
 
           <span className="track__time-text">{props.time}</span>
         </S.TrackTime>

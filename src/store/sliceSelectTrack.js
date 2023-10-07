@@ -9,6 +9,9 @@ const sliceSelectTrack = createSlice({
     selectTrackFunction(state, action) {
       state.selectTrack = action.payload;
     },
+    selectTrackChange(state, action) {
+      state.selectTrack = action.payload;
+    },
   },
 });
 

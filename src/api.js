@@ -1,5 +1,5 @@
 export const baseURL = 'https://skypro-music-api.skyeng.tech';
-
+/* eslint-disable */
 export async function getPlaylistId(id) {
   const response = await fetch(`${baseURL}/catalog/track/${id}`);
 
@@ -104,23 +104,20 @@ export async function addFavorite(id, accessToken) {
   if (!response.ok) {
     if (response.status === 401) {
       const refteshToken = localStorage.getItem('refresh');
-      const token = await refreshingToken(refteshToken);
+      const access = await refreshingToken(refteshToken);
 
-      localStorage.setItem('access', token.access);
+      localStorage.setItem('access', access.access);
 
-      const access = localStorage.getItem('access');
-
-      fetch(
+      await fetch(
         `https://skypro-music-api.skyeng.tech/catalog/track/${id}/favorite/`,
         {
           method: 'POST',
           headers: {
-            Authorization: `Bearer ${access}`,
+            Authorization: `Bearer ${access.access}`,
             'content-type': 'application/json',
           },
         },
       );
-      // window.location.reload();
     } else {
       throw new Error('Ошибка сервера');
     }
@@ -130,7 +127,7 @@ export async function addFavorite(id, accessToken) {
 }
 
 export async function deleteFavorite(id, accessToken) {
-  const response = await fetch(`${baseURL}/catalog/track/${id}/favorite/`, {
+  let response = await fetch(`${baseURL}/catalog/track/${id}/favorite/`, {
     method: 'DELETE',
     headers: {
       Authorization: `Bearer ${accessToken}`,
@@ -141,29 +138,25 @@ export async function deleteFavorite(id, accessToken) {
   if (!response.ok) {
     if (response.status === 401) {
       const refteshToken = localStorage.getItem('refresh');
-      const token = await refreshingToken(refteshToken);
 
-      localStorage.setItem('access', token.access);
+      const access = await refreshingToken(refteshToken);
 
-      const access = localStorage.getItem('access');
+      localStorage.setItem('access', access.access);
 
-      fetch(
-        `https://skypro-music-api.skyeng.tech/catalog/track/${id}/favorite/`,
-        {
-          method: 'DELETE',
-          headers: {
-            Authorization: `Bearer ${access}`,
-            'content-type': 'application/json',
-          },
+      response = await fetch(`${baseURL}/catalog/track/${id}/favorite/`, {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${access.access}`,
+          'content-type': 'application/json',
         },
-      );
+      });
+      const data = await response.json();
+      return data;
       // window.location.reload();
-    } else {
-      throw new Error('Ошибка сервера');
     }
+    throw new Error('Ошибка сервера');
+  } else {
+    const data = await response.json();
+    return data;
   }
-
-  const data = await response.json();
-
-  return data;
 }

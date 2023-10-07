@@ -1,6 +1,6 @@
 // /* eslint-disable */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { baseURL, refreshingToken } from '../internal/api';
+import { baseURL, refreshingToken } from '../api';
 
 export const fetchFavoritePlaylist = createAsyncThunk(
   'favoritePlaylist/fetchFavoritePlaylist',
@@ -18,27 +18,26 @@ export const fetchFavoritePlaylist = createAsyncThunk(
       if (!response.ok) {
         if (response.status === 401) {
           const refteshToken = localStorage.getItem('refresh');
-          const token = await refreshingToken(refteshToken);
+          const access = await refreshingToken(refteshToken);
 
-          localStorage.setItem('access', token.access);
-
-          const access = localStorage.getItem('access');
+          localStorage.setItem('access', access.access);
 
           response = await fetch(
-            'https://skypro-music-api.skyeng.tech/catalog/track/favorite/all/',
+            `${baseURL}/track/favorite/all/`,
             {
               method: 'GET',
               headers: {
-                Authorization: `Bearer ${access}`,
+                Authorization: `Bearer ${access.access}`,
               },
             },
           );
 
           const data = await response.json();
           return data;
-          // window.location.reload();
         }
+
         throw new Error('Ошибка сервера');
+        
       } else {
         const data = await response.json();
         return data;

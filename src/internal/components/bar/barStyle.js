@@ -352,6 +352,7 @@ export const TrackPlayLikeDis = styled.div`
 
   .track-play__dislike {
     margin-left: 28.5px;
+    cursor: pointer;
   }
 
   .track-play__dislike-svg {

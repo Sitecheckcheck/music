@@ -1,6 +1,6 @@
 // /* eslint-disable */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { baseURL } from '../internal/api';
+import { baseURL } from '../api';
 
 export const fetchPlaylist = createAsyncThunk(
   'playlist/fetchPlaylist',
