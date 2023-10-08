@@ -5,8 +5,6 @@ import { isPlayingContext } from '../hooks/IsPlaying';
 import { tokenContext } from '../hooks/token';
 import { BarPlayer } from './components/bar/BarPlayer';
 import { Test } from './Test';
-// import { useGetFavoritePlaylistQuery } from '../services/favoritePlaylist';
-// import { refreshingToken } from '../api';
 
 export const logOut = () => {
   localStorage.removeItem('user');
@@ -21,11 +19,6 @@ export const App = () => {
   const selectTrack = useSelector((state) => state.selectTrack.selectTrack);
   const userName = useSelector((state) => state.userName.userName);
   const [playlist, setPlaylist] = useState(null);
-
-  // const refteshToken = localStorage.getItem('refresh');
-  // refreshingToken(refteshToken);
-
-  // useGetFavoritePlaylistQuery();
 
   return (
     <tokenContext.Provider value={{ token, setToken }}>

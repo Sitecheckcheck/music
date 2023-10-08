@@ -15,33 +15,31 @@ export const fetchFavoritePlaylist = createAsyncThunk(
         },
       });
 
-      if (!response.ok) {
-        if (response.status === 401) {
-          const refteshToken = localStorage.getItem('refresh');
-          const access = await refreshingToken(refteshToken);
-
-          localStorage.setItem('access', access.access);
-
-          response = await fetch(
-            `${baseURL}/track/favorite/all/`,
-            {
-              method: 'GET',
-              headers: {
-                Authorization: `Bearer ${access.access}`,
-              },
-            },
-          );
-
-          const data = await response.json();
-          return data;
-        }
-
+      if (!response.ok && response.status !== 401) {
         throw new Error('Ошибка сервера');
-        
-      } else {
+      }
+
+      if (response.status === 401) {
+        const refteshToken = localStorage.getItem('refresh');
+        const access = await refreshingToken(refteshToken);
+
+        localStorage.setItem('access', access.access);
+
+        response = await fetch(`${baseURL}/catalog/track/favorite/all/`, {
+          method: 'GET',
+          headers: {
+            Authorization: `Bearer ${access.access}`,
+          },
+        });
+
         const data = await response.json();
+
         return data;
       }
+
+      const data = await response.json();
+
+      return data;
     } catch (error) {
       return rejectWithValue(error.message);
     }

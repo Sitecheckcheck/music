@@ -8,6 +8,7 @@ import { selectTrackFunction } from '../../../store/sliceSelectTrack';
 import { fetchPlaylist } from '../../../store/slicePlaylist';
 import { addFavorite, deleteFavorite } from '../../../api';
 import { fetchFavoritePlaylist } from '../../../store/sliceFavoritePlaylist';
+import { useGetSelectionPlaylistQuery } from '../../../services/selectionPlaylistApi';
 
 export const BarPlayer = ({
   isLoadTrack,
@@ -40,10 +41,13 @@ export const BarPlayer = ({
     setIsLike(stared);
   }, [stared]);
 
+  const { refetch } = useGetSelectionPlaylistQuery(3);
+
   const handleLike = () => {
     const accessToken = localStorage.getItem('access');
     if (isLike) {
       deleteFavorite(selectTrack.id, accessToken).then(() => {
+        
         dispatch(fetchPlaylist());
         dispatch(fetchFavoritePlaylist()).then(() => {
           setIsLike(null);
@@ -51,12 +55,14 @@ export const BarPlayer = ({
       });
     } else {
       addFavorite(selectTrack.id, accessToken).then(() => {
+        
         dispatch(fetchPlaylist());
         dispatch(fetchFavoritePlaylist()).then(() => {
           setIsLike(true);
         });
       });
     }
+    refetch();
   };
 
   function strPadLeft(string, pad, length) {
@@ -280,26 +286,18 @@ export const BarPlayer = ({
                       </svg>
                     </div>
                     <div className="track-play__author">
-                      <a className="track-play__author-link" href="http://">
+                      <p className="track-play__author-link" href="http://">
                         {selectTrack.name}
-                      </a>
+                      </p>
                     </div>
                     <div className="track-play__album">
-                      <a className="track-play__album-link" href="http://">
+                      <p className="track-play__album-link" href="http://">
                         {selectTrack.author}
-                      </a>
+                      </p>
                     </div>
                   </S.TrackPlayContain>
                 )}
                 <S.TrackPlayLikeDis>
-                  {/* <div className="track-play__like _btn-icon">
-                    <svg className="track-play__like-svg" alt="like">
-                      <use
-                        xlinkHref={`${'/music/img/icon/sprite.svg'}#icon-like`}
-                      />
-                    </svg>
-                  </div> */}
-
                   <div
                     className="track-play__dislike _btn-icon"
                     onClick={() => {

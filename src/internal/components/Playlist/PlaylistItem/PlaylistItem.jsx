@@ -86,7 +86,12 @@ export const PlaylistItem = (props) => {
           <div className="track__album-link">{props.album}</div>
         </S.TrackAlbum>
         <S.TrackTime>
-          <div onClick={(e) => handleLike(e)}>
+          <div
+            onClick={(e) => {
+              e.stopPropagation();
+              handleLike();
+            }}
+          >
             {isLike ? (
               <img
                 src="/music/img/like.svg"

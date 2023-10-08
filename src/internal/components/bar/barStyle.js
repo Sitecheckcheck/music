@@ -313,7 +313,7 @@ export const TrackPlayContain = styled.div`
     /* -ms-grid-row: 2;
     -ms-grid-column: 2; */
     grid-area: album;
-    min-width: 49px;
+    min-width: 100px;
   }
 
   .track-play__album-link {

@@ -109,7 +109,7 @@ export async function addFavorite(id, accessToken) {
       localStorage.setItem('access', access.access);
 
       await fetch(
-        `https://skypro-music-api.skyeng.tech/catalog/track/${id}/favorite/`,
+        `${baseURL}/catalog/track/${id}/favorite/`,
         {
           method: 'POST',
           headers: {
