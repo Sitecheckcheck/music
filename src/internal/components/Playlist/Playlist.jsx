@@ -1,30 +1,24 @@
-// /* eslint-disable */
+/* eslint-disable */
+import { useEffect, useState } from 'react';
 import { PlaylistItemEmpty } from './PlaylistItem/PlayListItemEmpty';
 import { Filter } from './filter/Filter';
 import * as S from '../centerblock/centerBlockStyle';
 import { PlaylistItem } from './PlaylistItem/PlaylistItem';
 
 export const Playlist = ({ list, status, error, setPlaylist }) => {
-  const playListItems = list.map((item) => (
-    <PlaylistItem
-      list={list}
-      setPlaylist={setPlaylist}
-      item={list.filter((x) => x.id === item.id)[0]}
-      key={item.id}
-      track={item.name}
-      artist={item.author}
-      album={item.album}
-      time={`${Math.floor(item.duration_in_seconds / 60)}:${
-        item.duration_in_seconds % 60 < 10
-          ? `0${item.duration_in_seconds % 60}`
-          : item.duration_in_seconds % 60
-      }`}
-    />
-  ));
+  
+
+  const [currentPlaylist, setCurrentPlaylist] = useState([]);
+
+  useEffect(() => {
+    if (status === "resolved") {setCurrentPlaylist(list)}
+  },[list])
+
+  
 
   return (
     <>
-      <Filter />
+      <Filter playlist={list} setCurrentPlaylist={setCurrentPlaylist} setPlaylist={setPlaylist} />
 
       <div className="centerblock__content">
         <S.ContentTitle>
@@ -51,7 +45,24 @@ export const Playlist = ({ list, status, error, setPlaylist }) => {
         )}
 
         {status === 'resolved' && (
-          <S.ContentPlaylist>{playListItems}</S.ContentPlaylist>
+          <S.ContentPlaylist>
+            {currentPlaylist.map((item) => (
+              <PlaylistItem
+                list={currentPlaylist}
+                setPlaylist={setPlaylist}
+                item={currentPlaylist.filter((x) => x.id === item.id)[0]}
+                key={item.id}
+                track={item.name}
+                artist={item.author}
+                album={item.album}
+                time={`${Math.floor(item.duration_in_seconds / 60)}:${
+                  item.duration_in_seconds % 60 < 10
+                    ? `0${item.duration_in_seconds % 60}`
+                    : item.duration_in_seconds % 60
+                }`}
+              />
+            ))}
+          </S.ContentPlaylist>
         )}
       </div>
     </>

@@ -13,7 +13,7 @@ import { ListCenterBlock } from '../../components/listBlock/listCenterBlock';
 export const ListMusic = ({ setPlaylist }) => {
   const params = useParams();
 
- 
+  
 
   const ListName = ListNames.find(
     (listname) => listname.id === Number(params.id),

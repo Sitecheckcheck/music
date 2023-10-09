@@ -9,16 +9,7 @@ export const SelectionPlaylistApi = createApi({
   endpoints: (builder) => ({
     getSelectionPlaylist: builder.query({
       query: (id) => `catalog/selection/${id}/`,
-    //   providesTags: (result) =>
-    //     // console.log(result.items),
-    //     result
-    //       ? [
-    //         ...result.items.map(({ id }) => ({ type: 'SelectPlaylist', id })),
-    //         { type: 'SelectPlaylist', id: 'LIST' },
-    //       ]
-    //       : [{ type: 'SelectPlaylist', id: 'LIST' }],
     }),
-    // invalidatesTags: ['SelectPlaylist'],
   }),
 });
 

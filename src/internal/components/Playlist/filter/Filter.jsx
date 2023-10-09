@@ -1,10 +1,11 @@
+/* eslint-disable */
 import { useState } from 'react';
 import { FilterAuthor } from './FilterAuthor';
 import { FilterGenre } from './FilterGenre';
 import { FilterYear } from './FilterYear';
 import { CenterblockFilter, FilterButton } from './filterStyle';
 
-export const Filter = () => {
+export const Filter = ({ playlist, setCurrentPlaylist, setPlaylist }) => {
   const [visibleFilter, setVisibleFilter] = useState(null);
 
   const toggleVisibleFilter = (filter) => {
@@ -21,13 +22,25 @@ export const Filter = () => {
         >
           Исполнителю
         </FilterButton>
-        {visibleFilter === 'Author' && <FilterAuthor />}
+        {visibleFilter === 'Author' && (
+          <FilterAuthor
+            playlist={playlist}
+            setCurrentPlaylist={setCurrentPlaylist}
+            setPlaylist={setPlaylist}
+          />
+        )}
       </div>
       <div>
         <FilterButton type="button" onClick={() => toggleVisibleFilter('Year')}>
           году выпуска
         </FilterButton>
-        {visibleFilter === 'Year' && <FilterYear />}
+        {visibleFilter === 'Year' && (
+          <FilterYear
+            playlist={playlist}
+            setCurrentPlaylist={setCurrentPlaylist}
+            setPlaylist={setPlaylist}
+          />
+        )}
       </div>
       <div>
         <FilterButton
@@ -36,7 +49,13 @@ export const Filter = () => {
         >
           жанру
         </FilterButton>
-        {visibleFilter === 'Genre' && <FilterGenre />}
+        {visibleFilter === 'Genre' && (
+          <FilterGenre
+            playlist={playlist}
+            setCurrentPlaylist={setCurrentPlaylist}
+            setPlaylist={setPlaylist}
+          />
+        )}
       </div>
     </CenterblockFilter>
   );

@@ -36,18 +36,16 @@ export const BarPlayer = ({
     : true;
 
   const [isLike, setIsLike] = useState(stared);
+  const { refetch } = useGetSelectionPlaylistQuery(3)
 
   useEffect(() => {
     setIsLike(stared);
   }, [stared]);
 
-  const { refetch } = useGetSelectionPlaylistQuery(3);
-
   const handleLike = () => {
     const accessToken = localStorage.getItem('access');
     if (isLike) {
       deleteFavorite(selectTrack.id, accessToken).then(() => {
-        
         dispatch(fetchPlaylist());
         dispatch(fetchFavoritePlaylist()).then(() => {
           setIsLike(null);
@@ -55,14 +53,12 @@ export const BarPlayer = ({
       });
     } else {
       addFavorite(selectTrack.id, accessToken).then(() => {
-        
         dispatch(fetchPlaylist());
         dispatch(fetchFavoritePlaylist()).then(() => {
           setIsLike(true);
         });
       });
     }
-    refetch();
   };
 
   function strPadLeft(string, pad, length) {

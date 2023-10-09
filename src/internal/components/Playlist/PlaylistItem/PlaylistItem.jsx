@@ -9,6 +9,7 @@ import { fetchFavoritePlaylist } from '../../../../store/sliceFavoritePlaylist';
 import { fetchPlaylist } from '../../../../store/slicePlaylist';
 
 export const PlaylistItem = (props) => {
+
   const userName = useSelector((state) => state.userName.userName);
   const stared = props.item.stared_user
     ? props.item.stared_user.find((element) => element.email === userName)

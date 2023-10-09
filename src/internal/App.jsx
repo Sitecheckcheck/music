@@ -23,7 +23,11 @@ export const App = () => {
   return (
     <tokenContext.Provider value={{ token, setToken }}>
       <isPlayingContext.Provider value={{ isPlaying, setIsPlaying }}>
-        <AppRoutes user={userName} setPlaylist={setPlaylist} token={token} />
+        <AppRoutes
+          user={userName}
+          setPlaylist={setPlaylist}
+          token={token}
+        />
         {selectTrack != null ? (
           <BarPlayer
             isLoadTrack={isLoadTrack}

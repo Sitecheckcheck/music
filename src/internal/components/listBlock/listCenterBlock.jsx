@@ -1,10 +1,11 @@
 /* eslint-disable */
+
 import { useGetSelectionPlaylistQuery } from '../../../services/selectionPlaylistApi';
 import { Playlist } from '../Playlist/Playlist';
 import * as S from '../centerblock/centerBlockStyle';
 
 export const ListCenterBlock = ({ ListName, setPlaylist }) => {
-  
+
   const {
     data = [],
     error,
@@ -28,7 +29,8 @@ export const ListCenterBlock = ({ ListName, setPlaylist }) => {
         <Playlist
           setPlaylist={setPlaylist}
           status={isLoading ? 'loading' : 'resolved'}
-          list={isLoading ? [] : data.items}
+          list={!isLoading && data.items ? data.items : []}
+          // list={data.items}
         />
       )}
     </S.MainCenterblock>

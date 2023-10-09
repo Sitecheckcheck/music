@@ -73,6 +73,7 @@ export const Filters = styled.div`
     line-height: 24px;
     margin-bottom: 28px;
     display: block;
+    cursor: pointer;
   }
 
   .filters-item-active {
