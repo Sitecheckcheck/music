@@ -35,6 +35,7 @@ export const FilterButton = styled.button`
   width: 144px;
   height: 39px;
   margin-right: 10px;
+  position: relative;
 
   &:hover {
     border-color: #d9b6ff;
@@ -76,6 +77,15 @@ export const Filters = styled.div`
     cursor: pointer;
   }
 
+  .filters-item-choose {
+    color: #b672ff;
+    font-size: 20px;
+    line-height: 24px;
+    margin-bottom: 28px;
+    display: block;
+    cursor: pointer;
+  }
+
   .filters-item-active {
     color: #ad61ff;
   }
@@ -95,4 +105,22 @@ export const Filters = styled.div`
     width: 4px;
     height: 65px;
   }
+`;
+
+export const StyledFilterCounter = styled.div`
+  background: #ad61ff;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  color: #fff;
+  position: absolute;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 13px;
+  top: -10px;
+  right: -12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;

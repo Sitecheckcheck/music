@@ -18,7 +18,7 @@ export const Playlist = ({ list, status, error, setPlaylist }) => {
 
   return (
     <>
-      <Filter playlist={list} setCurrentPlaylist={setCurrentPlaylist} setPlaylist={setPlaylist} />
+      <Filter playlist={list} setCurrentPlaylist={setCurrentPlaylist} setPlaylist={setPlaylist} currentPlaylist={currentPlaylist} />
 
       <div className="centerblock__content">
         <S.ContentTitle>
