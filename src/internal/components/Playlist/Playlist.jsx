@@ -1,4 +1,4 @@
-/* eslint-disable */
+// /* eslint-disable */
 import { useEffect, useState } from 'react';
 import { PlaylistItemEmpty } from './PlaylistItem/PlayListItemEmpty';
 import { Filter } from './filter/Filter';
@@ -6,19 +6,22 @@ import * as S from '../centerblock/centerBlockStyle';
 import { PlaylistItem } from './PlaylistItem/PlaylistItem';
 
 export const Playlist = ({ list, status, error, setPlaylist }) => {
-  
-
   const [currentPlaylist, setCurrentPlaylist] = useState([]);
 
   useEffect(() => {
-    if (status === "resolved") {setCurrentPlaylist(list)}
-  },[list])
-
-  
+    if (status === 'resolved') {
+      setCurrentPlaylist(list);
+    }
+  }, [list]);
 
   return (
     <>
-      <Filter playlist={list} setCurrentPlaylist={setCurrentPlaylist} setPlaylist={setPlaylist} currentPlaylist={currentPlaylist} />
+      <Filter
+        playlist={list}
+        setCurrentPlaylist={setCurrentPlaylist}
+        setPlaylist={setPlaylist}
+        currentPlaylist={currentPlaylist}
+      />
 
       <div className="centerblock__content">
         <S.ContentTitle>

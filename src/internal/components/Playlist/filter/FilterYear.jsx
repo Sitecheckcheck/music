@@ -1,40 +1,83 @@
 /* eslint-disable */
 // import tracks from '../../../../Tracks';
+import { useEffect } from 'react';
 import { Filters } from './filterStyle';
+import { useAuthorContext } from '../../../../hooks/authorState';
+import { useGanreContext } from '../../../../hooks/ganreState';
+import { useDateContext } from '../../../../hooks/dateState';
 
-export const FilterYear = ({ playlist, setCurrentPlaylist, setPlaylist }) => {
+export const FilterYear = ({
+  playlist,
+  setCurrentPlaylist,
+  setPlaylist,
+  currentPlaylist,
+}) => {
+  const { dateState, setDateState } = useDateContext();
+  const { authorState } = useAuthorContext();
+  const { ganreState } = useGanreContext();
 
-  const arr = playlist.map((item) => item.release_date);
-
-  const arr11 = arr.map((item) => item ? item.substring(0, 4) : '-')
- 
-  const arr2 = arr11.filter((item, index) => arr11.indexOf(item) === index).sort();
+  const arr3 = currentPlaylist.filter((x) => x.release_date);
+  const arr4 =
+    ganreState.length === 0 && authorState.length === 0
+      ? playlist
+      : ganreState.length === 0
+      ? playlist.filter((el) => authorState.includes(el.author))
+      : authorState.length === 0
+      ? playlist.filter((el) => ganreState.includes(el.genre))
+      : playlist.filter(
+          (el) =>
+            ganreState.includes(el.genre) || authorState.includes(el.author),
+        );
 
   const handleFilter = (item) => {
-    if (item == 'All') {
-      setCurrentPlaylist(playlist);
+    if (item === 'Default') {
+      setDateState([]);
+      setCurrentPlaylist(arr4);
       setPlaylist(playlist);
+    } else if (item === 'Сначала старые') {
+      arr3.sort(
+        (a, b) => parseFloat(a.release_date) - parseFloat(b.release_date),
+      );
+      setCurrentPlaylist(arr3);
+      setDateState([item]);
     } else {
-      const newPlaylist = playlist.filter((el) => el.release_date ? el.release_date.substring(0, 4) === item : "-");
-      setCurrentPlaylist(newPlaylist);
-      setPlaylist(newPlaylist);
+      arr3.sort(
+        (a, b) => parseFloat(b.release_date) - parseFloat(a.release_date),
+      );
+      setCurrentPlaylist(arr3);
+      setDateState([item]);
     }
   };
-
-  const filterYearItems = arr2.map((item) => (
-    <li key={item} className="filters-item" onClick={() => handleFilter(item)}>
-      {item}
-    </li>
-  ));
 
   return (
     <Filters>
       <ul className="filtersList">
-      <li className="filters-item" onClick={() => handleFilter('All')}>
-          All
+        <li
+          className="filters-item-all"
+          onClick={() => handleFilter('Default')}
+        >
+          По умолчанию
         </li>
-
-        {filterYearItems}
+        <li
+          className={
+            dateState.includes('Сначала старые')
+              ? 'filters-item-choose'
+              : 'filters-item'
+          }
+          onClick={() => handleFilter('Сначала старые')}
+        >
+          Сначала старые
+        </li>
+        <li
+          className={
+            dateState.includes('Сначала новые')
+              ? 'filters-item-choose'
+              : 'filters-item'
+          }
+          onClick={() => handleFilter('Сначала новые')}
+        >
+          Сначала новые
+        </li>
       </ul>
     </Filters>
   );

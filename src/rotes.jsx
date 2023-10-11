@@ -25,9 +25,7 @@ export const AppRoutes = (props) => (
     <Route element={<ProtectedRoute isAllowed={Boolean(props.token)} />}>
       <Route
         path="playlist/:id"
-        element={
-          <ListMusic setPlaylist={props.setPlaylist} />
-        }
+        element={<ListMusic setPlaylist={props.setPlaylist} />}
       />
     </Route>
   </Routes>

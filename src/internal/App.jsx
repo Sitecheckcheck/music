@@ -4,6 +4,7 @@ import { AppRoutes } from '../rotes';
 import { isPlayingContext } from '../hooks/IsPlaying';
 import { tokenContext } from '../hooks/token';
 import { ganreContext } from '../hooks/ganreState';
+import { dateContext } from '../hooks/dateState';
 import { authorContext } from '../hooks/authorState';
 import { BarPlayer } from './components/bar/BarPlayer';
 import { Test } from './Test';
@@ -23,26 +24,29 @@ export const App = () => {
   const [playlist, setPlaylist] = useState(null);
   const [ganreState, setGanreState] = useState([]);
   const [authorState, setAuthorState] = useState([]);
+  const [dateState, setDateState] = useState([]);
 
   return (
     <tokenContext.Provider value={{ token, setToken }}>
       <isPlayingContext.Provider value={{ isPlaying, setIsPlaying }}>
         <ganreContext.Provider value={{ ganreState, setGanreState }}>
           <authorContext.Provider value={{ authorState, setAuthorState }}>
-            <AppRoutes
-              user={userName}
-              setPlaylist={setPlaylist}
-              token={token}
-            />
-            {selectTrack != null ? (
-              <BarPlayer
-                isLoadTrack={isLoadTrack}
-                setIsLoadTrack={setIsLoadTrack}
-                playlist={playlist}
+            <dateContext.Provider value={{ dateState, setDateState }}>
+              <AppRoutes
+                user={userName}
                 setPlaylist={setPlaylist}
+                token={token}
               />
-            ) : null}
-            <Test />
+              {selectTrack != null ? (
+                <BarPlayer
+                  isLoadTrack={isLoadTrack}
+                  setIsLoadTrack={setIsLoadTrack}
+                  playlist={playlist}
+                  setPlaylist={setPlaylist}
+                />
+              ) : null}
+              <Test />
+            </dateContext.Provider>
           </authorContext.Provider>
         </ganreContext.Provider>
       </isPlayingContext.Provider>

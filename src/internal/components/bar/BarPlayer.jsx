@@ -36,7 +36,7 @@ export const BarPlayer = ({
     : true;
 
   const [isLike, setIsLike] = useState(stared);
-  const { refetch } = useGetSelectionPlaylistQuery(3)
+  const { refetch } = useGetSelectionPlaylistQuery(3);
 
   useEffect(() => {
     setIsLike(stared);

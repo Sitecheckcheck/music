@@ -1,13 +1,22 @@
-/* eslint-disable */
+// /* eslint-disable */
 import { useState } from 'react';
 import { FilterAuthor } from './FilterAuthor';
 import { FilterGenre } from './FilterGenre';
 import { FilterYear } from './FilterYear';
-import { CenterblockFilter, FilterButton, StyledFilterCounter } from './filterStyle';
+import {
+  CenterblockFilter,
+  FilterButton,
+  StyledFilterCounter,
+} from './filterStyle';
 import { useAuthorContext } from '../../../../hooks/authorState';
 import { useGanreContext } from '../../../../hooks/ganreState';
 
-export const Filter = ({ playlist, setCurrentPlaylist, setPlaylist, currentPlaylist }) => {
+export const Filter = ({
+  playlist,
+  setCurrentPlaylist,
+  setPlaylist,
+  currentPlaylist,
+}) => {
   const [visibleFilter, setVisibleFilter] = useState(null);
 
   const toggleVisibleFilter = (filter) => {
@@ -50,6 +59,7 @@ export const Filter = ({ playlist, setCurrentPlaylist, setPlaylist, currentPlayl
             playlist={playlist}
             setCurrentPlaylist={setCurrentPlaylist}
             setPlaylist={setPlaylist}
+            currentPlaylist={currentPlaylist}
           />
         )}
       </div>
@@ -70,6 +80,7 @@ export const Filter = ({ playlist, setCurrentPlaylist, setPlaylist, currentPlayl
             playlist={playlist}
             setCurrentPlaylist={setCurrentPlaylist}
             setPlaylist={setPlaylist}
+            currentPlaylist={currentPlaylist}
           />
         )}
       </div>

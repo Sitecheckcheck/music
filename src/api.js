@@ -108,16 +108,13 @@ export async function addFavorite(id, accessToken) {
 
       localStorage.setItem('access', access.access);
 
-      await fetch(
-        `${baseURL}/catalog/track/${id}/favorite/`,
-        {
-          method: 'POST',
-          headers: {
-            Authorization: `Bearer ${access.access}`,
-            'content-type': 'application/json',
-          },
+      await fetch(`${baseURL}/catalog/track/${id}/favorite/`, {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${access.access}`,
+          'content-type': 'application/json',
         },
-      );
+      });
     } else {
       throw new Error('Ошибка сервера');
     }

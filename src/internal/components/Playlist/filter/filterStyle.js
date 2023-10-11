@@ -77,6 +77,16 @@ export const Filters = styled.div`
     cursor: pointer;
   }
 
+  .filters-item-all {
+    color: #9999;
+    font-size: 20px;
+    line-height: 24px;
+    margin-bottom: 28px;
+    display: block;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
   .filters-item-choose {
     color: #b672ff;
     font-size: 20px;

@@ -5,14 +5,11 @@ import { Playlist } from '../Playlist/Playlist';
 import * as S from '../centerblock/centerBlockStyle';
 
 export const ListCenterBlock = ({ ListName, setPlaylist }) => {
-
   const {
     data = [],
     error,
     isLoading,
   } = useGetSelectionPlaylistQuery(ListName.id);
-
-  
 
   return (
     <S.MainCenterblock>
