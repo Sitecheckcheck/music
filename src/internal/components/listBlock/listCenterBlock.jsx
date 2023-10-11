@@ -13,13 +13,6 @@ export const ListCenterBlock = ({ ListName, setPlaylist }) => {
 
   return (
     <S.MainCenterblock>
-      <div className="centerblock__search search">
-        <S.SearchSvg>
-          <use xlinkHref={`${'/music/img/icon/sprite.svg'}#icon-search`} />
-        </S.SearchSvg>
-        <S.SearchText type="search" placeholder="Поиск" name="search" />
-      </div>
-      <h2 className="centerblock__h2">{ListName.listName}</h2>
       {error ? (
         <h1>{error.error}</h1>
       ) : (
@@ -27,7 +20,7 @@ export const ListCenterBlock = ({ ListName, setPlaylist }) => {
           setPlaylist={setPlaylist}
           status={isLoading ? 'loading' : 'resolved'}
           list={!isLoading && data.items ? data.items : []}
-          // list={data.items}
+          listName={ListName.listName}
         />
       )}
     </S.MainCenterblock>

@@ -13,22 +13,15 @@ export const CenterBlock = ({ setPlaylist }) => {
   }, [dispatch]);
 
   const { playlist, status, error } = useSelector((state) => state.playlist);
-
+  
   return (
     <S.MainCenterblock>
-      <div className="centerblock__search search">
-        <S.SearchSvg>
-          <use xlinkHref={`${'/music/img/icon/sprite.svg'}#icon-search`} />
-        </S.SearchSvg>
-        <S.SearchText type="search" placeholder="Поиск" name="search" />
-      </div>
-      <h2 className="centerblock__h2">Треки</h2>
-
       <Playlist
         status={status}
         error={error}
         list={playlist}
         setPlaylist={setPlaylist}
+        listName="Треки"
       />
     </S.MainCenterblock>
   );

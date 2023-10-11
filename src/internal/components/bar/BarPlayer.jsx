@@ -8,7 +8,6 @@ import { selectTrackFunction } from '../../../store/sliceSelectTrack';
 import { fetchPlaylist } from '../../../store/slicePlaylist';
 import { addFavorite, deleteFavorite } from '../../../api';
 import { fetchFavoritePlaylist } from '../../../store/sliceFavoritePlaylist';
-import { useGetSelectionPlaylistQuery } from '../../../services/selectionPlaylistApi';
 
 export const BarPlayer = ({
   isLoadTrack,
@@ -36,28 +35,23 @@ export const BarPlayer = ({
     : true;
 
   const [isLike, setIsLike] = useState(stared);
-  const { refetch } = useGetSelectionPlaylistQuery(3);
 
   useEffect(() => {
     setIsLike(stared);
   }, [stared]);
 
-  const handleLike = () => {
+  const handleLike = async () => {
     const accessToken = localStorage.getItem('access');
     if (isLike) {
-      deleteFavorite(selectTrack.id, accessToken).then(() => {
-        dispatch(fetchPlaylist());
-        dispatch(fetchFavoritePlaylist()).then(() => {
-          setIsLike(null);
-        });
-      });
+      await deleteFavorite(selectTrack.id, accessToken);
+      dispatch(fetchPlaylist());
+      dispatch(fetchFavoritePlaylist());
+      setIsLike(null);
     } else {
-      addFavorite(selectTrack.id, accessToken).then(() => {
-        dispatch(fetchPlaylist());
-        dispatch(fetchFavoritePlaylist()).then(() => {
-          setIsLike(true);
-        });
-      });
+      await addFavorite(selectTrack.id, accessToken);
+      dispatch(fetchPlaylist());
+      dispatch(fetchFavoritePlaylist());
+      setIsLike(true);
     }
   };
 

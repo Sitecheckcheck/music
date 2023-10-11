@@ -1,4 +1,4 @@
-// /* eslint-disable */
+/* eslint-disable */
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import * as S from './playliststyle';
@@ -12,7 +12,7 @@ export const PlaylistItem = (props) => {
   const userName = useSelector((state) => state.userName.userName);
   const stared = props.item.stared_user
     ? props.item.stared_user.find((element) => element.email === userName)
-    : true;
+    : false;
   const dispatch = useDispatch();
   const selectTrack = useSelector((state) => state.selectTrack.selectTrack);
   const isPlayingContext = useIsPlayingContext();
