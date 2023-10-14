@@ -1,19 +1,17 @@
 // /* eslint-disable */
-import { useSelector } from 'react-redux';
 import * as S from '../centerblock/centerBlockStyle';
 import { Playlist } from '../Playlist/Playlist';
+import { useGetPlaylistFavoriteQuery } from '../../../services/playlistApi';
 
 export const MyTracksCenterBlock = ({ setPlaylist }) => {
-  const { favoritePlaylist, status, error } = useSelector(
-    (state) => state.favoritePlaylist,
-  );
+  const { data = [], error, isLoading } = useGetPlaylistFavoriteQuery();
 
   return (
     <S.MainCenterblock>
       <Playlist
-        status={status}
+        status={isLoading ? 'loading' : 'resolved'}
         error={error}
-        list={favoritePlaylist}
+        list={data}
         setPlaylist={setPlaylist}
         listName="Мои треки"
       />

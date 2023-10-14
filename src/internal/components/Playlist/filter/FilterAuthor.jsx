@@ -27,16 +27,16 @@ export const FilterAuthor = ({ playlist, setCurrentPlaylist, setPlaylist }) => {
 
   useEffect(() => {
     let arrPlaylist =
-      ganreState.length === 0 && authorState.length === 0 
+      ganreState.length === 0 && authorState.length === 0
         ? playlist
         : ganreState.length === 0
-          ? playlist.filter((el) => authorState.includes(el.author))
-          : authorState.length === 0
-            ? playlist.filter((el) => ganreState.includes(el.genre))
-            : playlist.filter(
-              (el) =>
-                ganreState.includes(el.genre) || authorState.includes(el.author),
-            );
+        ? playlist.filter((el) => authorState.includes(el.author))
+        : authorState.length === 0
+        ? playlist.filter((el) => ganreState.includes(el.genre))
+        : playlist.filter(
+            (el) =>
+              ganreState.includes(el.genre) || authorState.includes(el.author),
+          );
 
     if (dateState.includes('Сначала старые')) {
       const arr4 = arrPlaylist.filter((x) => x.release_date);
