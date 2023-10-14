@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/music/static/css/main.13cad0a6.css",
-    "main.js": "/music/static/js/main.b374bac5.js",
+    "main.js": "/music/static/js/main.29a29b53.js",
     "static/media/Stratos-Regular.woff": "/music/static/media/Stratos-Regular.d20eb275042a513c8d55.woff",
     "static/media/Stratos-Regular.woff2": "/music/static/media/Stratos-Regular.ec4882423f79afa46408.woff2",
     "index.html": "/music/index.html",
     "main.13cad0a6.css.map": "/music/static/css/main.13cad0a6.css.map",
-    "main.b374bac5.js.map": "/music/static/js/main.b374bac5.js.map"
+    "main.29a29b53.js.map": "/music/static/js/main.29a29b53.js.map"
   },
   "entrypoints": [
     "static/css/main.13cad0a6.css",
-    "static/js/main.b374bac5.js"
+    "static/js/main.29a29b53.js"
   ]
 }
