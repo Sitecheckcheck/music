@@ -1,4 +1,4 @@
-// /* eslint-disable */
+/* eslint-disable */
 import { useState } from 'react';
 import { FilterAuthor } from './FilterAuthor';
 import { FilterGenre } from './FilterGenre';
@@ -10,6 +10,7 @@ import {
 } from './filterStyle';
 import { useAuthorContext } from '../../../../hooks/authorState';
 import { useGanreContext } from '../../../../hooks/ganreState';
+import { useDateContext } from '../../../../hooks/dateState';
 
 export const Filter = ({
   playlist,
@@ -25,6 +26,7 @@ export const Filter = ({
 
   const { authorState } = useAuthorContext();
   const { ganreState } = useGanreContext();
+  const { dateState } = useDateContext();
 
   return (
     <CenterblockFilter>
@@ -53,6 +55,11 @@ export const Filter = ({
       <div>
         <FilterButton type="button" onClick={() => toggleVisibleFilter('Year')}>
           году выпуска
+          {dateState.length > 0 ? (
+            <StyledFilterCounter></StyledFilterCounter>
+          ) : (
+            ''
+          )}
         </FilterButton>
         {visibleFilter === 'Year' && (
           <FilterYear

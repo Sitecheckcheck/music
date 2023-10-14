@@ -9,12 +9,12 @@ import { useAuthorContext } from '../../../hooks/authorState';
 import { useDateContext } from '../../../hooks/dateState';
 
 export const Playlist = ({ list, status, error, setPlaylist, listName }) => {
-  const [currentPlaylist, setCurrentPlaylist] = useState([]);
+  const [currentPlaylist, setCurrentPlaylist] = useState(list);
   const [search, setSearch] = useState('');
 
-  const { ganreState } = useGanreContext();
-  const { authorState } = useAuthorContext();
-  const { dateState } = useDateContext();
+  const { ganreState, setGanreState } = useGanreContext();
+  const { authorState, setAuthorState } = useAuthorContext();
+  const { dateState, setDateState } = useDateContext();
 
   const filterCheck = (list) => {
     let arrPlaylist =
@@ -47,6 +47,12 @@ export const Playlist = ({ list, status, error, setPlaylist, listName }) => {
   useEffect(() => {
     filterCheck(list);
   }, [list, ganreState, authorState]);
+
+  useEffect(() => {
+    setGanreState([]);
+    setAuthorState([]);
+    setDateState([]);
+  }, [listName]);
 
   useEffect(() => {
     if (search !== '') {

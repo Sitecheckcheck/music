@@ -8,6 +8,7 @@ import {
   useAddFavoriteMutation,
   useDeleteFavoriteMutation,
 } from '../../../../services/playlistApi';
+import { playlistForShaffleFunction } from '../../../../store/slicePlaylistForShaffle';
 
 export const PlaylistItem = (props) => {
   const [addFavorite] = useAddFavoriteMutation();
@@ -56,6 +57,7 @@ export const PlaylistItem = (props) => {
               onClick={() => {
                 props.setPlaylist(props.list);
                 dispatch(selectTrackFunction(props.item));
+                dispatch(playlistForShaffleFunction(props.list));
               }}
             >
               {props.track}

@@ -27,6 +27,7 @@ export const BarPlayer = ({
   const { isPlaying } = isPlayingContext;
   const { setIsPlaying } = isPlayingContext;
   const selectTrack = useSelector((state) => state.selectTrack.selectTrack);
+  const playlistForShaffle = useSelector((state) => state.playlistForShaffle);
   const dispatch = useDispatch();
   const [firstPlaylist] = useState(playlist);
   const userName = useSelector((state) => state.userName.userName);
@@ -42,6 +43,10 @@ export const BarPlayer = ({
   useEffect(() => {
     setIsLike(stared);
   }, [stared]);
+
+  useEffect(() => {
+    setShaffle(false);
+  }, [playlistForShaffle]);
 
   const handleLike = async () => {
     const accessToken = localStorage.getItem('access');
@@ -107,7 +112,7 @@ export const BarPlayer = ({
         dispatch(selectTrackFunction(nextTrack));
         setIsLoadTrack(false);
       } else {
-        // dispatch(selectTrackFunction(playlist[0]));
+        dispatch(selectTrackFunction(playlist[0]));
         setIsLoadTrack(false);
       }
     });

@@ -6,12 +6,18 @@ import { useGanreContext } from '../../../../hooks/ganreState';
 import { useDateContext } from '../../../../hooks/dateState';
 
 export const FilterAuthor = ({ playlist, setCurrentPlaylist, setPlaylist }) => {
-  const arr = playlist.map((item) => item.author);
+  const { ganreState } = useGanreContext();
+
+  const arrFromOtherFilter =
+    ganreState.length !== 0
+      ? playlist.filter((elem) => ganreState.includes(elem.genre))
+      : playlist;
+
+  const arr = arrFromOtherFilter.map((item) => item.author);
+
   const arr2 = arr.filter((item, index) => arr.indexOf(item) === index).sort();
 
   const { authorState, setAuthorState } = useAuthorContext();
-  const { ganreState } = useGanreContext();
-  const { dateState } = useDateContext();
 
   const handleFilter = (item) => {
     if (item === 'All') {
@@ -25,33 +31,33 @@ export const FilterAuthor = ({ playlist, setCurrentPlaylist, setPlaylist }) => {
     }
   };
 
-  useEffect(() => {
-    let arrPlaylist =
-      ganreState.length === 0 && authorState.length === 0
-        ? playlist
-        : ganreState.length === 0
-        ? playlist.filter((el) => authorState.includes(el.author))
-        : authorState.length === 0
-        ? playlist.filter((el) => ganreState.includes(el.genre))
-        : playlist.filter(
-            (el) =>
-              ganreState.includes(el.genre) || authorState.includes(el.author),
-          );
+  // useEffect(() => {
+  //   let arrPlaylist =
+  //     ganreState.length === 0 && authorState.length === 0
+  //       ? playlist
+  //       : ganreState.length === 0
+  //       ? playlist.filter((el) => authorState.includes(el.author))
+  //       : authorState.length === 0
+  //       ? playlist.filter((el) => ganreState.includes(el.genre))
+  //       : playlist.filter(
+  //           (el) =>
+  //             ganreState.includes(el.genre) || authorState.includes(el.author),
+  //         );
 
-    if (dateState.includes('Сначала старые')) {
-      const arr4 = arrPlaylist.filter((x) => x.release_date);
-      arrPlaylist = arr4.sort(
-        (a, b) => parseFloat(a.release_date) - parseFloat(b.release_date),
-      );
-    } else if (dateState.includes('Сначала новые')) {
-      const arr4 = arrPlaylist.filter((x) => x.release_date);
-      arrPlaylist = arr4.sort(
-        (a, b) => parseFloat(b.release_date) - parseFloat(a.release_date),
-      );
-    }
+  //   if (dateState.includes('Сначала старые')) {
+  //     const arr4 = arrPlaylist.filter((x) => x.release_date);
+  //     arrPlaylist = arr4.sort(
+  //       (a, b) => parseFloat(a.release_date) - parseFloat(b.release_date),
+  //     );
+  //   } else if (dateState.includes('Сначала новые')) {
+  //     const arr4 = arrPlaylist.filter((x) => x.release_date);
+  //     arrPlaylist = arr4.sort(
+  //       (a, b) => parseFloat(b.release_date) - parseFloat(a.release_date),
+  //     );
+  //   }
 
-    setCurrentPlaylist(arrPlaylist);
-  }, [authorState]);
+  //   setCurrentPlaylist(arrPlaylist);
+  // }, [authorState]);
 
   const filterAuthorItems = arr2.map((item) => (
     <li
