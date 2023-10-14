@@ -46,7 +46,7 @@ export const Playlist = ({ list, status, error, setPlaylist, listName }) => {
 
   useEffect(() => {
     filterCheck(list);
-  }, [list, ganreState, authorState ]);
+  }, [list, ganreState, authorState]);
 
   useEffect(() => {
     if (search !== '') {
@@ -75,13 +75,14 @@ export const Playlist = ({ list, status, error, setPlaylist, listName }) => {
         />
       </div>
       <h2 className="centerblock__h2">{listName}</h2>
-      <Filter
-        playlist={list}
-        setCurrentPlaylist={setCurrentPlaylist}
-        setPlaylist={setPlaylist}
-        currentPlaylist={currentPlaylist}
-      />
-
+      {listName === 'Треки' && (
+        <Filter
+          playlist={list}
+          setCurrentPlaylist={setCurrentPlaylist}
+          setPlaylist={setPlaylist}
+          currentPlaylist={currentPlaylist}
+        />
+      )}
       <div className="centerblock__content">
         <S.ContentTitle>
           <div className="playlist-title__col col01">Трек</div>
