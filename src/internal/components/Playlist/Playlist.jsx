@@ -26,7 +26,7 @@ export const Playlist = ({ list, status, error, setPlaylist, listName }) => {
         ? list.filter((el) => ganreState.includes(el.genre))
         : list.filter(
             (el) =>
-              ganreState.includes(el.genre) || authorState.includes(el.author),
+              ganreState.includes(el.genre) && authorState.includes(el.author),
           );
 
     if (dateState.includes('Сначала старые')) {
@@ -46,7 +46,7 @@ export const Playlist = ({ list, status, error, setPlaylist, listName }) => {
 
   useEffect(() => {
     filterCheck(list);
-  }, [list]);
+  }, [list, ganreState, authorState ]);
 
   useEffect(() => {
     if (search !== '') {
