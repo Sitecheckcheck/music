@@ -83,7 +83,9 @@ export const Signin = () => {
           <p style={{ color: 'red' }}>{errorMessage}</p>
           <button
             type="button"
-            className="modal__btn-enter"
+            className={
+              disabled ? 'modal__btn-enter-dis' : 'modal__btn-enter '
+            }
             id="btnEnter"
             disabled={disabled}
             onClick={() => loginClick()}

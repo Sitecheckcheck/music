@@ -1,10 +1,7 @@
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import './signup.css';
-import { registerUser, getToken } from '../../../api';
-import { useTokenContext } from '../../../hooks/token';
-import { userNameFunction } from '../../../store/sliceUserName';
+import { registerUser } from '../../../api';
 
 export const Signup = () => {
   const [login, setLogin] = useState('');
@@ -13,17 +10,11 @@ export const Signup = () => {
   const [disabled, setDisabled] = useState(false);
   const [confirmPassword, setConfirmPassword] = useState('');
   const navigate = useNavigate();
-  const { setToken } = useTokenContext();
-  const dispatch = useDispatch();
 
   const getRegisterUser = async () => {
     try {
       setDisabled(true);
       const user = await registerUser(login, password);
-      const token = await getToken(login, password);
-      localStorage.setItem('user', user.username);
-      localStorage.setItem('refresh', token.refresh);
-      localStorage.setItem('access', token.access);
 
       if (user.email) {
         if (user.email !== login) {
@@ -37,10 +28,8 @@ export const Signup = () => {
         }
       }
 
-      if (user.email === login && user.id) {
-        dispatch(userNameFunction(user.username));
-        setToken(token.refresh);
-        navigate('/');
+      if (user.id) {
+        navigate('/signin');
       }
     } catch (error) {
       console.log(error.message);
@@ -105,7 +94,9 @@ export const Signup = () => {
           <p style={{ color: 'red' }}>{errorMessage}</p>
           <button
             type="button"
-            className="modal__btn-signup-ent"
+            className={
+              disabled ? 'modal__btn-signup-ent-dis' : 'modal__btn-signup-ent'
+            }
             id="SignUpEnter"
             disabled={disabled}
             onClick={() => registerClick()}
