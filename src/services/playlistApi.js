@@ -38,7 +38,7 @@ const baseQueryWithReauth = async (rgs, api, extraOptions) => {
       url: '/user/token/refresh/',
       method: 'POST',
       body: JSON.stringify({
-        refresh: `${refreshToken}`,
+        refresh: refreshToken,
       }),
       headers: {
         'content-type': 'application/json',
@@ -47,8 +47,8 @@ const baseQueryWithReauth = async (rgs, api, extraOptions) => {
     api,
     extraOptions,
   );
-
-  if (!refreshResult.data.access) {
+  console.log(refreshResult)
+  if (!refreshResult.data || !refreshResult.data.access) {
     return forceLogout();
   }
 
