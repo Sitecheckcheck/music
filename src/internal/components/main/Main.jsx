@@ -1,3 +1,4 @@
+// /* eslint-disable */
 import { Nav } from '../nav/Nav';
 import { CenterBlock } from '../centerblock/CenterBlock';
 import { Sidebar } from '../sidebar/Sidebar';

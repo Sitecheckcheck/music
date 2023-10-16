@@ -1,5 +1,5 @@
 export const ListNames = [
-  { id: 1, listName: '100 танцевальных хитов' },
-  { id: 2, listName: 'Инди заряд' },
-  { id: 3, listName: 'Плейлист дня ' },
+  { id: 1, listName: 'Классическая музыка' },
+  { id: 2, listName: 'Электронная музыка' },
+  { id: 3, listName: 'Рок музыка' },
 ];

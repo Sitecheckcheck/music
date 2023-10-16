@@ -1,8 +1,9 @@
+// /* eslint-disable */
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import './signin.css';
-import { authUser, getToken } from '../../api';
+import { authUser, getToken } from '../../../api';
 import { useTokenContext } from '../../../hooks/token';
 import { userNameFunction } from '../../../store/sliceUserName';
 
@@ -19,8 +20,8 @@ export const Signin = () => {
     try {
       setDisabled(true);
       const user = await authUser(login, password);
-      localStorage.setItem('user', user.username);
       const token = await getToken(login, password);
+      localStorage.setItem('user', user.username);
       localStorage.setItem('refresh', token.refresh);
       localStorage.setItem('access', token.access);
 
@@ -82,7 +83,7 @@ export const Signin = () => {
           <p style={{ color: 'red' }}>{errorMessage}</p>
           <button
             type="button"
-            className="modal__btn-enter"
+            className={disabled ? 'modal__btn-enter-dis' : 'modal__btn-enter '}
             id="btnEnter"
             disabled={disabled}
             onClick={() => loginClick()}

@@ -135,7 +135,6 @@ export const TrackTime = styled.div`
     margin-right: 17px;
     fill: transparent;
     stroke: #696969;
-    cursor: pointer;
   }
 
   .track__time-svg-choose {
@@ -144,7 +143,6 @@ export const TrackTime = styled.div`
     margin-right: 17px;
     fill: transparent;
     stroke: #b672ff;
-    cursor: pointer;
   }
 
   .track__time-text {
@@ -154,5 +152,10 @@ export const TrackTime = styled.div`
     line-height: 24px;
     text-align: right;
     color: #696969;
+  }
+
+  div {
+    display: inline;
+    cursor: pointer;
   }
 `;

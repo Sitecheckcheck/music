@@ -4,34 +4,33 @@ import { useState } from 'react';
 import * as S from './playliststyle';
 import { selectTrackFunction } from '../../../../store/sliceSelectTrack';
 import { useIsPlayingContext } from '../../../../hooks/IsPlaying';
-import { addFavorite, deleteFavorite } from '../../../api';
-import { fetchFavoritePlaylist } from '../../../../store/sliceFavoritePlaylist';
+import {
+  useAddFavoriteMutation,
+  useDeleteFavoriteMutation,
+} from '../../../../services/playlistApi';
+import { playlistForShaffleFunction } from '../../../../store/slicePlaylistForShaffle';
 
 export const PlaylistItem = (props) => {
+  const [addFavorite] = useAddFavoriteMutation();
+  const [deleteFavorite] = useDeleteFavoriteMutation();
+
   const userName = useSelector((state) => state.userName.userName);
   const stared = props.item.stared_user
-    ? props.item.stared_user.find((element) => element.email === userName)
-    : true;
+    ? props.item.stared_user.find((element) => element.username === userName)
+    : false;
   const dispatch = useDispatch();
   const selectTrack = useSelector((state) => state.selectTrack.selectTrack);
   const isPlayingContext = useIsPlayingContext();
   const { isPlaying } = isPlayingContext;
   const [isLike, setIsLike] = useState(stared);
 
-  const handleLike = () => {
-    const accessToken = localStorage.getItem('access');
-    if (isLike) {
-      deleteFavorite(props.item.id, accessToken).then(() => {
-        dispatch(fetchFavoritePlaylist()).then(() => {
-          setIsLike(null);
-        });
-      });
+  const handleLike = async () => {
+    if (isLike || props.listName === 'Мои треки') {
+      await deleteFavorite(props.item.id);
+      setIsLike(null);
     } else {
-      addFavorite(props.item.id, accessToken).then(() => {
-        dispatch(fetchFavoritePlaylist()).then(() => {
-          setIsLike(true);
-        });
-      });
+      await addFavorite(props.item.id);
+      setIsLike(true);
     }
   };
 
@@ -58,6 +57,7 @@ export const PlaylistItem = (props) => {
               onClick={() => {
                 props.setPlaylist(props.list);
                 dispatch(selectTrackFunction(props.item));
+                dispatch(playlistForShaffleFunction(props.list));
               }}
             >
               {props.track}
@@ -71,18 +71,25 @@ export const PlaylistItem = (props) => {
         <S.TrackAlbum>
           <div className="track__album-link">{props.album}</div>
         </S.TrackAlbum>
-        <S.TrackTime onClick={() => handleLike()}>
-          {isLike ? (
-            <img
-              src="/music/img/like.svg"
-              className="track__time-svg"
-              alt="time"
-            />
-          ) : (
-            <svg className="track__time-svg" alt="time">
-              <use xlinkHref={`${'/music/img/icon/sprite.svg'}#icon-like`} />
-            </svg>
-          )}
+        <S.TrackTime>
+          <div
+            onClick={(e) => {
+              e.stopPropagation();
+              handleLike();
+            }}
+          >
+            {stared || props.listName === 'Мои треки' ? (
+              <img
+                src="/music/img/like.svg"
+                className="track__time-svg"
+                alt="time"
+              />
+            ) : (
+              <svg className="track__time-svg" alt="time">
+                <use xlinkHref={`${'/music/img/icon/sprite.svg'}#icon-like`} />
+              </svg>
+            )}
+          </div>
 
           <span className="track__time-text">{props.time}</span>
         </S.TrackTime>

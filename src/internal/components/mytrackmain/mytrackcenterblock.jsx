@@ -1,28 +1,19 @@
 // /* eslint-disable */
-import { useSelector } from 'react-redux';
 import * as S from '../centerblock/centerBlockStyle';
 import { Playlist } from '../Playlist/Playlist';
+import { useGetPlaylistFavoriteQuery } from '../../../services/playlistApi';
 
 export const MyTracksCenterBlock = ({ setPlaylist }) => {
-  const { favoritePlaylist, status, error } = useSelector(
-    (state) => state.favoritePlaylist,
-  );
+  const { data = [], error, isLoading } = useGetPlaylistFavoriteQuery();
 
   return (
     <S.MainCenterblock>
-      <div className="centerblock__search search">
-        <S.SearchSvg>
-          <use xlinkHref={`${'/music/img/icon/sprite.svg'}#icon-search`} />
-        </S.SearchSvg>
-        <S.SearchText type="search" placeholder="Поиск" name="search" />
-      </div>
-      <h2 className="centerblock__h2">Мои треки</h2>
-
       <Playlist
-        status={status}
+        status={isLoading ? 'loading' : 'resolved'}
         error={error}
-        list={favoritePlaylist}
+        list={data}
         setPlaylist={setPlaylist}
+        listName="Мои треки"
       />
     </S.MainCenterblock>
   );

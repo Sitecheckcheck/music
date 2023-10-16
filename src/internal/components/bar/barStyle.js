@@ -313,7 +313,7 @@ export const TrackPlayContain = styled.div`
     /* -ms-grid-row: 2;
     -ms-grid-column: 2; */
     grid-area: album;
-    min-width: 49px;
+    min-width: 100px;
   }
 
   .track-play__album-link {
@@ -352,6 +352,7 @@ export const TrackPlayLikeDis = styled.div`
 
   .track-play__dislike {
     margin-left: 28.5px;
+    cursor: pointer;
   }
 
   .track-play__dislike-svg {

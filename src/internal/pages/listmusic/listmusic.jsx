@@ -1,13 +1,14 @@
+// /* eslint-disable */
 import { useParams } from 'react-router-dom';
 import { Footer } from '../../components/footer/Footer';
 import GlobalStyle, { Wrapper, Container } from '../../styles';
 import { Nav } from '../../components/nav/Nav';
 import SMain from '../../components/main/mainStyle';
-import { ListindiCenterBlock } from '../../components/listindi/listindicenterblock';
 import { ListNames } from '../../../constans';
 import { Sidebar } from '../../components/sidebar/Sidebar';
+import { ListCenterBlock } from '../../components/listBlock/listCenterBlock';
 
-export const ListMusic = () => {
+export const ListMusic = ({ setPlaylist }) => {
   const params = useParams();
 
   const ListName = ListNames.find(
@@ -20,7 +21,7 @@ export const ListMusic = () => {
         <GlobalStyle />
         <SMain>
           <Nav />
-          <ListindiCenterBlock listNam={ListName.listName} />
+          <ListCenterBlock setPlaylist={setPlaylist} ListName={ListName} />
           <Sidebar />
         </SMain>
         <Footer />
